@@ -1,0 +1,35 @@
+.blue{
+    width: 100%;
+    height: 200px;
+    background-color: blue;
+}
+
+.white{
+    width: 100%;
+    height: 200px;
+    background-color: white;
+}
+
+/* Media query for screens smaller than 768px */
+@media  (max-width: 768px) {
+    .blue {
+        width: 40%;
+    }
+
+    .white{
+        width: 60%;
+    }
+}
+
+/* Media query for screens larger than or equal to 768px */
+@media  (min-width: 768px) {
+    .blue {
+        width: 40%;
+        float: left;
+    }
+
+    .white{
+        width: 60%;
+        float: left;
+    }
+}
