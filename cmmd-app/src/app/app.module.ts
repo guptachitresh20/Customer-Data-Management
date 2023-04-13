@@ -14,12 +14,10 @@ import {NgToastModule} from 'ng-angular-popup'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
 
-import {MatButtonModule} from '@angular/material/button'
-import {MatSelectModule} from '@angular/material/select'
 import {MatIconModule} from '@angular/material/icon';
 import {MatDialogModule} from '@angular/material/dialog';
-import {MatInputModule} from '@angular/material/input'
-import {MatFormFieldModule} from '@angular/material/form-field'
+
+
 import { AddCustomerComponent } from './customer/add-customer/add-customer.component';
 import { CustomerHome2Component } from './customer-module/customer-home2/customer-home2.component';
 import { NgConfirmModule } from 'ng-confirm-box';
@@ -28,7 +26,7 @@ import {MatPaginatorModule} from '@angular/material/paginator';
   declarations: [
     AppComponent,
     HeaderComponent,
-    AddCustomerComponent
+    AddCustomerComponent,
     CustomerHome2Component
   ],
   imports: [
@@ -43,7 +41,7 @@ import {MatPaginatorModule} from '@angular/material/paginator';
     MatSelectModule,
     NgToastModule,
     NgConfirmModule,
-    MatPaginatorModule
+    MatPaginatorModule,
     ReactiveFormsModule,
     MatDialogModule,
     MatIconModule,
