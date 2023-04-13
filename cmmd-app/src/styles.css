@@ -83,3 +83,12 @@ mat-dialog-content {
     backdrop-filter: blur(5px);
 }
 
+
+.mat-mdc-menu-panel.mat-mdc-menu-panel {
+    min-width: 112px;
+    max-width: 280px;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+    position: relative;
+    margin-top: 11%;
+}

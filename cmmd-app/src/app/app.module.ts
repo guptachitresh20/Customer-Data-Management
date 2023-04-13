@@ -13,6 +13,8 @@ import {HttpClientModule} from '@angular/common/http'
 import {NgToastModule} from 'ng-angular-popup'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
+import {MatIconModule} from '@angular/material/icon';
+import {MatMenuModule} from '@angular/material/menu';
 
 import {MatIconModule} from '@angular/material/icon';
 import {MatDialogModule} from '@angular/material/dialog';
@@ -46,6 +48,9 @@ import {MatPaginatorModule} from '@angular/material/paginator';
     MatDialogModule,
     MatIconModule,
     HttpClientModule
+    BrowserAnimationsModule,
+    MatIconModule,
+    MatMenuModule
   ],
   providers: [],
   bootstrap: [AppComponent]
