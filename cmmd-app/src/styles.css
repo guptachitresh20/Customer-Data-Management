@@ -17,6 +17,7 @@ mat-dialog-container {
 
 }
 
+
 /* "@angular/material/prebuilt-themes/pink-bluegrey.css", */
 /* cmmd-app\angular.json */
 .mdc-text-field--filled:not(.mdc-text-field--disabled) {
@@ -90,5 +91,5 @@ mat-dialog-content {
     overflow: auto;
     -webkit-overflow-scrolling: touch;
     position: relative;
-    margin-top: 11%;
+    margin-top: 5%;
 }

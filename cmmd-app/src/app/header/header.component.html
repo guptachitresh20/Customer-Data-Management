@@ -1,4 +1,4 @@
-<header class="header">
+<!-- <header class="header">
   <img src="../../assets/cdm logo.png" alt="" />
   <div class="main-nav">
     <div class="nav-search">
@@ -35,3 +35,52 @@
     </ul>
   </div>
 </header>
+ -->
+
+
+
+  <header class="header">
+      <div class="logo">
+          <img src="../../assets/cdm logo.png" alt="" />
+      </div>
+  <!-- <div class="main-nav"> -->
+    <div class="nav-search">
+      <input #box type="text" placeholder="Search for Customers" />
+      <button><img src="../../assets/🦆 icon _search_.png" /></button>
+    </div>
+    <div class="nav-div">
+        <ul class="nav-options">
+            <li>
+              <a href="#"><mat-icon>person_add_alt_1</mat-icon></a>
+            </li>
+            <ul class="account">
+              <li>
+                <button mat-icon-button [matMenuTriggerFor]="menu">
+                  <mat-icon id="icon">account_circle</mat-icon>
+                </button>
+      
+                <mat-menu #menu="matMenu" class="customize">
+                  <button mat-menu-item class="customize-b">
+                    <mat-icon>badge</mat-icon>
+                    <span>Purab Surana</span>
+                  </button>
+                  <button mat-menu-item class="customize-b">
+                    <mat-icon>description</mat-icon>
+                    <span>Logs</span>
+                  </button>
+                  <button mat-menu-item class="customize-b">
+                    <mat-icon>password</mat-icon>
+                    <span>Reset Password</span>
+                  </button>
+                  <button mat-menu-item class="customize-b">
+                    <mat-icon>logout</mat-icon>
+                    <span>Logout</span>
+                  </button>
+                </mat-menu>
+              </li>
+            </ul>
+          </ul>
+    </div>
+  <!-- </div> -->
+</header>
+
