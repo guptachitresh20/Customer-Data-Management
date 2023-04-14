@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, FormGroupDirective, NgForm, Validators} from '@angular/forms';
-
+import { Customer } from 'src/app/data-types';
+import {CustomerService} from '../../services/customer.service'
 
 @Component({
   selector: 'app-add-customer',
@@ -9,16 +10,21 @@ import {FormBuilder, FormControl, FormGroup, FormGroupDirective, NgForm, Validat
 })
 export class AddCustomerComponent {
 
-    constructor( ){}
-
-    onSubmit(){
-      console.log("hello")
-      console.log(this.customerAddForm.value);
+    constructor(private customer:CustomerService ){}
+    addProductMessage:string|undefined;
+    addCustomer(){
+      this.customer.addCustomer(this.customerAddForm.value).subscribe((result)=>{
+        console.log(result);
+        if(result){
+          this.addProductMessage="Product is successfully added";
+          setTimeout(()=>{this.addProductMessage = undefined},3000);
+          this.customerAddForm.reset();
+        }
+      });
     }
 
     customerAddForm = new FormGroup({
-      firstName:new FormControl('',[Validators.required]),
-      lastName:new FormControl('',[Validators.required]),
+      cname:new FormControl('',[Validators.required]),
       logo:new FormControl('',[]),
       typeOfCompany:new FormControl('',[Validators.required]),
       description:new FormControl('',[Validators.required]),
@@ -33,12 +39,10 @@ export class AddCustomerComponent {
     get email(){
       return this.customerAddForm.get('email');
     }
-    get firstName(){
-      return this.customerAddForm.get('firstName');
+    get cname(){
+      return this.customerAddForm.get('cname');
     }
-    get lastName(){
-      return this.customerAddForm.get('lastName');
-    }
+
     get gstin(){
       return this.customerAddForm.get('gstin');
     }

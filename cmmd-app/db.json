@@ -1,0 +1,56 @@
+{
+  "customer": [
+    {
+      "name": "fsfsa",
+      "logo": "fsafsa",
+      "typeOfCompany": "Construction",
+      "description": "fsdafsadf",
+      "email": "fsfsda@sadf",
+      "gstin": "fdsfsafsafsfsafsadfsadfsa",
+      "headquarter": "fsdafsadf",
+      "phoneNo": "fasdfdsafsadfsadf",
+      "website": "fsdfdsafdsaf",
+      "countryCode": "fsadfsadf",
+      "id": 1
+    },
+    {
+      "name": "fsfsa",
+      "logo": "fsafsa",
+      "typeOfCompany": "Construction",
+      "description": "fsdafsadf",
+      "email": "fsfsda@sadf",
+      "gstin": "fdsfsafsafsfsafsadfsadfsa",
+      "headquarter": "fsdafsadf",
+      "phoneNo": "fasdfdsafsadfsadf",
+      "website": "fsdfdsafdsaf",
+      "countryCode": "fsadfsadf",
+      "id": 2
+    },
+    {
+      "name": "Amazon",
+      "logo": "nahi hai baaad me aana",
+      "typeOfCompany": "IT",
+      "description": "amazone india",
+      "email": "amazon@fastenal.com",
+      "gstin": "amaozn932023fda",
+      "headquarter": "Us",
+      "phoneNo": "42092110000",
+      "website": "www.amazon.com",
+      "countryCode": "fosahfoa",
+      "id": 3
+    },
+    {
+      "cname": "Google",
+      "logo": "www.xyz.com",
+      "typeOfCompany": "IT",
+      "description": "fsfdsafsdfsdfs",
+      "email": "google@fastenal.com",
+      "gstin": "4353453543553454",
+      "headquarter": "fasdfsadff",
+      "phoneNo": "fsafdsfdsffdsfa",
+      "website": "fsafsdfsaf",
+      "countryCode": "sadfsadf",
+      "id": 4
+    }
+  ]
+}
