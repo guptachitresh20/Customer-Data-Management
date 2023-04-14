@@ -10,3 +10,9 @@ export interface Customer{
     website?:string,
     countryCode?:string
 };
+export interface DisplayCustomer{
+    cname?:string,
+    logo?:string,
+    gstin?:string,
+    phoneNo?:string,
+}

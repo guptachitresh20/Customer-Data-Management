@@ -13,7 +13,7 @@ import {HttpClientModule} from '@angular/common/http'
 import {NgToastModule} from 'ng-angular-popup'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
-
+import {MatSortModule} from '@angular/material/sort';
 import {MatIconModule} from '@angular/material/icon';
 import {MatDialogModule} from '@angular/material/dialog';
 
@@ -22,12 +22,14 @@ import { AddCustomerComponent } from './customer/add-customer/add-customer.compo
 import { CustomerHome2Component } from './customer-module/customer-home2/customer-home2.component';
 import { NgConfirmModule } from 'ng-confirm-box';
 import {MatPaginatorModule} from '@angular/material/paginator';
+import { CustomerHomeComponent } from './customer/customer-home/customer-home.component';
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     AddCustomerComponent,
-    CustomerHome2Component
+    CustomerHome2Component,
+    CustomerHomeComponent
   ],
   imports: [
     BrowserModule,
@@ -45,7 +47,8 @@ import {MatPaginatorModule} from '@angular/material/paginator';
     ReactiveFormsModule,
     MatDialogModule,
     MatIconModule,
-    HttpClientModule
+    HttpClientModule,
+    MatSortModule
   ],
   providers: [],
   bootstrap: [AppComponent]
