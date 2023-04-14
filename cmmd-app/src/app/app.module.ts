@@ -13,7 +13,6 @@ import {HttpClientModule} from '@angular/common/http'
 import {NgToastModule} from 'ng-angular-popup'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
-
 import {MatSortModule} from '@angular/material/sort';
 
 import {MatIconModule} from '@angular/material/icon';
@@ -31,7 +30,6 @@ import { CustomerHomeComponent } from './customer/customer-home/customer-home.co
     AppComponent,
     HeaderComponent,
     AddCustomerComponent,
-
     CustomerHomeComponent
   ],
   imports: [
@@ -51,6 +49,7 @@ import { CustomerHomeComponent } from './customer/customer-home/customer-home.co
     MatDialogModule,
     MatIconModule,
     HttpClientModule,
+    MatSortModule,
     MatIconModule,
     MatMenuModule,
     MatSortModule
