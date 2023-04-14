@@ -59,6 +59,6 @@ export class AddCustomerComponent {
     get phoneNo(){
       return this.customerAddForm.get('phoneNo');
     }
-
+    
 
 }

@@ -74,10 +74,18 @@ mat-dialog-content {
     color: black;
 }
 
+
 .backgroundblur {
     backdrop-filter: blur(3px);
+    
 }
 
+
+@media only screen and (max-width: 560px) {
+    .backgroundblur {
+        width: 100%;
+    }
+}
 
 .mat-mdc-menu-panel.mat-mdc-menu-panel {
     min-width: 112px;
