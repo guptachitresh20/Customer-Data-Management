@@ -25,12 +25,16 @@ import { AddCustomerComponent } from './customer/add-customer/add-customer.compo
 import { NgConfirmModule } from 'ng-confirm-box';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { CustomerHomeComponent } from './customer/customer-home/customer-home.component';
+import { FooterComponent } from './footer/footer.component';
+
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     AddCustomerComponent,
-    CustomerHomeComponent
+    CustomerHomeComponent,
+    FooterComponent,
+
   ],
   imports: [
     BrowserModule,

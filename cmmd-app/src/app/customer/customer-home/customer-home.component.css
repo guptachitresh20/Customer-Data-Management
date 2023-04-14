@@ -1,4 +1,17 @@
 
 table {
     width: 100%;
-  }
+}
+div{
+  padding-top: 4%;
+  padding-left: 6%;
+  padding-right: 5%;
+  z-index: 0;
+}
+.xbutton{
+  z-index: 0;
+}
+td{
+  cursor: pointer;
+}
+
