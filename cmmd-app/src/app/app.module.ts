@@ -14,7 +14,7 @@ import {NgToastModule} from 'ng-angular-popup'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
 import {MatSortModule} from '@angular/material/sort';
-
+import {NgxPaginationModule} from 'ngx-pagination';
 import {MatIconModule} from '@angular/material/icon';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatDialogModule} from '@angular/material/dialog';
@@ -54,7 +54,8 @@ import { CustomerModule } from './customer/customer.module';
     MatMenuModule,
     MatSortModule,
     AccountsModule,
-    CustomerModule
+    CustomerModule,
+    NgxPaginationModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -12,8 +12,11 @@ export interface ICustomer{
     id?:string
 };
 export interface IDisplayCustomer{
+    length: any
     cname?:string,
     logo?:string,
     gstin?:string,
-    phoneNo?:string,
+    email?:string,
+    id?:string,
+    typeOfCompany?:string
 }

@@ -1,74 +1,69 @@
-import { Component,ViewChild, OnInit } from '@angular/core';
+import { Component, ViewChild, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
-import { MatSort,Sort } from '@angular/material/sort';
+import { MatSort, Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { ICustomer, IDisplayCustomer } from 'src/app/data-types';
 import { CustomerService } from 'src/app/services/customer.service';
-
 import { AddCustomerComponent } from '../add-customer/add-customer.component';
 import * as alertify from 'alertifyjs';
-
 
 @Component({
   selector: 'app-customer-home',
   templateUrl: './customer-home.component.html',
   styleUrls: ['./customer-home.component.css']
 })
-export class CustomerHomeComponent implements OnInit{
-  displayedColumns: string[] = ['cname', 'logo', 'gstin', 'phoneNo','action'];
-  dataSource:any;
-  empdata:any;
+export class CustomerHomeComponent implements OnInit {
 
-@ViewChild(MatPaginator) paginator !:MatPaginator;
-@ViewChild(MatSort) sort :MatSort;
+  customerList : undefined | IDisplayCustomer[];
+  dataSource: any;
+  empdata: any;
+  totalCustomer : any;
 
-  constructor(private service:CustomerService, private dialog:MatDialog){
+
+  p:number =1;
+  itemsPerPage:number = 10;
+  totalProduct:any;
+  constructor(private service: CustomerService, private dialog: MatDialog) {
 
   }
   ngOnInit(): void {
-    this.GetAll();
-  }
-  GetAll(){
-    this.service.getCustomer().subscribe(result => {
-      this.empdata = result;
-      this.dataSource = new MatTableDataSource<IDisplayCustomer>(this.empdata);
-      this.dataSource.paginator = this.paginator;
-      this.dataSource.sort = this.sort;
-    })
+    this.getList();
   }
 
-  FilterChange(event:Event){
-    const filvalue = (event.target as HTMLInputElement).value;
-    this.dataSource.filter=filvalue;
+  getList(){
+    this.service.getCustomer().subscribe((result)=>{
+      this.customerList = result;
+      this.totalCustomer = result.length;
+      console.log(result);
+    });
   }
 
-  getrow(row:any){
-    // console.log(row);
-  }
-  editCustomer(id:string){
-    this.dialog.open(AddCustomerComponent,{
+  editCustomer(id: string) {
+    this.dialog.open(AddCustomerComponent, {
       maxHeight: 'calc(100vh - 120px)',
       height: 'auto',
       backdropClass: "backgroundblur",
-      data:{
-        id:id,
+      data: {
+        id: id,
         modalTitle: 'Update Customer Form',
-        button:'Update'
+        button: 'Update'
       }
-      
+
     });
   }
 
-  deleteCustomer(id:string){
-    alertify.confirm("Delete Customer", "Do you want to delete this customer?",() =>{
-      this.service.deleteCustomerbyId(id).subscribe(r=>{
+  deleteCustomer(id: string) {
+    alertify.confirm("Delete Customer", "Do you want to delete this customer?", () => {
+      this.service.deleteCustomerbyId(id).subscribe(r => {
         alertify.error('Deleted Successfully');
-        this.GetAll();
+        this.getList();
       });
-    }, function(){
+    }, function () {
 
     });
- 
+
   }
+
+
 }

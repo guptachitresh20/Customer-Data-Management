@@ -14,8 +14,8 @@ export class CustomerService {
   addCustomer(data:ICustomer){
     return this.http.post(this.apiurl, data);
   }
-  getCustomer() : Observable<IDisplayCustomer>{
-    return this.http.get(this.apiurl);
+  getCustomer(){
+    return this.http.get<IDisplayCustomer[]>(this.apiurl);
   }
   
   getCustomerbyId(id:any): Observable<ICustomer>{
