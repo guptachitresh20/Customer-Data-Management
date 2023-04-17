@@ -39,8 +39,8 @@ td {
     background-color: #C8CCCE;
     color: black;
     cursor: pointer;
-    
 }
+
 
 @media only screen and (max-width: 1102px) {
     .table-row{

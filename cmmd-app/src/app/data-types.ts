@@ -11,7 +11,7 @@ export interface ICustomer{
     countryCode?:string,
     id?:string
 };
-export interface DisplayCustomer{
+export interface IDisplayCustomer{
     cname?:string,
     logo?:string,
     gstin?:string,

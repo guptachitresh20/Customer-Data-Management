@@ -1,19 +1,12 @@
-<<<<<<< HEAD
-import { Component } from '@angular/core';
-import {FormBuilder, FormControl, FormGroup, FormGroupDirective, NgForm, Validators} from '@angular/forms';
-import { ICustomer } from 'src/app/data-types';
-import {CustomerService} from '../../services/customer.service'
-=======
 import { identifierName } from '@angular/compiler';
 import { Component, Inject, inject } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, FormGroupDirective, NgForm, Validators } from '@angular/forms';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Customer } from 'src/app/data-types';
+import { ICustomer } from 'src/app/data-types';
 import { CustomerService } from '../../services/customer.service'
 import { CustomerHomeComponent } from '../customer-home/customer-home.component';
 import * as alertify from 'alertifyjs';
 import { delay } from 'rxjs';
->>>>>>> child
 
 @Component({
   selector: 'app-add-customer',

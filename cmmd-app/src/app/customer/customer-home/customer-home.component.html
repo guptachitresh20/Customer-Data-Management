@@ -37,11 +37,7 @@
 
     <ng-container matColumnDef="action">
         <th mat-header-cell *matHeaderCellDef> Action </th>
-<<<<<<< HEAD
-        <td mat-cell *matCellDef="let element"> <button class="xbutton" (click)="updateCustomer(element.id)" mat-raised-button color="primary">Edit</button> | <button class="xbutton" mat-raised-button color="warn" (click)="deleteCustomer(element.id)">Delete</button></td>
-=======
         <td mat-cell *matCellDef="let element"> <button class="xbutton" (click)="editCustomer(element.id)" mat-raised-button color="primary">Edit</button> | <button class="xbutton" mat-raised-button color="warn" (click)="deleteCustomer(element.id)">Delete</button></td>
->>>>>>> child
       </ng-container>
   
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

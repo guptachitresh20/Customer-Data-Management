@@ -44,9 +44,15 @@
             <tr class="table-row">
 
                 <td>
-                    <mat-form-field appearance="fill">
+                    <mat-form-field appearance="fill" *ngIf="data.modalTitle=='Add Customer Form'">
                         <mat-label>GSTIN</mat-label>
-                        <input type="text" matInput formControlName="gstin" name="gstin">
+                        <input type="text" matInput formControlName="gstin" name="gstin" >
+                        <mat-error>GSTIN <strong>Required</strong></mat-error>
+                     
+                    </mat-form-field>
+                    <mat-form-field appearance="fill" *ngIf="data.modalTitle=='Update Customer Form'" disabled>
+                        <mat-label>GSTIN</mat-label>
+                        <input type="text" matInput formControlName="gstin" name="gstin" readonly >
                         <mat-error>GSTIN <strong>Required</strong></mat-error>
                      
                     </mat-form-field>
