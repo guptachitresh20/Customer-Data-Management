@@ -9,11 +9,24 @@ import { Observable } from 'rxjs';
 export class CustomerService {
 
   constructor(private http:HttpClient) { }
+  apiurl = 'http://localhost:3000/customer';
 
   addCustomer(data:Customer){
-    return this.http.post("http://localhost:3000/customer", data);
+    return this.http.post(this.apiurl, data);
   }
   getCustomer() : Observable<DisplayCustomer>{
-    return this.http.get("http://localhost:3000/customer");
+    return this.http.get(this.apiurl);
   }
+  
+  getCustomerbyId(id:any): Observable<Customer>{
+    return this.http.get<Customer>(`${this.apiurl}/${id}`);
+  }
+
+  deleteCustomerbyId(id:any){
+    return this.http.delete<Customer>(`${this.apiurl}/${id}`);
+  }
+  updateCustomer(id:any, customerData:Customer){
+    return this.http.put(`${this.apiurl}/${id}`,customerData);
+  }
+  
 }
