@@ -1,4 +1,4 @@
-<h1 mat-dialog-title class="titlehead">Add Customer Form</h1>
+<h1 mat-dialog-title class="titlehead">{{data.modalTitle}}</h1>
 <div mat-dialog-content style="max-height: 100vh;">
 
     <form [formGroup]="customerAddForm" >
@@ -101,6 +101,6 @@
     </form>
     <div mat-dialog-action [align]="'end'" class="button-class">
         <button mat-raised-button color="warn" mat-dialog-close class="closebtn">Close</button>
-        <button style="background-color: #00599C;" [disabled]="customerAddForm.invalid" mat-raised-button color="primary" type="submit" class="submitbtn"  (click)="addCustomer()"> Submit</button>
+        <button style="background-color: #00599C;" [disabled]="customerAddForm.invalid" mat-raised-button color="primary" type="submit" class="submitbtn"  (click)="addCustomer()"> {{data.button}}</button>
     </div>
 </div>

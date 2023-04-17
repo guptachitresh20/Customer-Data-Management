@@ -1,6 +1,7 @@
 {
   "customer": [
     {
+<<<<<<< HEAD
       "cname": "Googly",
       "logo": "www.xyz.com",
       "typeOfCompany": "IT",
@@ -311,6 +312,19 @@
       "website": "www.amazon.in",
       "countryCode": "+91",
       "id": 5
+=======
+      "cname": "Abhinandan Mishra fnhf",
+      "logo": "fdsaf",
+      "typeOfCompany": "IT",
+      "description": "fsafdsa",
+      "email": "abhinandanm659@gmail.com",
+      "gstin": "fsadfsafdsafsadfsafdsafsadf",
+      "headquarter": "sdafsaf",
+      "phoneNo": "fsdafsadfsadfsa",
+      "website": "fsdfsadfsa",
+      "countryCode": "India",
+      "id": 6
+>>>>>>> child
     }
   ]
 }

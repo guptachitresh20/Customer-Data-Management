@@ -10,12 +10,16 @@ import { AddCustomerComponent } from '../customer/add-customer/add-customer.comp
 })
 export class HeaderComponent {
   constructor(private dialog: MatDialog){}
-
+  
   addCustomer(){
     this.dialog.open(AddCustomerComponent,{
       maxHeight: 'calc(100vh - 120px)',
       height: 'auto',
       backdropClass: "backgroundblur",
+      data:{
+        modalTitle:"Add Customer Form",
+        button:"Add"
+      }
     });
   }
 
