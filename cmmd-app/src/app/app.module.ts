@@ -26,6 +26,9 @@ import { NgConfirmModule } from 'ng-confirm-box';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { CustomerHomeComponent } from './customer/customer-home/customer-home.component';
 import { FooterComponent } from './footer/footer.component';
+import { UpdateCustomerComponent } from './customer/update-customer/update-customer.component';
+
+
 
 @NgModule({
   declarations: [
@@ -34,7 +37,7 @@ import { FooterComponent } from './footer/footer.component';
     AddCustomerComponent,
     CustomerHomeComponent,
     FooterComponent,
-
+    UpdateCustomerComponent
   ],
   imports: [
     BrowserModule,

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, FormGroupDirective, NgForm, Validators} from '@angular/forms';
-import { Customer } from 'src/app/data-types';
+import { ICustomer } from 'src/app/data-types';
 import {CustomerService} from '../../services/customer.service'
 
 @Component({

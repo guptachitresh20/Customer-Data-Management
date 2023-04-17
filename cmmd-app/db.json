@@ -1,7 +1,7 @@
 {
   "customer": [
     {
-      "cname": "Google",
+      "cname": "Googly",
       "logo": "www.xyz.com",
       "typeOfCompany": "IT",
       "description": "fsfdsafsdfsdfs",
@@ -14,7 +14,7 @@
       "id": 4
     },
     {
-      "cname": "Amazon",
+      "cname": "Flipkart",
       "logo": "www.amazon.com",
       "typeOfCompany": "IT",
       "description": "Hello Flipkart",

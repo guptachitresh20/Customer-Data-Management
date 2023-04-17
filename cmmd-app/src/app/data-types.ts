@@ -1,4 +1,4 @@
-export interface Customer{
+export interface ICustomer{
     cname?:string,
     logo?:string,
     typeOfCompany?:string,
@@ -8,7 +8,8 @@ export interface Customer{
     headquarter?:string,
     phoneNo?:string,
     website?:string,
-    countryCode?:string
+    countryCode?:string,
+    id?:string
 };
 export interface DisplayCustomer{
     cname?:string,
