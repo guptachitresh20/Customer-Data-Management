@@ -20,3 +20,24 @@ export interface IDisplayCustomer{
     id?:string,
     typeOfCompany?:string
 }
+    phoneNo?:string,
+};
+export interface IAccount{
+    accountid?:string,
+    accountname?: string,
+    branch?:string,
+    email?: string,
+    phoneNo?: string,
+    noofemp?:string,
+    yearofest?:string,
+    operatinghrs?:string,
+    manager?:string,
+    servicesoffered?:string,
+    expenses?:string,
+    profit?:string,
+    revenue?:string,
+    noofdept?:string,
+    long?:string,
+    lat?:string,
+    id?: string
+  };
