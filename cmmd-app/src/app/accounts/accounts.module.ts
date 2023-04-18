@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { AccountHomeComponent } from './account-home/account-home.component';
 import { AddAccountComponent } from './add-account/add-account.component';
 import { AccountDetailComponent } from './account-detail/account-detail.component';
-
+import {RouterModule} from '@angular/router';
 
 
 @NgModule({
@@ -13,7 +13,8 @@ import { AccountDetailComponent } from './account-detail/account-detail.componen
     AccountDetailComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    RouterModule
   ],
   exports:[
    AccountHomeComponent,

@@ -1,5 +1,5 @@
 
-<div class="customers">
+<div class="customers" >
   <div class="table">
     <div class="table_section">
       <table>
@@ -12,16 +12,18 @@
             <th>Email</th>
             <th>Action</th>
           </tr>
+          <br>
         </thead>
         <tbody>
 
-            <tr *ngFor="let customer of customerList| paginate: {itemsPerPage: itemsPerPage, currentPage: p}"  routerLink="/customer/{{customer.id}}/accounts">
-              <td><img src="{{customer.logo}}"></td>
-              <td data-title="Name">{{customer.cname}}</td>
-              <td data-title="Sector">{{customer.typeOfCompany}}</td>
-              <td data-title="GSTIN">{{customer.gstin}}</td>
-              <td data-title="Email">{{customer.email}}</td>
+            <tr class="body-row" *ngFor="let customer of customerList| paginate: {itemsPerPage: itemsPerPage, currentPage: p}"  >
+              <td routerLink="/customer/{{customer.id}}/accounts"><img src="{{customer.logo}}"></td>
+              <td routerLink="/customer/{{customer.id}}/accounts" data-title="Name">{{customer.cname}}</td>
+              <td routerLink="/customer/{{customer.id}}/accounts" data-title="Sector">{{customer.typeOfCompany}}</td>
+              <td routerLink="/customer/{{customer.id}}/accounts" data-title="GSTIN">{{customer.gstin}}</td>
+              <td routerLink="/customer/{{customer.id}}/accounts" data-title="Email">{{customer.email}}</td>
               <td>
+                
                 <button class="update_btn" (click)="editCustomer(customer.id)">Update</button>
                 <button  class="delete_btn" (click)="deleteCustomer(customer.id)">Delete</button>
                 
