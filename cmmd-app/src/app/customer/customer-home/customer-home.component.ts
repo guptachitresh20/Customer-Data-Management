@@ -1,8 +1,5 @@
 import { Component, ViewChild, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatSort, Sort } from '@angular/material/sort';
-import { MatTableDataSource } from '@angular/material/table';
 import { ICustomer, IDisplayCustomer } from 'src/app/data-types';
 import { CustomerService } from 'src/app/services/customer.service';
 import { AddCustomerComponent } from '../add-customer/add-customer.component';

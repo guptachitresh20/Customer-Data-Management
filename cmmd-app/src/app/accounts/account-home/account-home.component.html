@@ -1,3 +1,76 @@
 <div class="accounts">
-    <h1>{{customerDetail?.cname}}</h1>
+    <div class="table">
+        <div class="table_section">
+            <table>
+
+                <tbody>
+
+                    <tr class="body-row">
+                        <td rowspan="3"><img src="{{customerDetail.logo}}" alt=""></td>
+                        <td>Name - {{customerDetail.cname}}</td>
+                        <td>Type - {{customerDetail.typeOfCompany}}</td>
+                        <td>Phone No - {{customerDetail.phoneNo}}</td>
+                    </tr>
+                    <tr class="body-row">
+
+                        <td>ID - {{customerDetail.id}}</td>
+                        <td>Email - <a href="{{customerDetail.email}}">{{customerDetail.email}}</a></td>
+                        <td>Website - <a href="{{customerDetail.website}}">{{customerDetail.website}}</a></td>
+                    </tr>
+                    <tr class="body-row">
+
+                        <td>GSTIN - {{customerDetail.gstin}}</td>
+                        <td>Headquarter - {{customerDetail.headquarter}}</td>
+                        <td>Country Code - {{customerDetail.countryCode}}</td>
+                    </tr>
+                    <br>
+                    <tr>
+                        <td colspan="4">{{customerDetail.description}}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <br>
+            <br>
+
+            <div class="table">
+                <div class="table_section">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Customer</th>
+                                <th>Name</th>
+                                <th>Sector</th>
+                                <th>GSTIN</th>
+                                <th>Email</th>
+                                <th>Action</th>
+                            </tr>
+                            <br>
+                        </thead>
+                        <tbody class="accountlist">
+                            <tr>
+                                <td >Amazon</td>
+                                <td>Amazon</td>
+                                <td>Amazon</td>
+                                <td>Amazon</td>
+                                <td>Amazon</td>
+                                <td>
+                
+                                    <button class="update_btn" >Update</button>
+                                    <button  class="delete_btn" >Delete</button>
+                                    
+                                  </td>
+                            </tr>
+
+
+                        </tbody>
+
+
+                        <!-- <div class="paginationclass">
+                            <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                        </div> --> 
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

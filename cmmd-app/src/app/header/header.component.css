@@ -24,8 +24,9 @@ header{
 }
 
 .logo img{
-	width: 130px;;
+	width: 130px;
 	height: 35px;
+	cursor: pointer;
 }
 
 .nav-search{
@@ -35,6 +36,7 @@ header{
     flex-direction: row; 
 	height: 100%;
 	width: 70%;
+
 }
 
 .nav-search input{

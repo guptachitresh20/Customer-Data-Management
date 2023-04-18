@@ -1,9 +1,10 @@
 
 @media only screen and (max-width: 970px) {
-
+  
   table{
     padding-top: 10%;
     padding-bottom: 7%;
+
   }
   table,
   head,
@@ -56,17 +57,23 @@
 @media only screen and (max-width: 706px) {
   table{
     padding-top: 20%;
+
   }
+
 }
 @media only screen and (max-width: 460px) {
   table{
     padding-top: 25%;
+   
   }
+
 }
 @media only screen and (max-width: 412px) {
   table{
     padding-top: 25%;
+
   }
+
 }
 .customers {
   padding-top: 6%;
@@ -92,6 +99,8 @@ thead th {
   background-color: #00599C;
   color: white;
   font-size: 15px;
+  height: 50px;
+
 }
 
 th,
@@ -132,5 +141,7 @@ button{
   background-color: #00599C;
   color: white;
 }
+
+
 
 

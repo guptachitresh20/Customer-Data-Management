@@ -22,6 +22,8 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import { RouterModule } from '@angular/router';
 import { AccountDetailComponent } from './account-detail/account-detail.component';
 
+
+
 @NgModule({
   declarations: [
     AccountHomeComponent,
