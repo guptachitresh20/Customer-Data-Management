@@ -1,5 +1,5 @@
 export interface ICustomer{
-    cname?:string,
+    cname?:string|null,
     logo?:string,
     typeOfCompany?:string,
     description?:string,
@@ -13,7 +13,7 @@ export interface ICustomer{
 };
 export interface IDisplayCustomer{
     length: any
-    cname?:string,
+    cname?:string|null,
     logo?:string,
     gstin?:string,
     email?:string,

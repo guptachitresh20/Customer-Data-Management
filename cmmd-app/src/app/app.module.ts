@@ -55,7 +55,8 @@ import { CustomerModule } from './customer/customer.module';
     MatSortModule,
     AccountsModule,
     CustomerModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+
   ],
   providers: [],
   bootstrap: [AppComponent]
