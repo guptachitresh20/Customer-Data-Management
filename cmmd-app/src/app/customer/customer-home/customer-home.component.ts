@@ -15,7 +15,7 @@ import * as alertify from 'alertifyjs';
 })
 export class CustomerHomeComponent implements OnInit {
 
-  customerList : undefined | IDisplayCustomer[];
+  customerList :  IDisplayCustomer[];
   dataSource: any;
   empdata: any;
   totalCustomer : any;
@@ -35,7 +35,7 @@ export class CustomerHomeComponent implements OnInit {
     this.service.getCustomer().subscribe((result)=>{
       this.customerList = result;
       this.totalCustomer = result.length;
-      console.log(result);
+  
     });
   }
 

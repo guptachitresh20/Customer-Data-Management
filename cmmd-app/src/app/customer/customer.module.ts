@@ -22,6 +22,7 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import {NgxPaginationModule} from 'ngx-pagination';
 import { RouterModule } from '@angular/router';
 
+import {RouterModule} from '@angular/router';
 @NgModule({
   declarations: [
     AddCustomerComponent,
