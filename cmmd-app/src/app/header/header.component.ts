@@ -2,6 +2,7 @@ import { AutofillMonitor } from '@angular/cdk/text-field';
 import { Component } from '@angular/core';
 import {MatDialog, MatDialogConfig, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { AddCustomerComponent } from '../customer/add-customer/add-customer.component';
+import { AddAccountComponent } from '../accounts/add-account/add-account.component';
 
 @Component({
   selector: 'app-header',
@@ -23,4 +24,15 @@ export class HeaderComponent {
     });
   }
 
+  addAccount(){
+    this.dialog.open(AddAccountComponent,{
+      maxHeight: 'calc(100vh - 120px)',
+      height: 'auto',
+      backdropClass: "backgroundblur",
+      data:{
+        modalTitle:"Add Account Form",
+        button:"Add"
+      }
+    });
+  }
 }

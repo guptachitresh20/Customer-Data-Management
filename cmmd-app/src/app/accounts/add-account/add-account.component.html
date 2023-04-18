@@ -5,9 +5,9 @@
 
         <mat-form-field class="example-full-width">
             <mat-label>Name</mat-label>
-            <input matInput type="text" formControlName="cname" name="cname" >
+            <input matInput type="text" formControlName="accountName" name="accountName" >
             <mat-icon matSuffix>person</mat-icon>
-            <mat-error *ngIf="cname && cname.invalid">
+            <mat-error *ngIf="accountName && accountName.invalid">
                Name <strong>Required</strong>
             </mat-error>
         </mat-form-field>
@@ -21,89 +21,99 @@
             </mat-error>
         </mat-form-field>
         
-        
-
         <mat-form-field appearance="fill">
-            <mat-label>Branch</mat-label>
-            <mat-select formControlName="typeOfCompany">
-                <mat-option value="India">India</mat-option>
-                <mat-option value="USA">USA</mat-option>
-                <mat-option value="China">China</mat-option>
-                <mat-option value="United Kingdom">United Kingdom</mat-option>
-                <mat-option value="UAE">UAE</mat-option>
-            </mat-select>
-        </mat-form-field>
-
-        <mat-form-field appearance="fill">
-            <mat-label>No. of Employees</mat-label>
-            <input type="noofemp" matInput formControlName="noofemp" name="noofemp" >
-            <mat-icon matSuffix>groups</mat-icon>
-            <mat-error *ngIf="noofemp && noofemp.invalid && noofemp.touched">
-                Please Enter valid Number
+            <mat-label>Manager</mat-label>
+            <input type="text" matInput formControlName="manager" name="manager" >
+            <mat-icon matSuffix>email</mat-icon>
+            <mat-error *ngIf="manager && manager.invalid && manager.touched">
+                Please Enter valid text
             </mat-error>
         </mat-form-field>
 
-        <mat-form-field appearance="fill">
-            <mat-label>Operating Hours</mat-label>
-            <input type="operatinghrs" matInput formControlName="operatinghrs" name="operatinghrs" >
-            <mat-icon matSuffix>Hours</mat-icon>
-            <mat-error *ngIf="operatinghrs && operatinghrs.invalid && operatinghrs.touched">
-                Please Enter valid operating hours
-            </mat-error>
-        </mat-form-field>
-
-        <mat-form-field appearance="fill">
-            <mat-label>Logo</mat-label>
-            <input type="text" matInput formControlName="logo" >
-            <mat-icon matSuffix>link</mat-icon>
-        </mat-form-field>
 
         <table class="example-full-width" cellspacing="0">
             <tr class="table-row">
-                
+            <td>
                 <mat-form-field appearance="fill">
-                    <mat-label>No. of Employees</mat-label>
-                    <input type="noofemp" matInput formControlName="noofemp" name="noofemp" >
+                    <mat-label>Branch</mat-label>
+                    <mat-select formControlName="branch">
+                        <mat-option value="India">India</mat-option>
+                        <mat-option value="USA">USA</mat-option>
+                        <mat-option value="China">China</mat-option>
+                        <mat-option value="United Kingdom">United Kingdom</mat-option>
+                        <mat-option value="UAE">UAE</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </td>
+            <td>
+                <mat-form-field appearance="fill">
+                    <mat-label>Year Of Establishment</mat-label>
+                    <input type="text" matInput formControlName="yearOfEst" name="yearOfEst" >
                     <mat-icon matSuffix>groups</mat-icon>
-                    <mat-error *ngIf="noofemp && noofemp.invalid && noofemp.touched">
-                        Please Enter valid Number
+                    <mat-error *ngIf="yearOfEst && yearOfEst.invalid && yearOfEst.touched">
+                        Please Enter valid year
                     </mat-error>
-                </mat-form-field>
-        
-                <mat-form-field appearance="fill">
-                    <mat-label>Operating Hours</mat-label>
-                    <input type="operatinghrs" matInput formControlName="operatinghrs" name="operatinghrs" >
-                    <mat-icon matSuffix>Hours</mat-icon>
-                    <mat-error *ngIf="operatinghrs && operatinghrs.invalid && operatinghrs.touched">
-                        Please Enter valid operating hours
-                    </mat-error>
-                </mat-form-field>
+                </mat-form-field>        
+            </td>
             </tr>
         </table>
 
-        <td>
-            <mat-form-field >
-                <mat-label>Phone</mat-label>
-                <span matPrefix>+91 &nbsp;</span>
-                <input type="tel" matInput placeholder="555-555-1234" name="phoneNo" formControlName="phoneNo" >
-                <mat-icon matSuffix>call</mat-icon>
-                <mat-error><strong>Required</strong></mat-error>
-            </mat-form-field>
-        </td>
+        <table class="example-full-width" cellspacing="0">
+            <tr class="table-row">
+            <td>
+                <mat-form-field appearance="fill">
+                    <mat-label>No. of Employees</mat-label>
+                    <input type="number" matInput formControlName="noOfEmp" name="noOfEmp" >
+                    <mat-icon matSuffix>groups</mat-icon>
+                    <mat-error *ngIf="noOfEmp && noOfEmp.invalid && noOfEmp.touched">
+                        Please Enter valid Number
+                    </mat-error>
+                </mat-form-field>
+            </td>
+            <td>
+                <mat-form-field appearance="fill">
+                    <mat-label>Number Of Departments</mat-label>
+                    <input type="number" matInput formControlName="noOfDept" name="noOfDept" >
+                    <mat-icon matSuffix>Hours</mat-icon>
+                    <mat-error *ngIf="noOfDept && noOfDept.invalid && noOfDept.touched">
+                        Please Enter valid Number Of Departments
+                    </mat-error>
+                </mat-form-field>
+            </td>
+            </tr>
+        </table>
 
-        <mat-form-field appearance="fill">
-            <mat-label>Website</mat-label>
-            <input type="text" matInput formControlName="website" name="website" >
-            <mat-icon matSuffix>language</mat-icon>
+        <table class="example-full-width" cellspacing="0">
+            <tr class="table-row">
+            <td>
+                    <mat-form-field >
+                        <mat-label>Phone</mat-label>
+                        <span matPrefix>+91 &nbsp;</span>
+                        <input type="tel" matInput placeholder="555-555-1234" name="phoneNo" formControlName="phoneNo" >
+                        <mat-icon matSuffix>call</mat-icon>
+                        <mat-error><strong>Required</strong></mat-error>
+                    </mat-form-field>
+            </td>
+            <td>
+                <mat-form-field appearance="fill">
+                    <mat-label>Operating Hours</mat-label>
+                    <input type="number" matInput formControlName="operatingHours" name="operatingHours" >
+                    <mat-icon matSuffix>Hours</mat-icon>
+                    <mat-error *ngIf="operatingHours && operatingHours.invalid && operatingHours.touched">
+                        Please Enter valid operating hours
+                    </mat-error>
+                </mat-form-field>
+            </td>
+            </tr>
+        </table>
 
-        </mat-form-field>
         <table class="example-full-width" cellspacing="0">
             <tr class="table-row">
 
                 <td>
                     <mat-form-field appearance="fill">
-                        <mat-label>Headquarter</mat-label>
-                        <input type="text" matInput formControlName="headquarter" name="headquarter" >
+                        <mat-label>Revenue</mat-label>
+                        <input type="text" matInput formControlName="Revenue" name="Revenue" >
                         <mat-icon matSuffix>location_on</mat-icon>
                         <mat-error><strong>Required</strong></mat-error>
                     </mat-form-field>
@@ -111,8 +121,18 @@
                 <td>
 
                     <mat-form-field appearance="fill">
-                        <mat-label>Country Code</mat-label>
-                        <input type="text" matInput formControlName="countryCode" name="countryCode" >
+                        <mat-label>Expenses</mat-label>
+                        <input type="text" matInput formControlName="Expenses" name="Expenses" >
+                        <mat-icon matSuffix>tag</mat-icon>
+                        <mat-error><strong>Required</strong></mat-error>
+                    </mat-form-field>
+                </td>
+
+                <td>
+
+                    <mat-form-field appearance="fill">
+                        <mat-label>Profit</mat-label>
+                        <input type="text" matInput formControlName="Profit" name="Profit" >
                         <mat-icon matSuffix>tag</mat-icon>
                         <mat-error><strong>Required</strong></mat-error>
                     </mat-form-field>
@@ -120,8 +140,8 @@
             </tr>
         </table>
         <mat-form-field appearance="fill">
-            <mat-label>Description</mat-label>
-            <textarea matInput formControlName="description" name="description" ></textarea>
+            <mat-label>Services Offered</mat-label>
+            <textarea matInput formControlName="servicesOffered" name="servicesOffered" ></textarea>
             <mat-icon matSuffix>mode_edit</mat-icon>
             <mat-error><strong>Required</strong></mat-error>
         </mat-form-field>

@@ -13,7 +13,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let customer of customerList| paginate: {itemsPerPage: itemsPerPage, currentPage: p}">
+          <tr *ngFor="let customer of customerList| paginate: {itemsPerPage: itemsPerPage, currentPage: p}"  routerLink="/customer/{{customer.id}}/accounts">
             <td><img src="{{customer.logo}}"></td>
             <td data-title="Name">{{customer.cname}}</td>
             <td data-title="Sector">{{customer.typeOfCompany}}</td>

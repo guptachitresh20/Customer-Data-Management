@@ -17,44 +17,75 @@ export class AddAccountComponent {
 
 
   customerAddForm = new FormGroup({
-    cname: new FormControl('', [Validators.required]),
-    logo: new FormControl('', []),
-    typeOfCompany: new FormControl('', [Validators.required]),
-    description: new FormControl('', [Validators.required]),
+    accountId: new FormControl('', [Validators.required]),
+    accountName: new FormControl('', [Validators.required]),
+    branch: new FormControl('', [Validators.required]),
+    yearOfEst: new FormControl('', [Validators.required]),
+    manager: new FormControl('', [Validators.required]),
+    servicesOffered: new FormControl('', [Validators.required]),
+    expenses: new FormControl('', [Validators.required]),
+    profit: new FormControl('', [Validators.required]),
+    revenue: new FormControl('', [Validators.required]),
+    noOfDept: new FormControl('', [Validators.required]),
     email: new FormControl('', [Validators.required, Validators.email]),
     noofemp: new FormControl('', [Validators.required]),
-    gstin: new FormControl('', [Validators.required, Validators.minLength(15)]),
-    headquarter: new FormControl('', [Validators.required]),
+    operatingHours: new FormControl('', [Validators.required]),
     phoneNo: new FormControl('', [Validators.required, Validators.minLength(10)]),
-    website: new FormControl('', []),
-    countryCode: new FormControl('', [Validators.required]),
     id: new FormControl('')
   });
 
   get email() {
     return this.customerAddForm.get('email');
   }
+
+  get operatingHours() {
+    return this.customerAddForm.get('operatingHours');
+  }
+
+  get accountName() {
+    return this.customerAddForm.get('accountName');
+  }
   
-  get noofemp() {
-    return this.customerAddForm.get('noofemp');
+  get accountId() {
+    return this.customerAddForm.get('accountId');
   }
-  get cname() {
-    return this.customerAddForm.get('cname');
+  
+  get branch() {
+    return this.customerAddForm.get('branch');
+  }
+  
+  get manager() {
+    return this.customerAddForm.get('manager');
   }
 
-  get gstin() {
-    return this.customerAddForm.get('gstin');
+  get yearOfEst() {
+    return this.customerAddForm.get('yearOfEst');
+  }
+  
+  get servicesOffered() {
+    return this.customerAddForm.get('servicesOffered');
+  }
+  
+  get expenses() {
+    return this.customerAddForm.get('expenses');
   }
 
-  get headquarter() {
-    return this.customerAddForm.get('headquarter');
+  get profit() {
+    return this.customerAddForm.get('profit');
   }
-  get countryCode() {
-    return this.customerAddForm.get('countryCode');
+
+  get revenue() {
+    return this.customerAddForm.get('revenue');
   }
-  get description() {
-    return this.customerAddForm.get('description');
+
+  get noOfDept() {
+    return this.customerAddForm.get('noOfDept');
   }
+
+  get noOfEmp() {
+    return this.customerAddForm.get('noofEmp');
+  }
+
   get phoneNo() {
     return this.customerAddForm.get('phoneNo');
   }

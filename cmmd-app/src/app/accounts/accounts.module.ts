@@ -19,6 +19,7 @@ import {MatMenuModule} from '@angular/material/menu';
 import {MatDialogModule} from '@angular/material/dialog';
 import { NgConfirmModule } from 'ng-confirm-box';
 import {MatPaginatorModule} from '@angular/material/paginator';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import {MatPaginatorModule} from '@angular/material/paginator';
     MatSortModule,
     MatIconModule,
     MatMenuModule,
-    MatSortModule
+    MatSortModule,
+    RouterModule 
   ],
   exports:[
     AccountHomeComponent,

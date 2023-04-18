@@ -20,6 +20,7 @@ import {MatDialogModule} from '@angular/material/dialog';
 import { NgConfirmModule } from 'ng-confirm-box';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {NgxPaginationModule} from 'ngx-pagination';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import {NgxPaginationModule} from 'ngx-pagination';
     MatIconModule,
     MatMenuModule,
     MatSortModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    RouterModule
   ],
   exports:[
     AddCustomerComponent,

@@ -6,12 +6,17 @@ import { HeaderComponent } from './header/header.component';
 
 const routes: Routes = [
   {
+    path: '',
+    redirectTo: '/customer',
+    pathMatch: 'full'
+  },
+  {
     path:'customer',
     component:CustomerHomeComponent
   },
   {
-    path:'accounts',
-    component:AccountHomeComponent
+    path:'customer/:id/accounts',
+    component:AccountHomeComponent,
   }
 ];
 
