@@ -20,6 +20,17 @@ export interface IDisplayCustomer{
     id?:string,
     typeOfCompany?:string
 }
+
+export interface IDisplayAccount{
+    length: any
+    accountId?:string,
+    accountName?:string,
+    branch?:string,
+    email?:string,
+    yearOfEst?:string,
+    id?:string
+}
+
 export interface IAccount{
     accountId?:string,
     accountName?: string,

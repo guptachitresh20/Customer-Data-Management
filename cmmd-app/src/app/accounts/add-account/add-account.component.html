@@ -1,10 +1,16 @@
-<h1 mat-dialog-title class="titlehead">Add Account</h1>
+<h1 mat-dialog-title class="titlehead">{{data.modalTitle}}</h1>
 <div mat-dialog-content style="max-height: 100vh;">
 
-    <form [formGroup]="customerAddForm" >
+    <form [formGroup]="accountAddForm" >
 
         <mat-form-field class="example-full-width">
-            <mat-label>Name</mat-label>
+            <mat-label>Account ID</mat-label>
+            <input matInput type="text" formControlName="accountId" id="accountId" name="accountId" readonly>
+            <mat-icon matSuffix>person</mat-icon>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+            <mat-label>Account Name</mat-label>
             <input matInput type="text" formControlName="accountName" name="accountName" >
             <mat-icon matSuffix>person</mat-icon>
             <mat-error *ngIf="accountName && accountName.invalid">
@@ -24,7 +30,7 @@
         <mat-form-field appearance="fill">
             <mat-label>Manager</mat-label>
             <input type="text" matInput formControlName="manager" name="manager" >
-            <mat-icon matSuffix>email</mat-icon>
+            <mat-icon matSuffix>supervisor_account</mat-icon>
             <mat-error *ngIf="manager && manager.invalid && manager.touched">
                 Please Enter valid text
             </mat-error>
@@ -43,13 +49,14 @@
                         <mat-option value="United Kingdom">United Kingdom</mat-option>
                         <mat-option value="UAE">UAE</mat-option>
                     </mat-select>
+                    <mat-icon matSuffix>location_on</mat-icon>
                 </mat-form-field>
             </td>
             <td>
                 <mat-form-field appearance="fill">
                     <mat-label>Year Of Establishment</mat-label>
-                    <input type="text" matInput formControlName="yearOfEst" name="yearOfEst" >
-                    <mat-icon matSuffix>groups</mat-icon>
+                    <input type="number" matInput formControlName="yearOfEst" name="yearOfEst" >
+                    <mat-icon matSuffix>today</mat-icon>
                     <mat-error *ngIf="yearOfEst && yearOfEst.invalid && yearOfEst.touched">
                         Please Enter valid year
                     </mat-error>
@@ -74,7 +81,7 @@
                 <mat-form-field appearance="fill">
                     <mat-label>Number Of Departments</mat-label>
                     <input type="number" matInput formControlName="noOfDept" name="noOfDept" >
-                    <mat-icon matSuffix>Hours</mat-icon>
+                    <mat-icon matSuffix>account_balance</mat-icon>
                     <mat-error *ngIf="noOfDept && noOfDept.invalid && noOfDept.touched">
                         Please Enter valid Number Of Departments
                     </mat-error>
@@ -91,14 +98,14 @@
                         <span matPrefix>+91 &nbsp;</span>
                         <input type="tel" matInput placeholder="555-555-1234" name="phoneNo" formControlName="phoneNo" >
                         <mat-icon matSuffix>call</mat-icon>
-                        <mat-error><strong>Required</strong></mat-error>
+                        <mat-error *ngIf="phoneNo && phoneNo.invalid && phoneNo.touched"><strong>Please enter a valid phone number</strong></mat-error>
                     </mat-form-field>
             </td>
             <td>
                 <mat-form-field appearance="fill">
                     <mat-label>Operating Hours</mat-label>
                     <input type="number" matInput formControlName="operatingHours" name="operatingHours" >
-                    <mat-icon matSuffix>Hours</mat-icon>
+                    <mat-icon matSuffix>watch_later</mat-icon>
                     <mat-error *ngIf="operatingHours && operatingHours.invalid && operatingHours.touched">
                         Please Enter valid operating hours
                     </mat-error>
@@ -113,8 +120,8 @@
                 <td>
                     <mat-form-field appearance="fill">
                         <mat-label>Revenue</mat-label>
-                        <input type="text" matInput formControlName="Revenue" name="Revenue" >
-                        <mat-icon matSuffix>location_on</mat-icon>
+                        <input type="text" matInput formControlName="revenue" name="revenue" >
+                        <mat-icon matSuffix>attach_money</mat-icon>
                         <mat-error><strong>Required</strong></mat-error>
                     </mat-form-field>
                 </td>
@@ -122,8 +129,8 @@
 
                     <mat-form-field appearance="fill">
                         <mat-label>Expenses</mat-label>
-                        <input type="text" matInput formControlName="Expenses" name="Expenses" >
-                        <mat-icon matSuffix>tag</mat-icon>
+                        <input type="text" matInput formControlName="expenses" name="expenses" >
+                        <mat-icon matSuffix>attach_money</mat-icon>
                         <mat-error><strong>Required</strong></mat-error>
                     </mat-form-field>
                 </td>
@@ -132,8 +139,8 @@
 
                     <mat-form-field appearance="fill">
                         <mat-label>Profit</mat-label>
-                        <input type="text" matInput formControlName="Profit" name="Profit" >
-                        <mat-icon matSuffix>tag</mat-icon>
+                        <input type="text" matInput formControlName="profit" name="profit" >
+                        <mat-icon matSuffix>attach_money</mat-icon>
                         <mat-error><strong>Required</strong></mat-error>
                     </mat-form-field>
                 </td>
@@ -148,6 +155,6 @@
     </form>
     <div mat-dialog-action [align]="'end'" class="button-class">
         <button mat-raised-button color="warn" mat-dialog-close class="closebtn">Close</button>
-        <button style="background-color: #00599C;" [disabled]="customerAddForm.invalid" mat-raised-button color="primary" type="submit" class="submitbtn"  (click)="addCustomer()">Add</button>
+        <button style="background-color: #00599C;" [disabled]="accountAddForm.invalid" mat-raised-button color="primary" type="submit" class="submitbtn"  (click)="addAccount()">{{data.button}}</button>
     </div>
 </div>

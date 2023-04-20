@@ -37,5 +37,9 @@ export class CustomerService {
     return this.http.get<ICustomer>(`${this.apiurl}/${id}`);
   }
 
+  // searchCustomers(searchValue:string)
+  // {
+  //   return this.http.get<IDisplayCustomer[]>(`http://localhost:3000/customer?cname_like=${searchValue}`);
+  // }
   
 }

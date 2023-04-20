@@ -3,8 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AccountDetailComponent } from './accounts/account-detail/account-detail.component';
 import { AccountHomeComponent } from './accounts/account-home/account-home.component';
 import { CustomerHomeComponent } from './customer/customer-home/customer-home.component';
-import { CustomerHomeComponent } from './customer/customer-home/customer-home.component';
-import { AccountHomeComponent } from './accounts/account-home/account-home.component';
+
 import { HeaderComponent } from './header/header.component';
 
 const routes: Routes = [
@@ -12,31 +11,20 @@ const routes: Routes = [
   
   {
     path: "customer/:id/accounts/:accountid",
-    component:AccountDetailComponent
+    component:AccountDetailComponent,
+    data:{breadcrumb:'Customer>Accounts>AccountDetail'}
   },
   {
     path: "customer/:id/accounts",
-    component:AccountHomeComponent
+    component:AccountHomeComponent,
+    data:{breadcrumb:'Customer>Accounts'}
   },
   {
     path: "customer",
     component:CustomerHomeComponent,
+    data:{breadcrumb:'Customer'}
   }
-const routes: Routes = [
-  {
-    path: '',
-    redirectTo: '/customer',
-    pathMatch: 'full'
-  },
-  {
-    path:'customer',
-    component:CustomerHomeComponent
-  },
-  {
-    path:'customer/:id/accounts',
-    component:AccountHomeComponent,
-  }
-];
+
 
   
   

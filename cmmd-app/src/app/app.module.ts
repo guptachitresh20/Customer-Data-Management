@@ -23,14 +23,17 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import { FooterComponent } from './footer/footer.component';
 import { AccountsModule } from './accounts/accounts.module';
 import { CustomerModule } from './customer/customer.module';
-
-
+import { FormsModule } from '@angular/forms';
+// import {BreadcrumbModule} from 'angular-crumbs';
+import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component'
+import {BreadcrumbModule} from 'primeng/breadcrumb';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     FooterComponent,
+    BreadcrumbComponent,
   ],
   imports: [
     BrowserModule,
@@ -56,7 +59,8 @@ import { CustomerModule } from './customer/customer.module';
     AccountsModule,
     CustomerModule,
     NgxPaginationModule,
-
+    FormsModule,
+    BreadcrumbModule
   ],
   providers: [],
   bootstrap: [AppComponent]

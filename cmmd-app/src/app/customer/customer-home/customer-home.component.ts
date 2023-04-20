@@ -4,6 +4,7 @@ import { ICustomer, IDisplayCustomer } from 'src/app/data-types';
 import { CustomerService } from 'src/app/services/customer.service';
 import { AddCustomerComponent } from '../add-customer/add-customer.component';
 import * as alertify from 'alertifyjs';
+import { SearchService } from 'src/app/services/search.service';
 
 @Component({
   selector: 'app-customer-home',
@@ -11,6 +12,8 @@ import * as alertify from 'alertifyjs';
   styleUrls: ['./customer-home.component.css']
 })
 export class CustomerHomeComponent implements OnInit {
+
+
 
   customerList :  IDisplayCustomer[];
   dataSource: any;
@@ -21,9 +24,11 @@ export class CustomerHomeComponent implements OnInit {
   p:number =1;
   itemsPerPage:number = 10;
   totalProduct:any;
-  constructor(private service: CustomerService, private dialog: MatDialog) {
+  constructor(private service: CustomerService, private dialog: MatDialog, private search:SearchService) {
 
   }
+
+
   ngOnInit(): void {
     this.getList();
   }
@@ -51,6 +56,7 @@ export class CustomerHomeComponent implements OnInit {
   }
 
   deleteCustomer(id: string) {
+    console.log(id);
     alertify.confirm("Delete Customer", "Do you want to delete this customer?", () => {
       this.service.deleteCustomerbyId(id).subscribe(r => {
         alertify.error('Deleted Successfully');
@@ -62,5 +68,19 @@ export class CustomerHomeComponent implements OnInit {
 
   }
 
+  // searchCustomer(enteredSearch)
+  // {
+  //   console.log("a: "+enteredSearch);
+  //   if(enteredSearch)
+  //   {
+  //   this.service.searchCustomers(enteredSearch).subscribe((result)=>{
+  //     if(result)
+  //     {
+  //       this.customerList = result;
+  //       this.totalCustomer = result.length;
+  //     }
+  //   })
+  // }
+  // }
 
 }

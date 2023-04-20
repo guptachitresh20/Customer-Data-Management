@@ -21,8 +21,7 @@ import { NgConfirmModule } from 'ng-confirm-box';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { RouterModule } from '@angular/router';
 import { AccountDetailComponent } from './account-detail/account-detail.component';
-
-
+import {NgxPaginationModule} from 'ngx-pagination';
 
 @NgModule({
   declarations: [
@@ -51,7 +50,8 @@ import { AccountDetailComponent } from './account-detail/account-detail.componen
     MatIconModule,
     MatMenuModule,
     MatSortModule,
-    RouterModule 
+    RouterModule,
+    NgxPaginationModule
   ],
   exports:[
     AccountHomeComponent,

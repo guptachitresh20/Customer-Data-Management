@@ -1,16 +1,20 @@
 <header class="header">
       <div class="logo">
-          <img routerLink="/customer/" src="../../assets/cdm logo.png" alt="" />
+          <a routerLink="customer"><img routerLink="/customer/" src="../../assets/cdm logo.png" alt="" /></a>
       </div>
   <!-- <div class="main-nav"> -->
     <div class="nav-search">
-      <input #box type="text" placeholder="Search for Customers" />
+      <input *ngIf="menuType==='customer'" (keyup)="onSearchTextChanged()" (blur)="hideSearch()" type="text" placeholder="Search for Customers" [(ngModel)]="enteredSearch"/>
+      <input *ngIf="menuType==='accounts'" (keyup)="onSearchTextChanged()" (blur)="hideSearch()" type="text" placeholder="Search for Accounts" [(ngModel)]="enteredSearch"/>
       <button><img src="../../assets/🦆 icon _search_.png" /></button>
     </div>
     <div class="nav-div">
         <ul class="nav-options">
-            <li>
+            <li *ngIf="menuType==='customer'">
               <a (click)="addCustomer()"><mat-icon>person_add_alt_1</mat-icon></a>
+            </li>
+            <li *ngIf="menuType==='accounts'">
+              <a (click)="addAccount()"><mat-icon>person_add_alt_1</mat-icon></a>
             </li>
             <ul class="account">
               <li>
