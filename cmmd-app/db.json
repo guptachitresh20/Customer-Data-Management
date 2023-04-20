@@ -118,5 +118,23 @@
       "id": 3
     }
   ],
-  "accounts": []
+  "accounts": [
+    {
+      "accountId": 717,
+      "accountName": "ZcxZXC",
+      "branch": "India",
+      "yearOfEst": 5,
+      "manager": "XZcZXC",
+      "servicesOffered": "asdf",
+      "expenses": "2",
+      "profit": "3",
+      "revenue": "1",
+      "noOfDept": 2,
+      "email": "harsh@test.com",
+      "noOfEmp": 5,
+      "operatingHours": 12,
+      "phoneNo": "1234567890",
+      "id": 1
+    }
+  ]
 }
