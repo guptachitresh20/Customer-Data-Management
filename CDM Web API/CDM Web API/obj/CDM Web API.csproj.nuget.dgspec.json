@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\ak\\source\\repos\\CDM Web API\\CDM Web API\\CDM Web API.csproj": {}
+    "C:\\Users\\psurana\\Documents\\Internship Project\\Customer-Data-Management\\CDM Web API\\CDM Web API\\CDM Web API.csproj": {}
   },
   "projects": {
-    "C:\\Users\\ak\\source\\repos\\CDM Web API\\CDM Web API\\CDM Web API.csproj": {
+    "C:\\Users\\psurana\\Documents\\Internship Project\\Customer-Data-Management\\CDM Web API\\CDM Web API\\CDM Web API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ak\\source\\repos\\CDM Web API\\CDM Web API\\CDM Web API.csproj",
+        "projectUniqueName": "C:\\Users\\psurana\\Documents\\Internship Project\\Customer-Data-Management\\CDM Web API\\CDM Web API\\CDM Web API.csproj",
         "projectName": "CDM Web API",
-        "projectPath": "C:\\Users\\ak\\source\\repos\\CDM Web API\\CDM Web API\\CDM Web API.csproj",
-        "packagesPath": "C:\\Users\\ak\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ak\\source\\repos\\CDM Web API\\CDM Web API\\obj\\",
+        "projectPath": "C:\\Users\\psurana\\Documents\\Internship Project\\Customer-Data-Management\\CDM Web API\\CDM Web API\\CDM Web API.csproj",
+        "packagesPath": "C:\\Users\\psurana\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\psurana\\Documents\\Internship Project\\Customer-Data-Management\\CDM Web API\\CDM Web API\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\ak\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\psurana\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [

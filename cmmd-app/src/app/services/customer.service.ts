@@ -8,8 +8,10 @@ import { Observable } from 'rxjs';
 })
 export class CustomerService {
 
+  customer_gstin:string;
+
   constructor(private http:HttpClient) { }
-  apiurl = 'http://localhost:3000/customer';
+  apiurl = 'https://localhost:7252/api/Customers';
 
   // to add customer 
   addCustomer(data:ICustomer){
@@ -36,6 +38,7 @@ export class CustomerService {
   getCustomerDetail(id:any){
     return this.http.get<ICustomer>(`${this.apiurl}/${id}`);
   }
+
 
   // searchCustomers(searchValue:string)
   // {

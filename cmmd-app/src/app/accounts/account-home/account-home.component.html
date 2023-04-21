@@ -11,16 +11,17 @@
                     </tr>
                     <tr class="body-row">
 
-                        <td>ID - {{customerDetail?.id}}</td>
-                        <td>Email - <a href="{{customerDetail?.email}}">{{customerDetail?.email}}</a></td>
-                        <td>Website - <a href="{{customerDetail?.website}}">{{customerDetail?.website}}</a></td>
-                    </tr>
-                    <tr class="body-row">
-
                         <td>GSTIN - {{customerDetail?.gstin}}</td>
                         <td>Headquarter - {{customerDetail?.headquarter}}</td>
                         <td>Country Code - {{customerDetail?.countryCode}}</td>
                     </tr>
+                    <tr class="body-row">
+
+                        <!-- <td>ID - {{customerDetail?.id}}</td> -->
+                        <td>Email - <a href="{{customerDetail?.email}}">{{customerDetail?.email}}</a></td>
+                        <td>Website - <a href="{{customerDetail?.website}}">{{customerDetail?.website}}</a></td>
+                    </tr>
+
                     <br>
                     <tr>
                         <td colspan="4">{{customerDetail?.description}}</td>
@@ -37,26 +38,26 @@
                             <tr>
                                 <th>Account ID</th>
                                 <th>Account Name</th>
-                                <th>Branch</th>
+                                <th>Location</th>
                                 <th>Email</th>
                                 <th>Year of Establishment</th>
-                                <th>Action</th>
+                                <th></th>
                             </tr>
                             <br>
                         </thead>
 
                         <tbody class="accountlist">
-                            <tr class="body-row" *ngFor="let account of accountList| paginate: {itemsPerPage: itemsPerPage, currentPage: p}"  >
-                              <td routerLink="/customer/{{account.id}}/accounts" data-title="accountId">{{account?.accountId}}</td>
-                              <td routerLink="/customer/{{account.id}}/accounts" data-title="accountName">{{account?.accountName}}</td>
-                              <td routerLink="/customer/{{account.id}}/accounts" data-title="branch">{{account?.branch}}</td>
-                              <td routerLink="/customer/{{account.id}}/accounts" data-title="email">{{account?.email}}</td>
-                              <td routerLink="/customer/{{account.id}}/accounts" data-title="yearOfEst">{{account?.yearOfEst}}</td>
+                            <tr class="body-row" *ngFor="let account of customerDetail?.accounts| paginate: {itemsPerPage: itemsPerPage, currentPage: p}"  >
+                              <td routerLink="/customer/{{customerDetail.gstin}}/accounts/{{account.email}}" data-title="accountId">{{account?.accountId}}</td>
+                              <td routerLink="/customer/{{customerDetail.gstin}}/accounts/{{account.email}}" data-title="accountName">{{account?.accountName}}</td>
+                              <td routerLink="/customer/{{customerDetail.gstin}}/accounts/{{account.email}}" data-title="branch">{{account?.location}}</td>
+                              <td routerLink="/customer/{{customerDetail.gstin}}/accounts/{{account.email}}" data-title="email">{{account?.email}}</td>
+                              <td routerLink="/customer/{{customerDetail.gstin}}/accounts/{{account.email}}" data-title="yearOfEst">{{account?.yearOfEst}}</td>
                               <td>
                                 
-                                <button class="update_btn" (click)="editAccount(account.id)">Update</button>
-                                <button  class="delete_btn" (click)="deleteAccount(account.id)">Delete</button>
-                                
+                                <button class="update_btn" (click)="editAccount(account.email)">Update</button>
+                                <button  class="delete_btn" (click)="deleteAccount(account.email)">Delete</button>
+                                    
                               </td>
                             </tr>
                         </tbody>

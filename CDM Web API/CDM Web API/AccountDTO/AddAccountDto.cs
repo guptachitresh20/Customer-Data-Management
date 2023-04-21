@@ -4,8 +4,8 @@
     {
         public string email { get; set; }
         public string accountId { get; set; }
-        public string latitude { get; set; }
-        public string longitude { get; set; }
+        //public string latitude { get; set; }
+        //public string longitude { get; set; }
         public string location { get; set; }
         public string gstin { get; set; }
 

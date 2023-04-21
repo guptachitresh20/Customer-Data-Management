@@ -3,11 +3,24 @@
 
     <form [formGroup]="accountAddForm" >
 
-        <mat-form-field class="example-full-width">
-            <mat-label>Account ID</mat-label>
-            <input matInput type="text" formControlName="accountId" id="accountId" name="accountId" readonly>
-            <mat-icon matSuffix>person</mat-icon>
-        </mat-form-field>
+        <table class="example-full-width" cellspacing="0">
+            <tr class="table-row">
+            <td>
+                <mat-form-field class="example-full-width">
+                    <mat-label>Account ID</mat-label>
+                    <input matInput type="text" formControlName="accountId" id="accountId" name="accountId" readonly>
+                    <mat-icon matSuffix>vpn_key</mat-icon>
+                </mat-form-field>
+            </td>
+            <td>
+                <mat-form-field class="example-full-width">
+                    <mat-label>GSTIN</mat-label>
+                    <input matInput type="text" formControlName="gstin" id="gstin" name="gstin" readonly>
+                    <mat-icon matSuffix></mat-icon>
+                </mat-form-field>      
+            </td>
+            </tr>
+        </table>
 
         <mat-form-field class="example-full-width">
             <mat-label>Account Name</mat-label>
@@ -18,9 +31,18 @@
             </mat-error>
         </mat-form-field>
 
-        <mat-form-field appearance="fill">
+        <mat-form-field appearance="fill" *ngIf="data.modalTitle=='Add Account Form'">
             <mat-label>Email</mat-label>
             <input type="email" matInput formControlName="email" name="email" >
+            <mat-icon matSuffix>email</mat-icon>
+            <mat-error *ngIf="email && email.invalid && email.touched">
+                Please Enter valid email
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" *ngIf="data.modalTitle=='Update Account Form'">
+            <mat-label>Email</mat-label>
+            <input type="email" matInput formControlName="email" name="email" readonly>
             <mat-icon matSuffix>email</mat-icon>
             <mat-error *ngIf="email && email.invalid && email.touched">
                 Please Enter valid email
@@ -41,8 +63,8 @@
             <tr class="table-row">
             <td>
                 <mat-form-field appearance="fill">
-                    <mat-label>Branch</mat-label>
-                    <mat-select formControlName="branch">
+                    <mat-label>Location</mat-label>
+                    <mat-select type="text" formControlName="location">
                         <mat-option value="India">India</mat-option>
                         <mat-option value="USA">USA</mat-option>
                         <mat-option value="China">China</mat-option>
@@ -120,7 +142,7 @@
                 <td>
                     <mat-form-field appearance="fill">
                         <mat-label>Revenue</mat-label>
-                        <input type="text" matInput formControlName="revenue" name="revenue" >
+                        <input type="number" matInput formControlName="revenue" name="revenue" >
                         <mat-icon matSuffix>attach_money</mat-icon>
                         <mat-error><strong>Required</strong></mat-error>
                     </mat-form-field>
@@ -129,7 +151,7 @@
 
                     <mat-form-field appearance="fill">
                         <mat-label>Expenses</mat-label>
-                        <input type="text" matInput formControlName="expenses" name="expenses" >
+                        <input type="number" matInput formControlName="expenses" name="expenses" >
                         <mat-icon matSuffix>attach_money</mat-icon>
                         <mat-error><strong>Required</strong></mat-error>
                     </mat-form-field>
@@ -139,7 +161,7 @@
 
                     <mat-form-field appearance="fill">
                         <mat-label>Profit</mat-label>
-                        <input type="text" matInput formControlName="profit" name="profit" >
+                        <input type="number" matInput formControlName="profit" name="profit" >
                         <mat-icon matSuffix>attach_money</mat-icon>
                         <mat-error><strong>Required</strong></mat-error>
                     </mat-form-field>

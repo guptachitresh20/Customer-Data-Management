@@ -28,11 +28,21 @@ export class AccountHomeComponent {
   itemsPerPage:number = 10;
   totalProduct:any;
   customerDetail:ICustomer;
-
+  customer_id:string;
 
   constructor(private accountService: AccountService, private http:HttpClient, private route: ActivatedRoute, private dialog: MatDialog, private customerService:CustomerService){}
 
+
+
   ngOnInit(): void {
+    this.route.paramMap.subscribe(params=>{
+      let id=params.get('id');
+      if(id)
+      {
+        this.customer_id=id;
+      }
+    })
+    localStorage.setItem('id',this.customer_id);
     this.getCustomerList();
     this.getList();
   }
@@ -46,7 +56,7 @@ export class AccountHomeComponent {
   }
 
   getCustomerList(){
-    this.customerService.getCustomerbyId(1).subscribe((result)=>{
+    this.customerService.getCustomerbyId(this.customer_id).subscribe((result)=>{
       this.customerDetail = result;
     });
   }
@@ -68,9 +78,11 @@ export class AccountHomeComponent {
   deleteAccount(id: string) {
     console.log(id);
     alertify.confirm("Delete Customer", "Do you want to delete this customer?", () => {
-      this.accountService.deleteAccountbyId(id).subscribe(r => {
+      this.accountService.deleteAccountbyId(id).subscribe(async r => {
         alertify.error('Deleted Successfully');
         this.getList();
+        await new Promise(f => setTimeout(f, 1000));
+        window.location.reload();
       });
     }, function () {
 

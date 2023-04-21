@@ -5,6 +5,7 @@ namespace CDM_Web_API.AccountDTO
     public class GetAccountDto
     {
         public string email { get; set; }
+        public string gstin { get; set; }
         public string accountId { get; set; }
         public string latitude { get; set; }
         public string longitude { get; set; }

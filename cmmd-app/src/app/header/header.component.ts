@@ -1,5 +1,5 @@
 import { AutofillMonitor } from '@angular/cdk/text-field';
-import { Component,EventEmitter,OnChanges,OnInit, Output, ViewChild } from '@angular/core';
+import { AfterContentChecked, AfterViewChecked, Component,DoCheck,EventEmitter,OnChanges,OnInit, Output, ViewChild } from '@angular/core';
 import {MatDialog, MatDialogConfig, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { AddCustomerComponent } from '../customer/add-customer/add-customer.component';
 import { AddAccountComponent } from '../accounts/add-account/add-account.component';
@@ -12,9 +12,10 @@ import { CustomerHomeComponent } from '../customer/customer-home/customer-home.c
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit {
   constructor(private dialog: MatDialog, private route:Router, private router:ActivatedRoute, private search:SearchService){}
   menuType:String='customer'
+  customer_id:string;
 
   ngOnInit():void{
     this.route.events.subscribe((val:any)=>{
@@ -51,6 +52,7 @@ export class HeaderComponent {
       height: 'auto',
       backdropClass: "backgroundblur",
       data:{
+        customer_id:this.customer_id,
         modalTitle:"Add Account Form",
         button:"Add"
       }

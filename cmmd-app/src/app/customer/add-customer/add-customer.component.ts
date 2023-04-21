@@ -16,6 +16,8 @@ import { delay } from 'rxjs';
 export class AddCustomerComponent {
   formName: string;
   editdata: any;
+  error:boolean=false;
+  errorMessage='';
   constructor(private customer: CustomerService, private dialog: MatDialog, @Inject(MAT_DIALOG_DATA) public data: any) { }
 
   ngOnInit(): void {
@@ -33,26 +35,28 @@ export class AddCustomerComponent {
           headquarter: this.editdata.headquarter,
           phoneNo: this.editdata.phoneNo,
           website: this.editdata.website,
-          countryCode: this.editdata.countryCode,
-          id: this.editdata.id
+          countryCode: this.editdata.countryCode
         })
       })
     }
   }
   addCustomer() {
-    if (this.customerAddForm.valid) {
-      const Editid = this.customerAddForm.getRawValue().id;
+    if (this.customerAddForm.valid && this.data.button==='Update') {
+      const Editid = this.customerAddForm.getRawValue().gstin;
       if (Editid != '' && Editid != null) {
-        this.customer.updateCustomer(Editid, this.customerAddForm.getRawValue()).subscribe(async (result) => {
-          if (result) {
+        this.customer.updateCustomer(Editid, this.customerAddForm.getRawValue()).subscribe(async(result) => 
+          {
+          if (result==null) {
             this.closePopup();
             alertify.success("Updated Successfully");
             await new Promise(f => setTimeout(f, 1000));
             window.location.reload();
           }
-        });
+          }
+        );
       }
     }
+    else{
     this.customer.addCustomer(this.customerAddForm.value).subscribe(async (result) => {
       if (result) {
         this.closePopup();
@@ -61,7 +65,13 @@ export class AddCustomerComponent {
         window.location.reload();
 
       }
-    });
+    },
+    (error) => 
+        {
+          this.closePopup();
+          alertify.error("Customer with same GSTIN already Exists");
+        });
+    }
   }
 
   closePopup() {
@@ -70,16 +80,15 @@ export class AddCustomerComponent {
 
   customerAddForm = new FormGroup({
     cname: new FormControl('', [Validators.required]),
-    logo: new FormControl('', []),
+    logo: new FormControl('', [Validators.required]),
     typeOfCompany: new FormControl('', [Validators.required]),
     description: new FormControl('', [Validators.required]),
     email: new FormControl('', [Validators.required, Validators.email]),
-    gstin: new FormControl('', [Validators.required, Validators.minLength(15)]),
+    gstin: new FormControl('', [Validators.required, Validators.minLength(15), Validators.maxLength(15)]),
     headquarter: new FormControl('', [Validators.required]),
     phoneNo: new FormControl('', [Validators.required, Validators.minLength(10)]),
     website: new FormControl('', []),
-    countryCode: new FormControl('', [Validators.required]),
-    id: new FormControl('')
+    countryCode: new FormControl('', [Validators.required])
   });
 
   get email() {

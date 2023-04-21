@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CDM_Web_API.Migrations
 {
     [DbContext(typeof(ApiDbContext))]
-    [Migration("20230420070907_migration1")]
+    [Migration("20230421095723_migration1")]
     partial class migration1
     {
         /// <inheritdoc />

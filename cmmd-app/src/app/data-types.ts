@@ -9,7 +9,7 @@ export interface ICustomer{
     phoneNo?:string,
     website?:string,
     countryCode?:string,
-    id?:string
+    accounts?:IDisplayAccount[]
 };
 export interface IDisplayCustomer{
     length: any
@@ -17,24 +17,22 @@ export interface IDisplayCustomer{
     logo?:string,
     gstin?:string,
     email?:string,
-    id?:string,
-    typeOfCompany?:string
+    typeOfCompany?:string,
+    headquarter?:string
 }
 
 export interface IDisplayAccount{
     length: any
     accountId?:string,
     accountName?:string,
-    branch?:string,
+    location?:string,
     email?:string,
     yearOfEst?:string,
-    id?:string
 }
 
 export interface IAccount{
     accountId?:string,
     accountName?: string,
-    branch?:string,
     email?: string,
     phoneNo?: string,
     noOfEmp?:string,
@@ -46,5 +44,8 @@ export interface IAccount{
     profit?:string,
     revenue?:string,
     noOfDept?:string,
-    id?: string
+    location?:string,
+    // latitude?:string|null,
+    // longitude?:string|null,
+    gstin?:string
   };

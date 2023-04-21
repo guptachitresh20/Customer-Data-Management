@@ -55,7 +55,8 @@ import {NgxPaginationModule} from 'ngx-pagination';
   ],
   exports:[
     AccountHomeComponent,
-    AddAccountComponent
+    AddAccountComponent,
+    AccountDetailComponent
   ]
 })
 export class AccountsModule { }

@@ -56,11 +56,14 @@ export class CustomerHomeComponent implements OnInit {
   }
 
   deleteCustomer(id: string) {
-    console.log(id);
     alertify.confirm("Delete Customer", "Do you want to delete this customer?", () => {
       this.service.deleteCustomerbyId(id).subscribe(r => {
         alertify.error('Deleted Successfully');
         this.getList();
+      },
+      (error) => 
+      {
+        alertify.error("Customer has existing accounts");
       });
     }, function () {
 
