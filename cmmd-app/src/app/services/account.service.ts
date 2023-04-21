@@ -34,7 +34,7 @@ export class AccountService {
 
   // accounts
   // call when user click on specific customer row -> to fetch all the data of that specific customer
-  getCAccountDetail(id:any){
-    return this.http.get<IAccount>(`${this.apiurl}/${id}`);
-  }
+  // getCAccountDetail(id:any){
+  //   return this.http.get<IAccount>(`${this.apiurl}/${id}`);
+  // }
 }

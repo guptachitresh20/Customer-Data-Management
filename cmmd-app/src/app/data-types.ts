@@ -37,7 +37,7 @@ export interface IAccount{
     phoneNo?: string,
     noOfEmp?:string,
     yearOfEst?:string,
-    operatingHrs?:string,
+    operatingHours?:string,
     manager?:string,
     servicesOffered?:string,
     expenses?:string,

@@ -22,6 +22,10 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import { RouterModule } from '@angular/router';
 import { AccountDetailComponent } from './account-detail/account-detail.component';
 import {NgxPaginationModule} from 'ngx-pagination';
+import {MatDividerModule} from '@angular/material/divider';
+import { MatListModule } from '@angular/material/list';
+import {MatCardModule} from '@angular/material/card';
+import {MatExpansionModule} from '@angular/material/expansion';
 
 @NgModule({
   declarations: [
@@ -51,7 +55,11 @@ import {NgxPaginationModule} from 'ngx-pagination';
     MatMenuModule,
     MatSortModule,
     RouterModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    MatDividerModule,
+    MatListModule ,
+    MatCardModule,
+    MatExpansionModule
   ],
   exports:[
     AccountHomeComponent,
