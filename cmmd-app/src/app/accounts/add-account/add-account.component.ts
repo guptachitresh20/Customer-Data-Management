@@ -6,6 +6,14 @@ import { AccountService } from 'src/app/services/account.service';
 import * as alertify from 'alertifyjs';
 import AccessTimeIcon from '@material-ui/icons/AccessTime';
 import { ActivatedRoute } from '@angular/router';
+import { GoogleMapComponent } from 'src/app/google-map/google-map.component';
+interface Coordinates {
+  address?: string;
+  latitude?: number;
+  longitude?: number;
+}
+
+
 
 @Component({
   selector: 'app-add-account',
@@ -14,11 +22,20 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class AddAccountComponent {
 
-  constructor(private dialog: MatDialog, private account:AccountService,@Inject(MAT_DIALOG_DATA) public data: any, private route:ActivatedRoute){}
+  coordinates: Coordinates;
+
+  constructor(private dialog: MatDialog, private account:AccountService,@Inject(MAT_DIALOG_DATA) public data: any, private route:ActivatedRoute){
+    this.coordinates={} as Coordinates;
+    if(this.coordinates.address)
+      {
+        this.accountAddForm.controls.location.patchValue(this.coordinates.address);
+      }
+  }
 
   editdata: any;
   randomAccountId:string=this.generateRandomInteger(1, 1000).toString();
   customer_id:string=this.data.customer_id;
+
 
   ngOnInit(): void {
     if (this.data.id != '' && this.data.id != null) {
@@ -176,5 +193,31 @@ export class AddAccountComponent {
   }
 
 
+
+
+  openGoogleMap()
+  {
+    let dialogRef=this.dialog.open(GoogleMapComponent,{
+      data: {
+        address: 'Some Data',
+        latitude: 'From Parent Component',
+        longitude: 'This Can be anything'
+      },
+      maxHeight: 'calc(100vh - 120px)',
+      backdropClass: "backgroundblur",
+     
+    });
+    dialogRef.afterClosed().subscribe((result)=>{
+      this.coordinates=result;
+      if(this.coordinates.address)
+      {
+        this.accountAddForm.controls.location.patchValue(this.coordinates.address);
+      }
+      // localStorage.setItem('location',this.coordinates.address);
+      console.log(this.coordinates.address);
+    }, (error)=>{
+      console.log("error found");
+    })
+  }
 
 }

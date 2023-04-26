@@ -102,7 +102,7 @@ table {
 td {
 
   padding: 10px 2px;
-  word-break: break-all;
+  word-break: normal;
   text-align: auto;
 }
 .tablebody tr:hover td {
@@ -131,4 +131,13 @@ button{
   color: white;
 }
 
-  
+agm-map{
+  width: 80%;
+  height: 80%;
+ 
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+}

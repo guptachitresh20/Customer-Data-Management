@@ -64,13 +64,7 @@
             <td>
                 <mat-form-field appearance="fill">
                     <mat-label>Location</mat-label>
-                    <mat-select type="text" formControlName="location">
-                        <mat-option value="India">India</mat-option>
-                        <mat-option value="USA">USA</mat-option>
-                        <mat-option value="China">China</mat-option>
-                        <mat-option value="United Kingdom">United Kingdom</mat-option>
-                        <mat-option value="UAE">UAE</mat-option>
-                    </mat-select>
+                    <input type="text" matInput formControlName="location" name="location" (click)="openGoogleMap()">
                     <mat-icon matSuffix>location_on</mat-icon>
                 </mat-form-field>
             </td>

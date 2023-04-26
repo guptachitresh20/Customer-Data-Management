@@ -27,6 +27,8 @@ import { FormsModule } from '@angular/forms';
 // import {BreadcrumbModule} from 'angular-crumbs';
 import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component'
 import {BreadcrumbModule} from 'primeng/breadcrumb';
+import { GoogleMapComponent } from './google-map/google-map.component';
+import { AgmCoreModule } from '@agm/core';
 
 @NgModule({
   declarations: [
@@ -34,6 +36,7 @@ import {BreadcrumbModule} from 'primeng/breadcrumb';
     HeaderComponent,
     FooterComponent,
     BreadcrumbComponent,
+    GoogleMapComponent,
   ],
   imports: [
     BrowserModule,
@@ -60,7 +63,11 @@ import {BreadcrumbModule} from 'primeng/breadcrumb';
     CustomerModule,
     NgxPaginationModule,
     FormsModule,
-    BreadcrumbModule
+    BreadcrumbModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyAzfzsRZ4XEwzxiXnjzTybY6TflZnRTeq4',
+      libraries: ['places']
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent]

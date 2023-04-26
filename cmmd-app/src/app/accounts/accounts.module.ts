@@ -26,6 +26,7 @@ import {MatDividerModule} from '@angular/material/divider';
 import { MatListModule } from '@angular/material/list';
 import {MatCardModule} from '@angular/material/card';
 import {MatExpansionModule} from '@angular/material/expansion';
+import { AgmCoreModule } from '@agm/core';
 
 @NgModule({
   declarations: [
@@ -59,7 +60,11 @@ import {MatExpansionModule} from '@angular/material/expansion';
     MatDividerModule,
     MatListModule ,
     MatCardModule,
-    MatExpansionModule
+    MatExpansionModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyAzfzsRZ4XEwzxiXnjzTybY6TflZnRTeq4',
+      libraries: ['places']
+    }),
   ],
   exports:[
     AccountHomeComponent,
