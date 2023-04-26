@@ -1,8 +1,8 @@
 <div class="modal-header">
-    <h3 class="modal-title">Angular Google Maps with Places Search Example</h3>
-    <button type="button" class="close" data-dismiss="modal" (click)="closeDialog('dismiss')">
+    <h3 class="modal-title">Choose a Location from the Map</h3>
+    <!-- <button type="button" class="close" data-dismiss="modal" (click)="closeDialog('dismiss')">
         <span aria-hidden="true">&times;</span>
-    </button>
+    </button> -->
 </div>
 <div class="modal-body">
 
@@ -17,13 +17,13 @@
             (dragEnd)="markerDragEnd($event)"></agm-marker>
     </agm-map>
 
-    <h5>Address: {{address}}</h5>
-    <div>Latitude: {{latitude}}</div>
-    <div>Longitude: {{longitude}}</div>
-
-
+    <div class="loc-data">
+        <h5>Address: {{address}}</h5>
+        <p>Latitude: {{latitude}}</p>
+        <p>Longitude: {{longitude}}</p>
+    </div>
 </div>
 <div class="modal-footer">
-    <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="closeDialog('close')">Close</button>
-    <button type="button" class="btn btn-primary" (click)="saveLocation()">Save Location</button>
+    <button type="button" class="btn-secondary" data-dismiss="modal" (click)="closeDialog('close')">Close</button>
+    <button type="button" class="btn-primary" (click)="saveLocation()">Save Location</button>
 </div>

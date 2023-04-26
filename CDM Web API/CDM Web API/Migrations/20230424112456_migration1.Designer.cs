@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CDM_Web_API.Migrations
 {
     [DbContext(typeof(ApiDbContext))]
-    [Migration("20230421095723_migration1")]
+    [Migration("20230424112456_migration1")]
     partial class migration1
     {
         /// <inheritdoc />
@@ -41,14 +41,14 @@ namespace CDM_Web_API.Migrations
                     b.Property<string>("gstin")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("latitude")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<double>("latitude")
+                        .HasColumnType("float");
 
                     b.Property<string>("location")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("longitude")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<double>("longitude")
+                        .HasColumnType("float");
 
                     b.Property<string>("manager")
                         .HasColumnType("nvarchar(max)");

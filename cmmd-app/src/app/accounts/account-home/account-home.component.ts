@@ -32,33 +32,15 @@ export class AccountHomeComponent {
 
   constructor(private accountService: AccountService, private http:HttpClient, private route: ActivatedRoute, private dialog: MatDialog, private customerService:CustomerService){}
 
-    
-  title = 'map';
+
+
+  title = "";
 
     
   lat = 22.4064172;
   long = 69.0750171;
   zoom=5;
-  
-  markers = [
-        {
-            lat: 28.8955152,
-            lng: 76.60661099999993,
-            label: 'Rohtak'
-        },
-        {
-            lat: 23.0204978,
-            lng: 72.4396548,
-            label: 'Ahmedabad'
-        },
-        {
-            lat: 22.2736308,
-            lng: 70.7512555,
-            label: 'Rajkot'
-        }
-    ];
-
-
+  markers=[];
 
 
   ngOnInit(): void {
@@ -116,4 +98,13 @@ export class AccountHomeComponent {
     });
 
   }
+
+
+  plotOnMap()
+  {
+    this.title="map";
+    console.log(this.customerDetail?.accounts);
+  }
+
+
 }

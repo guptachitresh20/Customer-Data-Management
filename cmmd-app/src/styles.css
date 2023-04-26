@@ -78,7 +78,6 @@ mat-dialog-content {
 
 .backgroundblur {
     backdrop-filter: blur(3px);
-    
 }
 
 
@@ -96,3 +95,11 @@ mat-dialog-content {
     position: relative;
     margin-top: 5%;
 }
+
+
+@media only screen and (max-width: 950px) {
+    .dialog-responsive {
+        width: 100vw !important;
+    }
+}
+

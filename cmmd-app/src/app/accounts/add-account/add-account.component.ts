@@ -27,9 +27,11 @@ export class AddAccountComponent {
   constructor(private dialog: MatDialog, private account:AccountService,@Inject(MAT_DIALOG_DATA) public data: any, private route:ActivatedRoute){
     this.coordinates={} as Coordinates;
     if(this.coordinates.address)
-      {
-        this.accountAddForm.controls.location.patchValue(this.coordinates.address);
-      }
+    {
+      this.accountAddForm.controls.location.patchValue(this.coordinates.address);
+      this.accountAddForm.controls.latitude.patchValue(this.coordinates.latitude);
+      this.accountAddForm.controls.longitude.patchValue(this.coordinates.longitude);
+    }
   }
 
   editdata: any;
@@ -57,7 +59,9 @@ export class AddAccountComponent {
           noOfDept: this.editdata.noOfDept,
           noOfEmp: this.editdata.noOfEmp,
           phoneNo: this.editdata.phoneNo,
-          operatingHours: this.editdata.operatingHours
+          operatingHours: this.editdata.operatingHours,
+          longitude: this.editdata.longitude,
+          latitude: this.editdata.latitude
         })
       })
     }
@@ -80,7 +84,6 @@ export class AddAccountComponent {
       }
     }
     else{
-      console.log(this.accountAddForm.value);
       this.accountAddForm.value.yearOfEst=this.accountAddForm.value.yearOfEst.toString();
       this.accountAddForm.value.noOfEmp=this.accountAddForm.value.noOfEmp.toString();
       this.accountAddForm.value.noOfDept=this.accountAddForm.value.noOfDept.toString();
@@ -89,6 +92,9 @@ export class AddAccountComponent {
       this.accountAddForm.value.expenses=this.accountAddForm.value.expenses.toString();
       this.accountAddForm.value.revenue=this.accountAddForm.value.revenue.toString();
       this.accountAddForm.value.phoneNo=this.accountAddForm.value.phoneNo.toString();
+      this.accountAddForm.value.longitude=this.coordinates.longitude;
+      this.accountAddForm.value.latitude=this.coordinates.latitude;
+      console.log(this.accountAddForm.value);
       this.account.addAccount(this.accountAddForm.value).subscribe(async (result) => {
       console.log(result);
       if (result) {
@@ -118,7 +124,7 @@ export class AddAccountComponent {
     accountId: new FormControl(this.randomAccountId.toString()),
     accountName: new FormControl('', [Validators.required]),
     location: new FormControl('', [Validators.required]),
-    yearOfEst: new FormControl('', [Validators.required]),
+    yearOfEst: new FormControl('', [Validators.required, Validators.minLength(4), Validators.maxLength(4)]),
     manager: new FormControl('', [Validators.required]),
     servicesOffered: new FormControl('', [Validators.required]),
     expenses: new FormControl('', [Validators.required]),
@@ -129,7 +135,9 @@ export class AddAccountComponent {
     noOfEmp: new FormControl('', [Validators.required]),
     operatingHours: new FormControl('', [Validators.required]),
     phoneNo: new FormControl('', [Validators.required, Validators.minLength(10), Validators.maxLength(10)]),
-    gstin: new FormControl(localStorage.getItem('id'))
+    gstin: new FormControl(localStorage.getItem('id')),
+    longitude: new FormControl(),
+    latitude: new FormControl()
   });
 
   get accountId() {
@@ -203,17 +211,18 @@ export class AddAccountComponent {
         latitude: 'From Parent Component',
         longitude: 'This Can be anything'
       },
-      maxHeight: 'calc(100vh - 120px)',
-      backdropClass: "backgroundblur",
-     
+      height: '80vh',
+      width: '40vw',
+      panelClass:"dialog-responsive"
     });
     dialogRef.afterClosed().subscribe((result)=>{
       this.coordinates=result;
       if(this.coordinates.address)
       {
         this.accountAddForm.controls.location.patchValue(this.coordinates.address);
+        this.accountAddForm.controls.latitude.patchValue(this.coordinates.latitude);
+        this.accountAddForm.controls.longitude.patchValue(this.coordinates.longitude);
       }
-      // localStorage.setItem('location',this.coordinates.address);
       console.log(this.coordinates.address);
     }, (error)=>{
       console.log("error found");

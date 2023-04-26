@@ -36,8 +36,8 @@ namespace CDM_Web_API.Migrations
                 {
                     email = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     accountId = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    latitude = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    longitude = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    latitude = table.Column<double>(type: "float", nullable: false),
+                    longitude = table.Column<double>(type: "float", nullable: false),
                     location = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     gstin = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     accountName = table.Column<string>(type: "nvarchar(max)", nullable: true),

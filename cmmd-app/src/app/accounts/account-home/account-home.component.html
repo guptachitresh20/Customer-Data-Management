@@ -62,7 +62,7 @@
                             </tr>
                         </tbody>
                         <div class="plottingclass">
-                            <button class="plot_button">Plot On Map</button>
+                            <button class="plot_button" (click)="plotOnMap()">Plot On Map</button>
                         </div>
                         <div class="paginationclass">
                             <pagination-controls (pageChange)="p = $event"></pagination-controls>
@@ -74,25 +74,21 @@
         </div>
     </div>
 </div>
-<div class="container" *ngIf="">
-  
-    <h1>Account Location</h1>
-    
+<div class="container" *ngIf="title==='map'">
       <agm-map 
-         [latitude]='lat' 
+         [latitude]='lat'
          [longitude]='long'
          [zoom]='zoom'
          >
           
           <agm-marker 
-              *ngFor="let marker of markers" 
-              [latitude]="marker.lat" 
-                [longitude]="marker.lng">    
+              *ngFor="let marker of customerDetail?.accounts" 
+              [latitude]="marker.latitude" 
+                [longitude]="marker.longitude">    
                     <agm-info-window #infoWindow>
-                        {{ marker.label }}
+                        {{ marker.location}}
                   </agm-info-window>
           </agm-marker>
           
       </agm-map>
-    
   </div>

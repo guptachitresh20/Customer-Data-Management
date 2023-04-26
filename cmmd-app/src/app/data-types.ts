@@ -28,6 +28,8 @@ export interface IDisplayAccount{
     location?:string,
     email?:string,
     yearOfEst?:string,
+    latitude?:number,
+    longitude?:number
 }
 
 export interface IAccount{
@@ -45,7 +47,7 @@ export interface IAccount{
     revenue?:string,
     noOfDept?:string,
     location?:string,
-    // latitude?:string|null,
-    // longitude?:string|null,
+    latitude?:number,
+    longitude?:number,
     gstin?:string
   };

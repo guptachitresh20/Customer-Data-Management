@@ -38,14 +38,14 @@ namespace CDM_Web_API.Migrations
                     b.Property<string>("gstin")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("latitude")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<double>("latitude")
+                        .HasColumnType("float");
 
                     b.Property<string>("location")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("longitude")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<double>("longitude")
+                        .HasColumnType("float");
 
                     b.Property<string>("manager")
                         .HasColumnType("nvarchar(max)");

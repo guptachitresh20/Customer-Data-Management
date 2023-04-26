@@ -7,8 +7,8 @@ namespace CDM_Web_API.AccountDTO
         public string email { get; set; }
         public string gstin { get; set; }
         public string accountId { get; set; }
-        public string latitude { get; set; }
-        public string longitude { get; set; }
+        public double latitude { get; set; }
+        public double longitude { get; set; }
         public string location { get; set; }
 
         public string accountName { get; set; }
