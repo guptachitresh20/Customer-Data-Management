@@ -16,6 +16,7 @@ namespace CDM_Web_API.Controllers
     public class AccountsController : ControllerBase
     {
         private readonly ApiDbContext _context;
+        //to map the dto to base class and vice versa
         private readonly IMapper _mapper;
 
         public AccountsController(ApiDbContext context, IMapper mapper)
@@ -35,6 +36,7 @@ namespace CDM_Web_API.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<GetAccountDto>> GetAccount(string id)
         {
+            //Find the record of customer with help of email
             var account = await _context.Accounts.FindAsync(id);
 
             if (account == null)
@@ -51,17 +53,20 @@ namespace CDM_Web_API.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutAccount(string id, PutAccountDto putAccountDto)
         {
+            //check if any account exists or not
             if (id != putAccountDto.email)
             {
                 return BadRequest();
             }
+            //get the account detail
             var account = await _context.Accounts.FindAsync(id);
             if (account == null)
             {
                 return NotFound();
             }
+            //reafactoring the data
             _mapper.Map(putAccountDto, account);
-
+            //save the modified state
             _context.Entry(account).State = EntityState.Modified;
 
             try
@@ -88,6 +93,7 @@ namespace CDM_Web_API.Controllers
         [HttpPost]
         public async Task<ActionResult<Account>> PostAccount(AddAccountDto addAccountDto)
         {
+            //gets the data dan save the data
             var account = _mapper.Map<Account>(addAccountDto);
             _context.Accounts.Add(account);
             try

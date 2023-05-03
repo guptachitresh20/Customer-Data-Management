@@ -6,9 +6,11 @@ namespace CDM_Web_API.Models
 {
     public class Customer
     {
+        //Primary Key
         [Key]
         public string gstin { get; set; }
 
+        //Not more than 250 charaters are allowed
         [Column(TypeName = "nvarchar(250)")]
         public string cname { get; set; }
 
@@ -31,6 +33,7 @@ namespace CDM_Web_API.Models
 
         public string countryCode { get; set; }
 
+        //Each cutomer can have a list of accounts
         public virtual ICollection<Account> Accounts { get; set; }
     }
 }

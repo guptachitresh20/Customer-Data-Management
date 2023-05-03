@@ -18,6 +18,7 @@ namespace CDM_Web_API.Controllers
     public class CustomersController : ControllerBase
     {
         private readonly ApiDbContext _context;
+        //to map the dto to base class and vice versa
         private readonly IMapper _mapper;
 
         public CustomersController(ApiDbContext context, IMapper mapper)
@@ -31,6 +32,7 @@ namespace CDM_Web_API.Controllers
         public async Task<ActionResult<IEnumerable<GetCustomerDto>>> GetCustomers()
         {
             var records = await _context.Customers.ToListAsync();
+            //refactoring the data to final in the form of getcustomerdto
             var records1 = _mapper.Map<List<GetCustomerDto>>(records);
             return Ok(records1);
         }
@@ -39,7 +41,7 @@ namespace CDM_Web_API.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<GetCustomerDetailsDto>> GetCustomer(string id)
         {
-
+            //this will include the list of accounts associated with that particular customer
             var customer = await _context.Customers.Include(q => q.Accounts).FirstOrDefaultAsync(q => q.gstin == id);
 
             if (customer == null)
@@ -59,11 +61,14 @@ namespace CDM_Web_API.Controllers
             {
                 return BadRequest();
             }
+            //Find the record of customer with help of gstin.
             var customer = await _context.Customers.FindAsync(id);
             if (customer == null)
             {
                 return NotFound();
             }
+
+            //refactoring the data
             _mapper.Map(putCustomerDto, customer);
             _context.Entry(customer).State = EntityState.Modified;
 
@@ -91,6 +96,7 @@ namespace CDM_Web_API.Controllers
         [HttpPost]
         public async Task<ActionResult<Customer>> PostCustomer(AddCustomerDto addCustomerDto)
         {
+            //gets the data dan save the data
             var customer = _mapper.Map<Customer>(addCustomerDto);
             _context.Customers.Add(customer);
             try
