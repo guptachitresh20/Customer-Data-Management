@@ -37,7 +37,6 @@ export class CustomerHomeComponent implements OnInit {
     this.service.getCustomer().subscribe((result)=>{
       this.customerList = result;
       this.totalCustomer = result.length;
-  
     });
   }
 
@@ -51,7 +50,6 @@ export class CustomerHomeComponent implements OnInit {
         modalTitle: 'Update Customer Form',
         button: 'Update'
       }
-
     });
   }
 

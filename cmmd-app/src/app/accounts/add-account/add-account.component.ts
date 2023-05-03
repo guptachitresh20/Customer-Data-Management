@@ -6,7 +6,7 @@ import { AccountService } from 'src/app/services/account.service';
 import * as alertify from 'alertifyjs';
 import AccessTimeIcon from '@material-ui/icons/AccessTime';
 import { ActivatedRoute } from '@angular/router';
-import { GoogleMapComponent } from 'src/app/google-map/google-map.component';
+import { GoogleMapComponent } from 'src/app/accounts/google-map/google-map.component';
 interface Coordinates {
   address?: string;
   latitude?: number;

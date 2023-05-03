@@ -1,14 +1,16 @@
 import { HttpClient } from '@angular/common/http';
 import { ResourceLoader } from '@angular/compiler';
-import { Component } from '@angular/core';
+import { Component , Inject} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { IAccount, ICustomer, IDisplayAccount } from 'src/app/data-types';
 import { AccountService } from 'src/app/services/account.service';
 import { CustomerService } from 'src/app/services/customer.service';
 import { AddAccountComponent } from '../add-account/add-account.component';
-import { MatDialog } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 import * as alertify from 'alertifyjs';
+import { GoogleMapComponent } from 'src/app/accounts/google-map/google-map.component';
+import { MapPlottingComponent } from 'src/app/accounts/map-plotting/map-plotting.component';
 
 
 @Component({
@@ -32,17 +34,6 @@ export class AccountHomeComponent {
 
   constructor(private accountService: AccountService, private http:HttpClient, private route: ActivatedRoute, private dialog: MatDialog, private customerService:CustomerService){}
 
-
-
-  title = "";
-
-    
-  lat = 22.4064172;
-  long = 69.0750171;
-  zoom=5;
-  markers=[];
-
-
   ngOnInit(): void {
     this.route.paramMap.subscribe(params=>{
       let id=params.get('id');
@@ -58,15 +49,20 @@ export class AccountHomeComponent {
 
   getList(){
     this.accountService.getAccount().subscribe((result)=>{
-      this.accountList = result;
-      this.totalAccount = result.length;
+      if(result){
+        this.accountList = result;
+        this.totalAccount = result.length;
+      }
   
     });
   }
 
   getCustomerList(){
     this.customerService.getCustomerbyId(this.customer_id).subscribe((result)=>{
-      this.customerDetail = result;
+      if(result)
+      {
+        this.customerDetail = result;
+      }
     });
   }
 
@@ -86,12 +82,15 @@ export class AccountHomeComponent {
 
   deleteAccount(id: string) {
     console.log(id);
-    alertify.confirm("Delete Customer", "Do you want to delete this customer?", () => {
-      this.accountService.deleteAccountbyId(id).subscribe(async r => {
-        alertify.error('Deleted Successfully');
-        this.getList();
-        await new Promise(f => setTimeout(f, 1000));
-        window.location.reload();
+    alertify.confirm("Delete Account", "Do you want to delete this account?", () => {
+      this.accountService.deleteAccountbyId(id).subscribe(async result => {
+        if(result)
+        {
+          alertify.error('Deleted Successfully');
+          this.getList();
+          await new Promise(f => setTimeout(f, 1000));
+          window.location.reload();
+        }
       });
     }, function () {
 
@@ -102,8 +101,22 @@ export class AccountHomeComponent {
 
   plotOnMap()
   {
-    this.title="map";
-    console.log(this.customerDetail?.accounts);
+    if(this.customerDetail.accounts.length!==0)
+    {
+      this.dialog.open(MapPlottingComponent, {
+        height: '50vh',
+        width:'50vw', 
+        backdropClass:"backgroundblur" 
+      });
+    }
+    else{
+      alertify.error('No Accounts to Plot');
+    }
+    // console.log(this.customerDetail?.accounts);
+  }
+  closeDialog(sendData:any)
+  {
+    this.dialog.closeAll();
   }
 
 

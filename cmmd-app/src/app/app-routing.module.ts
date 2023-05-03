@@ -7,6 +7,8 @@ import { CustomerHomeComponent } from './customer/customer-home/customer-home.co
 import { HeaderComponent } from './header/header.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { MapPlottingComponent } from './accounts/map-plotting/map-plotting.component';
+import { LogsComponent } from './logs/logs.component';
 
 const routes: Routes = [
   // { path: "", redirectTo: "login", pathMatch: "full" },
@@ -14,15 +16,18 @@ const routes: Routes = [
     path: "",
     component: LoginComponent
   },
-
+  {
+    path: "customer/:id/accounts/:accountid",
+    component: AccountDetailComponent,
+    data: { breadcrumb: 'Customer>Accounts>AccountDetail' }
+  },
   {
     path: 'register',
     component: RegisterComponent
   },
   {
-    path: "customer/:id/accounts/:accountid",
-    component: AccountDetailComponent,
-    data: { breadcrumb: 'Customer>Accounts>AccountDetail' }
+    path: "logs",
+    component: LogsComponent
   },
   {
     path: "customer/:id/accounts",
@@ -34,10 +39,6 @@ const routes: Routes = [
     component: CustomerHomeComponent,
     data: { breadcrumb: 'Customer' }
   }
-
-
-
-
 ];
 
 @NgModule({

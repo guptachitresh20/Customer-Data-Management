@@ -1,0 +1,19 @@
+
+<div class="container">
+    <!-- <button id="Logout" class="toggle-button controls button" (click)="close()">Logout</button> -->
+    <agm-map
+    [latitude]='lat'
+    [longitude]='long'
+    [zoom]='zoom'
+    >          
+          <agm-marker 
+              *ngFor="let marker of customerDetail?.accounts" 
+              [latitude]="marker.latitude" 
+                [longitude]="marker.longitude">    
+                    <agm-info-window #infoWindow>
+                        {{ marker.location}}
+                  </agm-info-window>
+          </agm-marker>
+          
+      </agm-map>
+  </div>

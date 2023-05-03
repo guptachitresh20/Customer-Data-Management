@@ -21,6 +21,7 @@ import { NgConfirmModule } from 'ng-confirm-box';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { RouterModule } from '@angular/router';
 import { AccountDetailComponent } from './account-detail/account-detail.component';
+import { MapPlottingComponent } from './map-plotting/map-plotting.component';
 import {NgxPaginationModule} from 'ngx-pagination';
 import {MatDividerModule} from '@angular/material/divider';
 import { MatListModule } from '@angular/material/list';
@@ -32,7 +33,8 @@ import { AgmCoreModule } from '@agm/core';
   declarations: [
     AccountHomeComponent,
     AddAccountComponent,
-    AccountDetailComponent
+    AccountDetailComponent,
+    MapPlottingComponent
   ],
   imports: [
     CommonModule,
@@ -69,7 +71,8 @@ import { AgmCoreModule } from '@agm/core';
   exports:[
     AccountHomeComponent,
     AddAccountComponent,
-    AccountDetailComponent
+    AccountDetailComponent,
+    MapPlottingComponent
   ]
 })
 export class AccountsModule { }

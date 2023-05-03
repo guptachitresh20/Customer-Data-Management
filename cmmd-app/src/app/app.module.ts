@@ -27,11 +27,11 @@ import { FormsModule } from '@angular/forms';
 // import {BreadcrumbModule} from 'angular-crumbs';
 import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component'
 import {BreadcrumbModule} from 'primeng/breadcrumb';
-import { GoogleMapComponent } from './google-map/google-map.component';
+import { GoogleMapComponent } from './accounts/google-map/google-map.component';
 import { AgmCoreModule } from '@agm/core';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
-
+import { LogsComponent } from './logs/logs.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,7 +40,8 @@ import { RegisterComponent } from './register/register.component';
     BreadcrumbComponent,
     GoogleMapComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    LogsComponent
   ],
   imports: [
     BrowserModule,

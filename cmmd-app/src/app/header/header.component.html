@@ -2,11 +2,10 @@
       <div class="logo">
           <a routerLink="customer"><img routerLink="/customer/" src="../../assets/cdm logo.png" alt="" /></a>
       </div>
-  <!-- <div class="main-nav"> -->
-    <div class="nav-search">
+    <div class="nav-search" >
       <input *ngIf="menuType==='customer'" (keyup)="onSearchTextChanged()" (blur)="hideSearch()" type="text" placeholder="Search for Customers" [(ngModel)]="enteredSearch"/>
       <input *ngIf="menuType==='accounts'" (keyup)="onSearchTextChanged()" (blur)="hideSearch()" type="text" placeholder="Search for Accounts" [(ngModel)]="enteredSearch"/>
-      <button><img src="../../assets/🦆 icon _search_.png" /></button>
+      <button *ngIf="menuType==='accounts'|| menuType==='customer'"><img src="../../assets/🦆 icon _search_.png" /></button>
     </div>
     <div class="nav-div">
         <ul class="nav-options">
@@ -27,7 +26,7 @@
                     <mat-icon>badge</mat-icon>
                     <span>Purab Surana</span>
                   </button>
-                  <button mat-menu-item class="customize-b">
+                  <button routerLink="logs" mat-menu-item class="customize-b" >
                     <mat-icon>description</mat-icon>
                     <span>Logs</span>
                   </button>

@@ -43,14 +43,6 @@ td:nth-child(even) {
 }
 @media only screen and (max-width: 836px) {
     table{
-        font-size:medium;
-    }
-    .container{
-        width: 80%;
-    }
-}
-@media only screen and (max-width: 415px) {
-    table{
         font-size:small;
         width: 100%;
     }

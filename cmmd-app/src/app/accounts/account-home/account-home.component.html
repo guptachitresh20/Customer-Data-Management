@@ -48,21 +48,21 @@
 
                         <tbody class="accountlist">
                             <tr class="body-row" *ngFor="let account of customerDetail?.accounts| paginate: {itemsPerPage: itemsPerPage, currentPage: p}"  >
-                              <td routerLink="/customer/{{customerDetail.gstin}}/accounts/{{account.email}}" data-title="accountId">{{account?.accountId}}</td>
-                              <td routerLink="/customer/{{customerDetail.gstin}}/accounts/{{account.email}}" data-title="accountName">{{account?.accountName}}</td>
-                              <td routerLink="/customer/{{customerDetail.gstin}}/accounts/{{account.email}}" data-title="branch">{{account?.location}}</td>
-                              <td routerLink="/customer/{{customerDetail.gstin}}/accounts/{{account.email}}" data-title="email">{{account?.email}}</td>
-                              <td routerLink="/customer/{{customerDetail.gstin}}/accounts/{{account.email}}" data-title="yearOfEst">{{account?.yearOfEst}}</td>
+                              <td routerLink="/customer/{{customerDetail?.gstin}}/accounts/{{account?.email}}" data-title="accountId">{{account?.accountId}}</td>
+                              <td routerLink="/customer/{{customerDetail?.gstin}}/accounts/{{account?.email}}" data-title="accountName">{{account?.accountName}}</td>
+                              <td routerLink="/customer/{{customerDetail?.gstin}}/accounts/{{account?.email}}" data-title="branch">{{account?.location}}</td>
+                              <td routerLink="/customer/{{customerDetail?.gstin}}/accounts/{{account?.email}}" data-title="email">{{account?.email}}</td>
+                              <td routerLink="/customer/{{customerDetail?.gstin}}/accounts/{{account?.email}}" data-title="yearOfEst">{{account?.yearOfEst}}</td>
                               <td>
                                 
-                                <button class="update_btn" (click)="editAccount(account.email)">Update</button>
-                                <button  class="delete_btn" (click)="deleteAccount(account.email)">Delete</button>
+                                <button class="update_btn" (click)="editAccount(account?.email)">Update</button>
+                                <button  class="delete_btn" (click)="deleteAccount(account?.email)">Delete</button>
                                     
                               </td>
                             </tr>
                         </tbody>
                         <div class="plottingclass">
-                            <button class="plot_button" (click)="plotOnMap()">Plot On Map</button>
+                            <button class="plot_button" (click)="plotOnMap()">Plot Accounts On Map</button>
                         </div>
                         <div class="paginationclass">
                             <pagination-controls (pageChange)="p = $event"></pagination-controls>
@@ -74,21 +74,4 @@
         </div>
     </div>
 </div>
-<div class="container" *ngIf="title==='map'">
-      <agm-map 
-         [latitude]='lat'
-         [longitude]='long'
-         [zoom]='zoom'
-         >
-          
-          <agm-marker 
-              *ngFor="let marker of customerDetail?.accounts" 
-              [latitude]="marker.latitude" 
-                [longitude]="marker.longitude">    
-                    <agm-info-window #infoWindow>
-                        {{ marker.location}}
-                  </agm-info-window>
-          </agm-marker>
-          
-      </agm-map>
-  </div>
+

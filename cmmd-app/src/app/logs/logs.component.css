@@ -1,0 +1,30 @@
+.logs{
+    overflow-x:auto;
+    padding-top: 7%;
+    padding-bottom: 5%;
+    margin-left: 3%;
+    margin-right: 3%;
+}
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+    border: 1px solid #ddd;
+}
+
+th, td {
+    text-align: center;
+    padding: 8px;
+    word-wrap: normal;
+    word-break: normal;
+}
+
+tr:hover{
+    cursor: pointer;
+    box-shadow: 5px 1px #888888;
+}
+
+tr:nth-child(even){
+    background-color:#00599C;
+    color: white;
+}
