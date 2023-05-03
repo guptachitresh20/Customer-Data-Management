@@ -29,6 +29,8 @@ import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component'
 import {BreadcrumbModule} from 'primeng/breadcrumb';
 import { GoogleMapComponent } from './google-map/google-map.component';
 import { AgmCoreModule } from '@agm/core';
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +39,8 @@ import { AgmCoreModule } from '@agm/core';
     FooterComponent,
     BreadcrumbComponent,
     GoogleMapComponent,
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
