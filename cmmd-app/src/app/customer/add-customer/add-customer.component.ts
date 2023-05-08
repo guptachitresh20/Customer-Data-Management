@@ -66,17 +66,19 @@ export class AddCustomerComponent {
               this.closePopup();
               alertify.success('Updated Successfully');
               await new Promise((f) => setTimeout(f, 1000));
-              window.location.reload();
-              // this.logs.customerName  = this.customerAddForm.getRawValue().cname;
-              // this.logs.action = this.data.button;
-              // this.logs.sectionModified = 'customer';
-              // this.logs.date = new Date().toString();
-              // this.logs.time = new Date().toString();
-              // this.logService.addLog(this.logs).subscribe((result) => {
-              //   if (result) {
-              //     console.log(result);
-              //   }
-              // });
+              // window.location.reload();
+              this.logs.customerName  = this.customerAddForm.getRawValue().cname;
+              this.logs.adminId="1";
+              this.logs.accountName="-";
+              this.logs.action = this.data.button;
+              this.logs.sectionModified = 'customer';
+              this.logs.date = new Date().toString();
+              this.logs.time = new Date().toString();
+              this.logService.addLog(this.logs).subscribe((result) => {
+                if (result) {
+                  console.log(result);
+                }
+              });
             } 
           });
       }
@@ -89,17 +91,18 @@ export class AddCustomerComponent {
             await new Promise((f) => setTimeout(f, 1000));
             window.location.reload();
           }
-          // this.logs.customerName=this.customerAddForm.value.cname;
-          // this.logs.action=this.data.button;
-          // this.logs.sectionModified='customer';
-          // this.logs.date=new Date().toString();
-          // this.logs.time=new Date().toString();
-          // this.logService.addLog(this.logs).subscribe((result)=>{
-          //   if(result)
-          //   {
-
-          //   }
-          // });
+          this.logs.customerName=this.customerAddForm.value.cname;
+          this.logs.adminId="1";
+          this.logs.action=this.data.button;
+          this.logs.sectionModified='customer';
+          this.logs.date=new Date().toString();
+          this.logs.time=new Date().toString();
+          this.logService.addLog(this.logs).subscribe((result)=>{
+            if(result)
+            {
+              console.log(result);
+            }
+          });
         },
         (error) => {
           this.closePopup();
@@ -128,6 +131,7 @@ export class AddCustomerComponent {
     phoneNo: new FormControl('', [
       Validators.required,
       Validators.minLength(10),
+      Validators.maxLength(10)
     ]),
     website: new FormControl('', []),
     countryCode: new FormControl('', [Validators.required]),

@@ -115,32 +115,34 @@ button {
     box-shadow: 1px 6px 4px #cccdcf;
 }
 
-input[name='Email'] {
-    background-image: url(../../assets/username.png);
+input[name='email'] {
+    background-image: url(../../../assets/username.png);
     background-position: 7px;
     background-repeat: no-repeat;
 }
 
 input[type='password'] {
-    background-image: url(../../assets/password.png);
+    background-image: url(../../../assets/password.png);
     background-position: 7px;
     background-repeat: no-repeat;
 }
 
-input[name='Name'] {
-    background-image: url(../../assets/name.png);
+input[name='name'] {
+    background-image: url(../../../assets/name.png);
     background-position: 7px;
     background-repeat: no-repeat;
 }
 
-input[name='Id'] {
-    background-image: url(../../assets/id.png);
+
+
+input[name='id'] {
+    background-image: url(../../../assets/id.png);
     background-position: 7px;
     background-repeat: no-repeat;
 }
 
-input[name='Phone'] {
-    background-image: url(../../assets/username.png);
+input[name='phone'] {
+    background-image: url(../../../assets/phone.png);
     background-position: 7px;
     background-repeat: no-repeat;
 }

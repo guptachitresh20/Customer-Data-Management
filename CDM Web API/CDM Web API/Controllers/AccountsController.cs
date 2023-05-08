@@ -8,11 +8,13 @@ using Microsoft.EntityFrameworkCore;
 using CDM_Web_API.Models;
 using CDM_Web_API.AccountDTO;
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 
 namespace CDM_Web_API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class AccountsController : ControllerBase
     {
         private readonly ApiDbContext _context;

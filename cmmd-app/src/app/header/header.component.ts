@@ -7,6 +7,9 @@ import { ActivatedRoute, Router, RouterEvent, Event } from '@angular/router';
 import { SearchService } from '../services/search.service';
 import { CustomerHomeComponent } from '../customer/customer-home/customer-home.component';
 import { filter } from 'rxjs';
+import { AuthService } from '../services/auth.service';
+import * as alertify from 'alertifyjs';
+
 
 @Component({
   selector: 'app-header',
@@ -14,7 +17,7 @@ import { filter } from 'rxjs';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  constructor(private dialog: MatDialog, private route:Router, private router:ActivatedRoute, private search:SearchService){}
+  constructor(private dialog: MatDialog, private route:Router, private router:ActivatedRoute, private auth:AuthService, private search:SearchService){}
   menuType:String='customer'
   customer_id:string;
   url:string;
@@ -104,6 +107,14 @@ export class HeaderComponent implements OnInit {
       }
     });
   }
+
+  logout()
+  {
+    this.auth.signOut();
+    alertify.error("Logged out")
+  }
+
+
 
   enteredSearch:string="";
 

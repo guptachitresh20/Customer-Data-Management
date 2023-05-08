@@ -5,20 +5,22 @@ import { AccountHomeComponent } from './accounts/account-home/account-home.compo
 import { CustomerHomeComponent } from './customer/customer-home/customer-home.component';
 
 import { HeaderComponent } from './header/header.component';
-import { LoginComponent } from './login/login.component';
-import { RegisterComponent } from './register/register.component';
+import { LoginComponent } from './admin/login/login.component';
+import { RegisterComponent } from './admin/register/register.component';
 import { MapPlottingComponent } from './accounts/map-plotting/map-plotting.component';
 import { LogsComponent } from './logs/logs.component';
+import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
-  // { path: "", redirectTo: "login", pathMatch: "full" },
+  { path: "", redirectTo: "login", pathMatch: "full" },
   {
-    path: "",
+    path: "login",
     component: LoginComponent
   },
   {
     path: "customer/:id/accounts/:accountid",
     component: AccountDetailComponent,
+    canActivate:[AuthGuard],
     data: { breadcrumb: 'Customer>Accounts>AccountDetail' }
   },
   {
@@ -27,16 +29,19 @@ const routes: Routes = [
   },
   {
     path: "logs",
-    component: LogsComponent
+    component: LogsComponent,
+    canActivate:[AuthGuard],
   },
   {
     path: "customer/:id/accounts",
     component: AccountHomeComponent,
+    canActivate:[AuthGuard],
     data: { breadcrumb: 'Customer>Accounts' }
   },
   {
     path: "customer",
     component: CustomerHomeComponent,
+    canActivate:[AuthGuard],
     data: { breadcrumb: 'Customer' }
   }
 ];

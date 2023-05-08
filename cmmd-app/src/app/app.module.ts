@@ -9,7 +9,7 @@ import {MatTableModule} from '@angular/material/table'
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
-import {HttpClientModule} from '@angular/common/http'
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http'
 import {NgToastModule} from 'ng-angular-popup'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -29,9 +29,10 @@ import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component'
 import {BreadcrumbModule} from 'primeng/breadcrumb';
 import { GoogleMapComponent } from './accounts/google-map/google-map.component';
 import { AgmCoreModule } from '@agm/core';
-import { LoginComponent } from './login/login.component';
-import { RegisterComponent } from './register/register.component';
+import { LoginComponent } from './admin/login/login.component';
+import { RegisterComponent } from './admin/register/register.component';
 import { LogsComponent } from './logs/logs.component';
+import { TokenInterceptor } from './interceptors/token.interceptor';
 @NgModule({
   declarations: [
     AppComponent,
@@ -74,7 +75,13 @@ import { LogsComponent } from './logs/logs.component';
       libraries: ['places']
     }),
   ],
-  providers: [],
+  providers: [
+    {
+      provide:HTTP_INTERCEPTORS,
+      useClass:TokenInterceptor,
+      multi:true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

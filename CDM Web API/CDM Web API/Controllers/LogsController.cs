@@ -6,11 +6,13 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using CDM_Web_API.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace CDM_Web_API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class LogsController : ControllerBase
     {
         private readonly ApiDbContext _context;
@@ -113,7 +115,7 @@ namespace CDM_Web_API.Controllers
         //    return NoContent();
         //}
 
-        private bool LogsExists(string id)
+        private bool LogsExists(int id)
         {
             return _context.Logs.Any(e => e.logId == id);
         }

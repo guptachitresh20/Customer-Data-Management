@@ -8,7 +8,7 @@ import { ILogs } from '../data-types';
 export class LogsService {
 
   constructor(private http:HttpClient) { }
-  apiurl = 'http://localhost:3000/logs';
+  apiurl = 'https://localhost:7252/api/Logs';
 
 
   // to get the list of all the logs

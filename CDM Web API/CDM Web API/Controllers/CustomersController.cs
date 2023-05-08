@@ -10,11 +10,13 @@ using CDM_Web_API.DTO;
 using AutoMapper;
 using System.Diagnostics.Metrics;
 using CDM_Web_API.CustomerDTO;
+using Microsoft.AspNetCore.Authorization;
 
 namespace CDM_Web_API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class CustomersController : ControllerBase
     {
         private readonly ApiDbContext _context;

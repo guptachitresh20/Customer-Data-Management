@@ -54,7 +54,7 @@ export interface IAccount {
 
 export interface ILogs {
   length?: number;
-  logId?: string;
+  logId?: number;
   adminId?: string;
   customerName?: string;
   accountName?: string;

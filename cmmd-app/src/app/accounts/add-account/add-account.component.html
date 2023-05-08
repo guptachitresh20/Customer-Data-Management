@@ -27,7 +27,7 @@
             <input matInput type="text" formControlName="accountName" name="accountName" >
             <mat-icon matSuffix>person</mat-icon>
             <mat-error *ngIf="accountName && accountName.invalid">
-               Name <strong>Required</strong>
+            <strong>Name Required</strong>
             </mat-error>
         </mat-form-field>
 
@@ -36,7 +36,7 @@
             <input type="email" matInput formControlName="email" name="email" >
             <mat-icon matSuffix>email</mat-icon>
             <mat-error *ngIf="email && email.invalid && email.touched">
-                Please Enter valid email
+            <strong>Please Enter valid email</strong>
             </mat-error>
         </mat-form-field>
 
@@ -45,7 +45,7 @@
             <input type="email" matInput formControlName="email" name="email" readonly>
             <mat-icon matSuffix>email</mat-icon>
             <mat-error *ngIf="email && email.invalid && email.touched">
-                Please Enter valid email
+            <strong>Please Enter valid email</strong>
             </mat-error>
         </mat-form-field>
         
@@ -54,7 +54,7 @@
             <input type="text" matInput formControlName="manager" name="manager" >
             <mat-icon matSuffix>supervisor_account</mat-icon>
             <mat-error *ngIf="manager && manager.invalid && manager.touched">
-                Please Enter valid text
+                <strong>Please Enter valid text</strong>
             </mat-error>
         </mat-form-field>
 
@@ -71,10 +71,10 @@
             <td>
                 <mat-form-field appearance="fill">
                     <mat-label>Year Of Establishment</mat-label>
-                    <input type="number" matInput formControlName="yearOfEst" name="yearOfEst" >
+                    <input type="text" matInput formControlName="yearOfEst" name="yearOfEst" ngModel pattern="[0-9]*">
                     <mat-icon matSuffix>today</mat-icon>
                     <mat-error *ngIf="yearOfEst && yearOfEst.invalid && yearOfEst.touched">
-                        Please Enter valid year
+                        <strong>Please Enter a valid year</strong>
                     </mat-error>
                 </mat-form-field>        
             </td>
@@ -89,7 +89,7 @@
                     <input type="number" matInput formControlName="noOfEmp" name="noOfEmp" >
                     <mat-icon matSuffix>groups</mat-icon>
                     <mat-error *ngIf="noOfEmp && noOfEmp.invalid && noOfEmp.touched">
-                        Please Enter valid Number
+                        <strong>Please Enter valid Number</strong>
                     </mat-error>
                 </mat-form-field>
             </td>
@@ -99,7 +99,7 @@
                     <input type="number" matInput formControlName="noOfDept" name="noOfDept" >
                     <mat-icon matSuffix>account_balance</mat-icon>
                     <mat-error *ngIf="noOfDept && noOfDept.invalid && noOfDept.touched">
-                        Please Enter valid Number Of Departments
+                        <strong>Please Enter valid Number Of Departments</strong>
                     </mat-error>
                 </mat-form-field>
             </td>
@@ -123,7 +123,7 @@
                     <input type="number" matInput formControlName="operatingHours" name="operatingHours" >
                     <mat-icon matSuffix>watch_later</mat-icon>
                     <mat-error *ngIf="operatingHours && operatingHours.invalid && operatingHours.touched">
-                        Please Enter valid operating hours
+                    <strong>Please Enter valid operating hours</strong>
                     </mat-error>
                 </mat-form-field>
             </td>

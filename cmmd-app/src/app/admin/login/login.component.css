@@ -114,15 +114,16 @@ button{
     box-shadow: 1px 6px 4px #cccdcf;
 }
 input[type='text'] {
-    background-image: url(../../assets/username.png);
+    background-image: url(../../../assets/username.png);
     background-position: 7px;
     background-repeat: no-repeat;
 }
 input[type='password'] {
-    background-image: url(../../assets/password.png);
+    background-image: url(../../../assets/password.png);
     background-position: 7px;
     background-repeat: no-repeat;
 }
+
 
 @media only screen and (max-width: 1070px) {
     .left .logoimg{
