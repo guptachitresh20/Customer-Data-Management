@@ -121,7 +121,7 @@ export class HeaderComponent implements OnInit {
   onSearchTextChanged()
   {
     console.log(this.enteredSearch)
-    this.search.setSearchValue(this.enteredSearch);
+    this.search.searchValue = this.enteredSearch;
   }
   hideSearch()
   {

@@ -13,9 +13,11 @@
             <th></th>
           </tr>
           <br>
+          
         </thead>
+        
         <tbody>
-            <tr class="body-row" *ngFor="let customer of customerList| paginate: {itemsPerPage: itemsPerPage, currentPage: p}"  >
+            <tr class="body-row" *ngFor="let customer of customerList|searchFilter:search.searchValue|paginate: {itemsPerPage: itemsPerPage, currentPage: p} "  >
               <td routerLink="/customer/{{customer.gstin}}/accounts"><img src="{{customer?.logo}}"></td>
               <td routerLink="/customer/{{customer.gstin}}/accounts" data-title="Name">{{customer?.cname}}</td>
               <td routerLink="/customer/{{customer.gstin}}/accounts" data-title="Sector">{{customer?.typeOfCompany}}</td>

@@ -33,6 +33,8 @@ import { LoginComponent } from './admin/login/login.component';
 import { RegisterComponent } from './admin/register/register.component';
 import { LogsComponent } from './logs/logs.component';
 import { TokenInterceptor } from './interceptors/token.interceptor';
+import { SearchFilterPipe } from './search-filter.pipe';
+import { AccountSearchFilterPipe } from './account-search-filter.pipe';
 @NgModule({
   declarations: [
     AppComponent,
@@ -42,7 +44,9 @@ import { TokenInterceptor } from './interceptors/token.interceptor';
     GoogleMapComponent,
     LoginComponent,
     RegisterComponent,
-    LogsComponent
+    LogsComponent,
+    // AccountSearchFilterPipe,
+    // SearchFilterPipe
   ],
   imports: [
     BrowserModule,
@@ -66,7 +70,7 @@ import { TokenInterceptor } from './interceptors/token.interceptor';
     MatMenuModule,
     MatSortModule,
     AccountsModule,
-    CustomerModule,
+    // CustomerModule,
     NgxPaginationModule,
     FormsModule,
     BreadcrumbModule,

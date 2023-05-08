@@ -11,6 +11,7 @@ import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dial
 import * as alertify from 'alertifyjs';
 import { GoogleMapComponent } from 'src/app/accounts/google-map/google-map.component';
 import { MapPlottingComponent } from 'src/app/accounts/map-plotting/map-plotting.component';
+import { SearchService } from 'src/app/services/search.service';
 
 
 @Component({
@@ -32,7 +33,7 @@ export class AccountHomeComponent {
   customerDetail:ICustomer;
   customer_id:string;
 
-  constructor(private accountService: AccountService, private http:HttpClient, private route: ActivatedRoute, private dialog: MatDialog, private customerService:CustomerService){}
+  constructor(private accountService: AccountService, private http:HttpClient, private route: ActivatedRoute, private dialog: MatDialog, private customerService:CustomerService,public search:SearchService){}
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(params=>{

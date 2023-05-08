@@ -28,13 +28,15 @@ import { MatListModule } from '@angular/material/list';
 import {MatCardModule} from '@angular/material/card';
 import {MatExpansionModule} from '@angular/material/expansion';
 import { AgmCoreModule } from '@agm/core';
+import { AccountSearchFilterPipe } from '../account-search-filter.pipe';
 
 @NgModule({
   declarations: [
     AccountHomeComponent,
     AddAccountComponent,
     AccountDetailComponent,
-    MapPlottingComponent
+    MapPlottingComponent,
+    AccountSearchFilterPipe
   ],
   imports: [
     CommonModule,

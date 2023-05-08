@@ -20,16 +20,23 @@
                         <!-- <td>ID - {{customerDetail?.id}}</td> -->
                         <td>Email - <a href="{{customerDetail?.email}}">{{customerDetail?.email}}</a></td>
                         <td>Website - <a href="{{customerDetail?.website}}">{{customerDetail?.website}}</a></td>
+                     
                     </tr>
 
                     <br>
                     <tr>
                         <td colspan="4">{{customerDetail?.description}}</td>
                     </tr>
+                    <tr>
+                        <td>
+                            
+                            <button class="plot_button" (click)="plotOnMap()">Plot Accounts On Map</button>
+                            
+                        </td>
+                    </tr>
                 </tbody>
             </table>
-            <br>
-            <br>
+            
 
             <div class="tableaccounts">
                 <div class="tablebody">
@@ -47,12 +54,12 @@
                         </thead>
 
                         <tbody class="accountlist">
-                            <tr class="body-row" *ngFor="let account of customerDetail?.accounts| paginate: {itemsPerPage: itemsPerPage, currentPage: p}"  >
-                              <td routerLink="/customer/{{customerDetail?.gstin}}/accounts/{{account?.email}}" data-title="accountId">{{account?.accountId}}</td>
-                              <td routerLink="/customer/{{customerDetail?.gstin}}/accounts/{{account?.email}}" data-title="accountName">{{account?.accountName}}</td>
-                              <td routerLink="/customer/{{customerDetail?.gstin}}/accounts/{{account?.email}}" data-title="branch">{{account?.location}}</td>
-                              <td routerLink="/customer/{{customerDetail?.gstin}}/accounts/{{account?.email}}" data-title="email">{{account?.email}}</td>
-                              <td routerLink="/customer/{{customerDetail?.gstin}}/accounts/{{account?.email}}" data-title="yearOfEst">{{account?.yearOfEst}}</td>
+                            <tr class="body-row" *ngFor="let account of customerDetail?.accounts|accountSearchFilter:search.searchValue| paginate: {itemsPerPage: itemsPerPage, currentPage: p}"  >
+                              <td routerLink="/customer/{{customerDetail?.gstin}}/accounts/{{account?.email}}" data-title="ID">{{account?.accountId}}</td>
+                              <td routerLink="/customer/{{customerDetail?.gstin}}/accounts/{{account?.email}}" data-title="Account Name">{{account?.accountName}}</td>
+                              <td routerLink="/customer/{{customerDetail?.gstin}}/accounts/{{account?.email}}" data-title="Location">{{account?.location}}</td>
+                              <td routerLink="/customer/{{customerDetail?.gstin}}/accounts/{{account?.email}}" data-title="Email">{{account?.email}}</td>
+                              <td routerLink="/customer/{{customerDetail?.gstin}}/accounts/{{account?.email}}" data-title="YearOFEst">{{account?.yearOfEst}}</td>
                               <td>
                                 
                                 <button class="update_btn" (click)="editAccount(account?.email)">Update</button>
@@ -61,9 +68,9 @@
                               </td>
                             </tr>
                         </tbody>
-                        <div class="plottingclass">
+                        <!-- <div class="plottingclass">
                             <button class="plot_button" (click)="plotOnMap()">Plot Accounts On Map</button>
-                        </div>
+                        </div> -->
                         <div class="paginationclass">
                             <pagination-controls (pageChange)="p = $event"></pagination-controls>
                         </div> 

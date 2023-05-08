@@ -6,13 +6,13 @@ import { Injectable } from '@angular/core';
 export class SearchService {
 
   constructor() { }
-  searchValue:string="";
-  setSearchValue(enteredSearch)
-  {
-    this.searchValue=enteredSearch;
-  }
-  getSearchValue():string
-  {
-    return this.searchValue;
-  }
+  searchValue:string;
+  // setSearchValue(enteredSearch)
+  // {
+  //   this.searchValue=enteredSearch;
+  // }
+  // getSearchValue():string
+  // {
+  //   return this.searchValue;
+  // }
 }

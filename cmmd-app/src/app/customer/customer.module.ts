@@ -21,11 +21,12 @@ import { NgConfirmModule } from 'ng-confirm-box';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {NgxPaginationModule} from 'ngx-pagination';
 import { RouterModule } from '@angular/router';
-
+import { SearchFilterPipe } from '../search-filter.pipe';
 @NgModule({
   declarations: [
     AddCustomerComponent,
-    CustomerHomeComponent
+    CustomerHomeComponent,
+    SearchFilterPipe
   ],
   imports: [
     CommonModule,
