@@ -1,10 +1,12 @@
 import { Component, ViewChild, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { ICustomer, IDisplayCustomer } from 'src/app/data-types';
+import { IAdmin, ICustomer, IDisplayCustomer, ILogs } from 'src/app/data-types';
 import { CustomerService } from 'src/app/services/customer.service';
 import { AddCustomerComponent } from '../add-customer/add-customer.component';
 import * as alertify from 'alertifyjs';
 import { SearchService } from 'src/app/services/search.service';
+import { AuthService } from 'src/app/services/auth.service';
+import { LogsService } from 'src/app/services/logs.service';
 
 @Component({
   selector: 'app-customer-home',
@@ -13,18 +15,17 @@ import { SearchService } from 'src/app/services/search.service';
 })
 export class CustomerHomeComponent implements OnInit {
 
-
-
+  logs: ILogs={};
   customerList :  IDisplayCustomer[];
   dataSource: any;
   empdata: any;
   totalCustomer : any;
-
+  customer:ICustomer;
 
   p:number =1;
   itemsPerPage:number = 10;
   totalProduct:any;
-  constructor(private service: CustomerService, private dialog: MatDialog, public search:SearchService) {
+  constructor(private service: CustomerService, private dialog: MatDialog,    private auth:AuthService, public search:SearchService, private logService:LogsService) {
 
   }
 
@@ -32,6 +33,9 @@ export class CustomerHomeComponent implements OnInit {
   ngOnInit(): void {
     this.getList();
   }
+
+
+  
 
   getList(){
     this.service.getCustomer().subscribe((result)=>{
@@ -53,11 +57,32 @@ export class CustomerHomeComponent implements OnInit {
     });
   }
 
+  getCustomerName(id)
+  {
+    this.service.getCustomerbyId(id).subscribe((result)=>{
+      this.customer=result;
+    })
+  }
+
   deleteCustomer(id: string) {
     alertify.confirm("Delete Customer", "Do you want to delete this customer?", () => {
+      this.getCustomerName(id);
       this.service.deleteCustomerbyId(id).subscribe(r => {
         alertify.error('Deleted Successfully');
         this.getList();
+        this.logs.customerName=this.customer.cname;
+        this.logs.adminName=localStorage.getItem('adminName');
+        this.logs.accountName="-";
+        this.logs.action="Delete";
+        this.logs.sectionModified='Customer';
+        this.logs.date=new Date().toString();
+        this.logs.time=new Date().toString();
+        this.logService.addLog(this.logs).subscribe((result)=>{
+          if(result)
+          {
+            console.log(result);
+          }
+        });
       },
       (error) => 
       {

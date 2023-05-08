@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { IAdmin } from '../data-types';
 
 @Injectable({
   providedIn: 'root'
@@ -18,6 +19,11 @@ export class AuthService {
   login(loginObj:any)
   {
     return this.http.post<any>(`${this.apiurl}authenticate`, loginObj);
+  }
+
+  getAdmin(id:any)
+  {
+    return this.http.get<IAdmin>(`${this.apiurl}${id}`);
   }
 
   storeToken(tokenValue:string){

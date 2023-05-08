@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 import * as alertify from 'alertifyjs';
+import { IAdmin } from 'src/app/data-types';
 
 
 @Component({
@@ -12,11 +13,15 @@ import * as alertify from 'alertifyjs';
 })
 export class LoginComponent {
 
+  adminDetails:IAdmin;
+
+
   constructor(private auth:AuthService, private router : Router){}
 
   login(){
     if(this.loginForm.valid)
     {
+      this.getAdmin();
       console.log(this.loginForm.value);
       this.auth.login(this.loginForm.value).subscribe((result)=>{
         if(result)
@@ -34,6 +39,18 @@ export class LoginComponent {
     else{
       alertify.error("Form is not valid...Please fill the form correctly!")
     }
+  }
+
+
+  getAdmin()
+  {
+    this.auth.getAdmin(this.loginForm.value.email).subscribe((result)=>{
+      if(result)
+      {
+        this.adminDetails=result;
+        localStorage.setItem('adminName',this.adminDetails.name);
+      }
+    })
   }
 
 

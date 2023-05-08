@@ -52,10 +52,20 @@ export interface IAccount {
   gstin?: string;
 }
 
+
+export interface IAdmin{
+  name?:string,
+  email?:string,
+  phone?:string,
+  password?:string,
+  token?:string
+}
+
 export interface ILogs {
-  length?: number;
+  length?: any;
   logId?: number;
-  adminId?: string;
+  email?:string;
+  adminName?: string;
   customerName?: string;
   accountName?: string;
   action?: string;

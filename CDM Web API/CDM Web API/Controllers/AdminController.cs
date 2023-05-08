@@ -1,4 +1,5 @@
-﻿using CDM_Web_API.AdminDto;
+﻿using CDM_Web_API.AccountDTO;
+using CDM_Web_API.AdminDto;
 using CDM_Web_API.Helper;
 using CDM_Web_API.Models;
 using Microsoft.AspNetCore.Http;
@@ -25,6 +26,20 @@ namespace CDM_Web_API.Controllers
         {
             _authContext = apiDbContext;
 
+        }
+
+        [HttpGet("{id}")]
+        public async Task<ActionResult<Admin>> GetAdmin(string id)
+        {
+            //Find the record of admin with help of email
+            var account = await _authContext.Admins.FindAsync(id);
+
+            if (account == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(account);
         }
 
         [HttpPost("authenticate")]

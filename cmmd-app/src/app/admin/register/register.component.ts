@@ -38,6 +38,7 @@ export class RegisterComponent {
 
 
 
+
   registerForm = new FormGroup({
     name: new FormControl('', [Validators.required]),
     phone: new FormControl('', [Validators.required, Validators.minLength(10), Validators.maxLength(10)]),

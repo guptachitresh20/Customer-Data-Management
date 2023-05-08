@@ -21,7 +21,8 @@ export class HeaderComponent implements OnInit {
   menuType:String='customer'
   customer_id:string;
   url:string;
-
+  adminName:string=localStorage.getItem('adminName');
+  
   ngOnInit():void{
 
   this.url=this.router.snapshot['_routerState'].url;
@@ -113,7 +114,6 @@ export class HeaderComponent implements OnInit {
     this.auth.signOut();
     alertify.error("Logged out")
   }
-
 
 
   enteredSearch:string="";

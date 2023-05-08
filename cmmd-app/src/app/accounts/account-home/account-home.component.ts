@@ -3,7 +3,7 @@ import { ResourceLoader } from '@angular/compiler';
 import { Component , Inject} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { IAccount, ICustomer, IDisplayAccount } from 'src/app/data-types';
+import { IAccount, ICustomer, IDisplayAccount, ILogs } from 'src/app/data-types';
 import { AccountService } from 'src/app/services/account.service';
 import { CustomerService } from 'src/app/services/customer.service';
 import { AddAccountComponent } from '../add-account/add-account.component';
@@ -11,6 +11,7 @@ import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dial
 import * as alertify from 'alertifyjs';
 import { GoogleMapComponent } from 'src/app/accounts/google-map/google-map.component';
 import { MapPlottingComponent } from 'src/app/accounts/map-plotting/map-plotting.component';
+import { LogsService } from 'src/app/services/logs.service';
 import { SearchService } from 'src/app/services/search.service';
 
 
@@ -25,7 +26,8 @@ export class AccountHomeComponent {
   dataSource: any;
   empdata: any;
   totalAccount : any;
-
+  logs: ILogs={};
+  account:IAccount;
 
   p:number =1;
   itemsPerPage:number = 10;
@@ -33,7 +35,7 @@ export class AccountHomeComponent {
   customerDetail:ICustomer;
   customer_id:string;
 
-  constructor(private accountService: AccountService, private http:HttpClient, private route: ActivatedRoute, private dialog: MatDialog, private customerService:CustomerService,public search:SearchService){}
+  constructor(private accountService: AccountService,private logService:LogsService, private http:HttpClient, private route: ActivatedRoute, private dialog: MatDialog, private customerService:CustomerService, public search:SearchService){}
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(params=>{
@@ -81,9 +83,19 @@ export class AccountHomeComponent {
     });
   }
 
+  getAccountName(id)
+  {
+    this.accountService.getAccountbyId(id).subscribe((result)=>{
+      if(result){
+        this.account=result;
+      }
+    })
+  }
+
   deleteAccount(id: string) {
     console.log(id);
     alertify.confirm("Delete Account", "Do you want to delete this account?", () => {
+      this.getAccountName(id);
       this.accountService.deleteAccountbyId(id).subscribe(async result => {
         if(result)
         {
@@ -91,6 +103,19 @@ export class AccountHomeComponent {
           this.getList();
           await new Promise(f => setTimeout(f, 1000));
           window.location.reload();
+          this.logs.customerName=this.customerDetail.cname;
+          this.logs.adminName=localStorage.getItem('adminName');
+          this.logs.accountName=this.account.accountName;
+          this.logs.action="Delete";
+          this.logs.sectionModified='Account';
+          this.logs.date=new Date().toString();
+          this.logs.time=new Date().toString();
+          this.logService.addLog(this.logs).subscribe((result)=>{
+          if(result)
+          {
+            console.log(result);
+          }
+        });
         }
       });
     }, function () {

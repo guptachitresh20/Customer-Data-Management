@@ -2,7 +2,7 @@
     <table>
       <tr>
         <th>Log ID</th>
-        <th>Admin ID</th>
+        <th>Admin Name</th>
         <th>Customer Name</th>
         <th>Account Name</th>
         <th>Action</th>
@@ -10,15 +10,18 @@
         <th>Date</th>
         <th>Time</th>
       </tr>
-      <tr *ngFor="let log of logList">
+      <tr *ngFor="let log of logList| paginate: {itemsPerPage: itemsPerPage, currentPage: p}">
         <td>{{log.logId}}</td>
-        <td>{{log.adminId}}</td>
+        <td>{{log.adminName|titlecase}}</td>
         <td>{{log.customerName}}</td>
         <td>{{log.accountName}}</td>
         <td>{{log.action}}</td>
         <td>{{log.sectionModified}}</td>
-        <td>{{log.date}}</td>
-        <td>{{log.time}}</td>
+        <td>{{log.date|date:'mediumDate'}}</td>
+        <td>{{log.time|date:'mediumTime'}}</td>
       </tr>
+      <div class="paginationclass">
+        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+      </div>
     </table>
   </div>

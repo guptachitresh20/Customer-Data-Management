@@ -7,6 +7,9 @@ import * as alertify from 'alertifyjs';
 import AccessTimeIcon from '@material-ui/icons/AccessTime';
 import { ActivatedRoute } from '@angular/router';
 import { GoogleMapComponent } from 'src/app/accounts/google-map/google-map.component';
+import { ICustomer, ILogs } from 'src/app/data-types';
+import { LogsService } from 'src/app/services/logs.service';
+import { CustomerService } from 'src/app/services/customer.service';
 interface Coordinates {
   address?: string;
   latitude?: number;
@@ -23,8 +26,10 @@ interface Coordinates {
 export class AddAccountComponent {
 
   coordinates: Coordinates;
+  logs: ILogs={};
+  customer:ICustomer;
 
-  constructor(private dialog: MatDialog, private account:AccountService,@Inject(MAT_DIALOG_DATA) public data: any, private route:ActivatedRoute){
+  constructor(private dialog: MatDialog,private customerService:CustomerService, private logService:LogsService, private account:AccountService,@Inject(MAT_DIALOG_DATA) public data: any, private route:ActivatedRoute){
     this.coordinates={} as Coordinates;
     if(this.coordinates.address)
     {
@@ -68,6 +73,14 @@ export class AddAccountComponent {
   }
 
 
+  getCustomerName(){
+    this.customerService.getCustomerbyId(localStorage.getItem('id')).subscribe((result)=>{
+      if(result){
+        this.customer=result;
+      }
+    })
+  }
+
   addAccount() {
     // console.log(this.accountAddForm.value)
     if (this.accountAddForm.valid && this.data.button=='Update') {
@@ -75,10 +88,23 @@ export class AddAccountComponent {
       if (Editid != '' && Editid != null) {
         this.account.updateAccount(Editid, this.accountAddForm.getRawValue()).subscribe(async (result) => {
           if (result==null) {
+            this.getCustomerName();
             this.closePopup();
             alertify.success("Updated Successfully");
             await new Promise(f => setTimeout(f, 1000));
             window.location.reload();
+            this.logs.customerName  = this.customer.cname;
+            this.logs.adminName=localStorage.getItem('adminName');
+            this.logs.accountName=this.accountAddForm.getRawValue().accountName;
+            this.logs.action = this.data.button;
+            this.logs.sectionModified = 'Account';
+            this.logs.date = new Date().toString();
+            this.logs.time = new Date().toString();
+            this.logService.addLog(this.logs).subscribe((result) => {
+              if (result) {
+                console.log(result);
+              }
+            });
           }
         });
       }
@@ -98,10 +124,23 @@ export class AddAccountComponent {
       this.account.addAccount(this.accountAddForm.value).subscribe(async (result) => {
       console.log(result);
       if (result) {
+        this.getCustomerName();
         this.closePopup();
         alertify.success("Added Successfully");
         await new Promise(f => setTimeout(f, 1000));
         window.location.reload();
+        this.logs.customerName  = this.customer.cname;
+        this.logs.adminName=localStorage.getItem('adminName');
+        this.logs.accountName=this.accountAddForm.getRawValue().accountName;
+        this.logs.action = this.data.button;
+        this.logs.sectionModified = 'Account';
+        this.logs.date = new Date().toString();
+        this.logs.time = new Date().toString();
+        this.logService.addLog(this.logs).subscribe((result) => {
+          if (result) {
+            console.log(result);
+          }
+        });
         }
       },
       (error) => 

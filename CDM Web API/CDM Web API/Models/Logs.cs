@@ -7,12 +7,12 @@ namespace CDM_Web_API.Models
     public class Logs
     {
         [Key]
-        public string logId { get; set; }
+        public int logId { get; set; }
 
+        public string adminName { get; set; }
 
-
-        [ForeignKey(nameof(adminId))]
-        public int adminId { get; set; }
+        [ForeignKey(nameof(email))]
+        public string email { get; set; }
         public string customerName { get; set; }
         public string accountName { get; set; }
         public string action { get; set; }
@@ -20,7 +20,7 @@ namespace CDM_Web_API.Models
         public string date { get; set; }
         public string time { get; set; }
 
-        [ForeignKey(nameof(adminId))]
+        [ForeignKey(nameof(email))]
         public virtual Admin Admin { get; set; }
     }
 }

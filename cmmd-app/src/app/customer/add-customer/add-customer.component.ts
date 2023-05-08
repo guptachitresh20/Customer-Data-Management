@@ -9,7 +9,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { ICustomer, ILogs } from 'src/app/data-types';
+import { IAdmin, ICustomer, ILogs } from 'src/app/data-types';
 import { CustomerService } from '../../services/customer.service';
 import { CustomerHomeComponent } from '../customer-home/customer-home.component';
 import * as alertify from 'alertifyjs';
@@ -27,11 +27,12 @@ export class AddCustomerComponent {
   error: boolean = false;
   errorMessage = '';
   logs: ILogs={};
+
   constructor(
     private customer: CustomerService,
     private dialog: MatDialog,
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private logService: LogsService
+    private logService: LogsService,
   ) {}
 
   ngOnInit(): void {
@@ -54,6 +55,7 @@ export class AddCustomerComponent {
       });
     }
   }
+
   addCustomer() {
     if (this.customerAddForm.valid && this.data.button === 'Update') {
       const Editid = this.customerAddForm.getRawValue().gstin;
@@ -66,12 +68,12 @@ export class AddCustomerComponent {
               this.closePopup();
               alertify.success('Updated Successfully');
               await new Promise((f) => setTimeout(f, 1000));
-              // window.location.reload();
+              window.location.reload();
               this.logs.customerName  = this.customerAddForm.getRawValue().cname;
-              this.logs.adminId="1";
+              this.logs.adminName=localStorage.getItem('adminName');
               this.logs.accountName="-";
               this.logs.action = this.data.button;
-              this.logs.sectionModified = 'customer';
+              this.logs.sectionModified = 'Customer';
               this.logs.date = new Date().toString();
               this.logs.time = new Date().toString();
               this.logService.addLog(this.logs).subscribe((result) => {
@@ -92,9 +94,10 @@ export class AddCustomerComponent {
             window.location.reload();
           }
           this.logs.customerName=this.customerAddForm.value.cname;
-          this.logs.adminId="1";
+          this.logs.adminName=localStorage.getItem('adminName');
+          this.logs.accountName="-";
           this.logs.action=this.data.button;
-          this.logs.sectionModified='customer';
+          this.logs.sectionModified='Customer';
           this.logs.date=new Date().toString();
           this.logs.time=new Date().toString();
           this.logService.addLog(this.logs).subscribe((result)=>{
