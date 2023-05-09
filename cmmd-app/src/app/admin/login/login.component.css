@@ -77,8 +77,8 @@ form{
 }
 
 input{
-    width:450px;
-    height: 50px;
+    width: 350px;
+    height: 45px;
     border: 1px solid black;
     border-radius: 5px;
     margin-top: 10px;
@@ -87,7 +87,7 @@ input{
     padding-left: 60px;
 }
 :placeholder-shown{
-    font-size: 20px;
+    font-size: 15px;
 }
 button{
     width: 140px;
@@ -117,13 +117,16 @@ input[type='text'] {
     background-image: url(../../../assets/username.png);
     background-position: 7px;
     background-repeat: no-repeat;
+    background-size: 25px;
 }
+
 input[type='password'] {
     background-image: url(../../../assets/password.png);
     background-position: 7px;
     background-repeat: no-repeat;
+    background-size: 25px;
+    
 }
-
 
 @media only screen and (max-width: 1070px) {
     .left .logoimg{
@@ -143,7 +146,7 @@ input[type='password'] {
         height: 40px;
     }
     :placeholder-shown{
-        font-size: 15px;
+        font-size: 10px;
     }
     h1{
         font-size: x-large;

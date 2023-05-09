@@ -5,22 +5,63 @@
                 <tbody>
                     <tr class="body-row">
                         <td rowspan="3"><img src="{{customerDetail?.logo}}" alt=""></td>
-                        <td>Name - {{customerDetail?.cname}}</td>
-                        <td>Type - {{customerDetail?.typeOfCompany}}</td>
-                        <td>Phone No - {{customerDetail?.phoneNo}}</td>
+                        <td>
+                            <tr>
+                                <td class="title">Name : </td>
+                                <td>{{customerDetail?.cname}}</td>
+                            </tr>
+                        </td>
+                        <td>
+                            <tr>
+                                <td class="title">Type : </td>
+                                <td>{{customerDetail?.typeOfCompany}}</td>
+                            </tr>
+                        </td>
+                        <td>
+                            <tr>
+                                <td class="title">Phone No : </td>
+                                <td>{{customerDetail?.phoneNo}}</td>
+                            </tr>
+                        </td>
+                    
                     </tr>
                     <tr class="body-row">
 
-                        <td>GSTIN - {{customerDetail?.gstin}}</td>
-                        <td>Headquarter - {{customerDetail?.headquarter}}</td>
-                        <td>Country Code - {{customerDetail?.countryCode}}</td>
+                        <td>
+                            <tr>
+                                <td class="title">GSTIN : </td>
+                                <td>{{customerDetail?.gstin}}</td>
+                            </tr>
+                        </td>
+                        <td>
+                            <tr>
+                                <td class="title">Headquarter : </td>
+                                <td>{{customerDetail?.headquarter}}</td>
+                            </tr>
+                        </td>
+         
+                        <td>
+                            <tr>
+                                <td class="title">Country Code : </td>
+                                <td>{{customerDetail?.countryCode}}</td>
+                            </tr>
+                        </td>
                     </tr>
                     <tr class="body-row">
 
-                        <!-- <td>ID - {{customerDetail?.id}}</td> -->
-                        <td>Email - <a href="{{customerDetail?.email}}">{{customerDetail?.email}}</a></td>
-                        <td>Website - <a href="{{customerDetail?.website}}">{{customerDetail?.website}}</a></td>
-                     
+                        <td>
+                            <tr>
+                                <td class="title">Email : </td>
+                                <td><a href="{{customerDetail?.email}}">{{customerDetail?.email}}</a></td>
+                            </tr>
+                        </td>
+                        <td>
+                            <tr>
+                                <td class="title">Website : </td>
+                                <td><a href="{{customerDetail?.website}}">{{customerDetail?.website}}</a></td>
+                            </tr>
+                        </td>
+                    
                     </tr>
 
                     <br>
@@ -45,7 +86,8 @@
                             <tr>
                                 <th>Account ID</th>
                                 <th>Account Name</th>
-                                <th>Location</th>
+                                <th colspan="3">Location</th>
+                      
                                 <th>Email</th>
                                 <th>Year of Establishment</th>
                                 <th></th>
@@ -55,11 +97,12 @@
 
                         <tbody class="accountlist">
                             <tr class="body-row" *ngFor="let account of customerDetail?.accounts|accountSearchFilter:search.searchValue| paginate: {itemsPerPage: itemsPerPage, currentPage: p}"  >
-                              <td routerLink="/customer/{{customerDetail?.gstin}}/accounts/{{account?.email}}" data-title="ID">{{account?.accountId}}</td>
-                              <td routerLink="/customer/{{customerDetail?.gstin}}/accounts/{{account?.email}}" data-title="Account Name">{{account?.accountName}}</td>
-                              <td routerLink="/customer/{{customerDetail?.gstin}}/accounts/{{account?.email}}" data-title="Location">{{account?.location}}</td>
-                              <td routerLink="/customer/{{customerDetail?.gstin}}/accounts/{{account?.email}}" data-title="Email">{{account?.email}}</td>
-                              <td routerLink="/customer/{{customerDetail?.gstin}}/accounts/{{account?.email}}" data-title="YearOFEst">{{account?.yearOfEst}}</td>
+                              <td class="center-align" routerLink="/customer/{{customerDetail?.gstin}}/accounts/{{account?.email}}" data-title="ID">{{account?.accountId}}</td>
+                              <td class="center-align" routerLink="/customer/{{customerDetail?.gstin}}/accounts/{{account?.email}}" data-title="Account Name">{{account?.accountName}}</td>
+                              <td colspan="3" class="left-align" routerLink="/customer/{{customerDetail?.gstin}}/accounts/{{account?.email}}" data-title="Location">{{account?.location}}</td>
+
+                              <td class="center-align" routerLink="/customer/{{customerDetail?.gstin}}/accounts/{{account?.email}}" data-title="Email">{{account?.email}}</td>
+                              <td class="center-align" routerLink="/customer/{{customerDetail?.gstin}}/accounts/{{account?.email}}" data-title="YearOFEst">{{account?.yearOfEst}}</td>
                               <td>
                                 
                                 <button class="update_btn" (click)="editAccount(account?.email)">Update</button>

@@ -6,6 +6,7 @@ import * as alertify from 'alertifyjs';
 import { IAdmin } from 'src/app/data-types';
 
 
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -26,7 +27,7 @@ export class LoginComponent {
       this.auth.login(this.loginForm.value).subscribe((result)=>{
         if(result)
         {
-          alertify.success("Login Successful");
+          alertify.success("Logged In");
           this.loginForm.reset();
           this.auth.storeToken(result.token);
           this.router.navigate(['customer']);

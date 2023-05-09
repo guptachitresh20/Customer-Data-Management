@@ -49,6 +49,7 @@ export class CustomerHomeComponent implements OnInit {
       maxHeight: 'calc(100vh - 120px)',
       height: 'auto',
       backdropClass: "backgroundblur",
+      disableClose:true,
       data: {
         id: id,
         modalTitle: 'Update Customer Form',
@@ -93,20 +94,5 @@ export class CustomerHomeComponent implements OnInit {
     });
 
   }
-
-  // searchCustomer(enteredSearch)
-  // {
-  //   console.log("a: "+enteredSearch);
-  //   if(enteredSearch)
-  //   {
-  //   this.service.searchCustomers(enteredSearch).subscribe((result)=>{
-  //     if(result)
-  //     {
-  //       this.customerList = result;
-  //       this.totalCustomer = result.length;
-  //     }
-  //   })
-  // }
-  // }
 
 }

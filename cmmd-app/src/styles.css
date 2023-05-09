@@ -2,6 +2,8 @@
 @import '../node_modules/alertifyjs//build/css/alertify.min.css';
 @import '../node_modules/alertifyjs//build/css/themes/bootstrap.min.css';
 @import '../node_modules/alertifyjs//build/css/themes/default.min.css';
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap');
+
 html,
 body {
     height: 100%;
@@ -9,7 +11,7 @@ body {
 
 body {
     margin: 0;
-    font-family: Roboto, "Helvetica Neue", sans-serif;
+    font-family: 'Roboto', sans-serif;
 }
 
 
@@ -103,3 +105,8 @@ mat-dialog-content {
     }
 }
 
+th{
+    font-weight: 500;
+    background-color:#00599C;
+    color: white;
+}

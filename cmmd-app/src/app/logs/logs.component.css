@@ -6,25 +6,28 @@
     margin-right: 3%;
 }
 table {
-    border-collapse: collapse;
-    border-spacing: 0;
     width: 100%;
-    border: 1px solid #ddd;
 }
-
+table, tr, td, th{
+    border-collapse: collapse;
+    border: 1px solid black;
+}
 th, td {
-    text-align: center;
-    padding: 8px;
+    text-align: left;
+    padding: 0.5%;
     word-wrap: normal;
     word-break: normal;
 }
-
-tr:hover{
-    cursor: pointer;
-    box-shadow: 5px 1px #888888;
-}
-
-tr:nth-child(even){
+th{
+    font-weight: 500;
     background-color:#00599C;
     color: white;
+    text-align: left;
+}
+.center-align{
+    text-align: center;
+    width: 10%;
+}
+.action{
+    font-weight: 500;
 }

@@ -74,6 +74,7 @@ export class AccountHomeComponent {
       maxHeight: 'calc(100vh - 120px)',
       height: 'auto',
       backdropClass: "backgroundblur",
+      disableClose:true,
       data: {
         id: id,
         modalTitle: 'Update Account Form',
@@ -85,20 +86,20 @@ export class AccountHomeComponent {
 
   getAccountName(id)
   {
-    this.accountService.getAccountbyId(id).subscribe((result)=>{
+    console.log(id);
+    this.accountService.getAccountbyId(id).subscribe(async (result)=>{
       if(result){
-        this.account=result;
+        this.account=await result;
+        console.log(this.account);
       }
     })
   }
 
   deleteAccount(id: string) {
-    console.log(id);
+    // console.log(id);
     alertify.confirm("Delete Account", "Do you want to delete this account?", () => {
       this.getAccountName(id);
       this.accountService.deleteAccountbyId(id).subscribe(async result => {
-        if(result)
-        {
           alertify.error('Deleted Successfully');
           this.getList();
           await new Promise(f => setTimeout(f, 1000));
@@ -116,7 +117,6 @@ export class AccountHomeComponent {
             console.log(result);
           }
         });
-        }
       });
     }, function () {
 

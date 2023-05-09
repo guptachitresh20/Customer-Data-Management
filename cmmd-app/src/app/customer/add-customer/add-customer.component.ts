@@ -72,7 +72,7 @@ export class AddCustomerComponent {
               this.logs.customerName  = this.customerAddForm.getRawValue().cname;
               this.logs.adminName=localStorage.getItem('adminName');
               this.logs.accountName="-";
-              this.logs.action = this.data.button;
+              this.logs.action = 'Update';
               this.logs.sectionModified = 'Customer';
               this.logs.date = new Date().toString();
               this.logs.time = new Date().toString();
@@ -96,7 +96,7 @@ export class AddCustomerComponent {
           this.logs.customerName=this.customerAddForm.value.cname;
           this.logs.adminName=localStorage.getItem('adminName');
           this.logs.accountName="-";
-          this.logs.action=this.data.button;
+          this.logs.action='Create';
           this.logs.sectionModified='Customer';
           this.logs.date=new Date().toString();
           this.logs.time=new Date().toString();

@@ -86,6 +86,7 @@ export class HeaderComponent implements OnInit {
 
   addCustomer(){
     this.dialog.open(AddCustomerComponent,{
+      disableClose:true,
       maxHeight: 'calc(100vh - 120px)',
       height: 'auto',
       backdropClass: "backgroundblur",
@@ -98,6 +99,7 @@ export class HeaderComponent implements OnInit {
 
   addAccount(){
     this.dialog.open(AddAccountComponent,{
+      disableClose:true,
       maxHeight: 'calc(100vh - 120px)',
       height: 'auto',
       backdropClass: "backgroundblur",

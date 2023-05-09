@@ -96,7 +96,7 @@ export class AddAccountComponent {
             this.logs.customerName  = this.customer.cname;
             this.logs.adminName=localStorage.getItem('adminName');
             this.logs.accountName=this.accountAddForm.getRawValue().accountName;
-            this.logs.action = this.data.button;
+            this.logs.action = 'Update';
             this.logs.sectionModified = 'Account';
             this.logs.date = new Date().toString();
             this.logs.time = new Date().toString();
@@ -132,7 +132,7 @@ export class AddAccountComponent {
         this.logs.customerName  = this.customer.cname;
         this.logs.adminName=localStorage.getItem('adminName');
         this.logs.accountName=this.accountAddForm.getRawValue().accountName;
-        this.logs.action = this.data.button;
+        this.logs.action = 'Create';
         this.logs.sectionModified = 'Account';
         this.logs.date = new Date().toString();
         this.logs.time = new Date().toString();
@@ -245,6 +245,7 @@ export class AddAccountComponent {
   openGoogleMap()
   {
     let dialogRef=this.dialog.open(GoogleMapComponent,{
+      disableClose:true,
       data: {
         address: 'Some Data',
         latitude: 'From Parent Component',

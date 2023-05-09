@@ -20,6 +20,7 @@ export class LogsComponent implements OnInit {
         if(result){
           this.logList=result;
           this.totalLogs=result.length;
+          this.logList=this.logList.reverse();
         }
     })
   }
