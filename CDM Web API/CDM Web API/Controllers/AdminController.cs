@@ -1,4 +1,5 @@
-﻿using CDM_Web_API.AccountDTO;
+﻿using AutoMapper;
+using CDM_Web_API.AccountDTO;
 using CDM_Web_API.AdminDto;
 using CDM_Web_API.Helper;
 using CDM_Web_API.Models;
@@ -22,9 +23,11 @@ namespace CDM_Web_API.Controllers
     public class AdminController : ControllerBase
     {
         private readonly ApiDbContext _authContext;
-        public AdminController(ApiDbContext apiDbContext)
+        private readonly IMapper _mapper;
+        public AdminController(ApiDbContext apiDbContext, IMapper mapper)
         {
             _authContext = apiDbContext;
+            _mapper = mapper;
 
         }
 
@@ -100,9 +103,109 @@ namespace CDM_Web_API.Controllers
             });
         }
 
+
+        [HttpPut("reset")]
+        public async Task<IActionResult> ResetPassword(string email,string pwd, [FromBody] ResetDto adminObj)
+        {
+            if (email == null)
+            {
+                return BadRequest();
+            }
+            var admin = await _authContext.Admins.FirstOrDefaultAsync(x => x.email == email);
+            if (admin == null)
+            {
+                return NotFound(new { Message = "User Not Found!!!" });
+            }
+            if (!PasswordHasher.VerifyPassword(pwd, admin.password))
+            {
+                return BadRequest(new { Message = "Old Password is Incorrect" });
+            }
+            var pass = CheckPasswordStreangth(adminObj.password);
+            if (!string.IsNullOrEmpty(pass))
+            {
+                return BadRequest(new { Message = pass.ToString() });
+            }
+
+            adminObj.password = PasswordHasher.HashPassword(adminObj.password);
+            _mapper.Map(adminObj, admin);
+            _authContext.Entry(admin).State = EntityState.Modified;
+            try
+            {
+                await _authContext.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!EmailExists(email))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return Ok(new { Message = "Password Updated!!!" });
+        }
+
+
+
+
+        //[HttpPut("reset")]
+        //public async Task<IActionResult> ResetPassword(string email, [FromBody] ResetDto adminObj)
+        //{
+        //    if (email == null)
+        //    {
+        //        return BadRequest();
+        //    }
+        //    var admin = await _authContext.Admins.FirstOrDefaultAsync(x => x.email == email);
+        //    if (admin == null)
+        //    {
+        //        return NotFound(new { Message = "User Not Found!!!" });
+        //    }
+        //    var pass = CheckPasswordStreangth(adminObj.password);
+        //    if (!string.IsNullOrEmpty(pass))
+        //    {
+        //        return BadRequest(new { Message = pass.ToString() });
+        //    }
+
+        //    adminObj.password = PasswordHasher.HashPassword(adminObj.password);
+        //    _mapper.Map(adminObj, admin);
+        //    _authContext.Entry(admin).State = EntityState.Modified;
+        //    try
+        //    {
+        //        await _authContext.SaveChangesAsync();
+        //    }
+        //    catch (DbUpdateConcurrencyException)
+        //    {
+        //        if (!EmailExists(email))
+        //        {
+        //            return NotFound();
+        //        }
+        //        else
+        //        {
+        //            throw;
+        //        }
+        //    }
+
+        //    return Ok(new { Message = "Password Updated!!!" });
+        //}
+
+
+
         private Task<Boolean> CheckEmailExistAsync(string email)
         {
             return _authContext.Admins.AnyAsync(x => x.email == email);
+        }
+
+        private bool EmailExists(string email)
+        {
+            var obj =  _authContext.Admins.AnyAsync(x => x.email == email);
+            if (obj == null)
+            {
+                return false;
+            }
+            return true;
         }
         private string CheckPasswordStreangth(string password)
         {
