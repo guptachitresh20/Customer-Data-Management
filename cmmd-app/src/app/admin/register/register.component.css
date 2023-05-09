@@ -88,8 +88,8 @@ form {
 }
 
 input {
-    width: 450px;
-    height: 50px;
+    width: 350px;
+    height: 45px;
     border: 1px solid black;
     border-radius: 5px;
     margin-top: 10px;
@@ -99,7 +99,7 @@ input {
 }
 
 :placeholder-shown {
-    font-size: 20px;
+    font-size: 15px;
 }
 
 button {
@@ -119,32 +119,30 @@ input[name='email'] {
     background-image: url(../../../assets/username.png);
     background-position: 7px;
     background-repeat: no-repeat;
+    background-size: 25px;
 }
 
 input[type='password'] {
     background-image: url(../../../assets/password.png);
     background-position: 7px;
     background-repeat: no-repeat;
+    background-size: 25px;
 }
 
 input[name='name'] {
     background-image: url(../../../assets/name.png);
     background-position: 7px;
     background-repeat: no-repeat;
+    background-size: 25px;
 }
 
 
-
-input[name='id'] {
-    background-image: url(../../../assets/id.png);
-    background-position: 7px;
-    background-repeat: no-repeat;
-}
 
 input[name='phone'] {
     background-image: url(../../../assets/phone.png);
     background-position: 7px;
     background-repeat: no-repeat;
+    background-size: 25px;
 }
 
 @media only screen and (max-width: 1070px) {
@@ -168,7 +166,7 @@ input[name='phone'] {
     }
 
     :placeholder-shown {
-        font-size: 15px;
+        font-size: 10px;
     }
 
     h1 {
@@ -208,4 +206,14 @@ input[name='phone'] {
     vertical-align: middle;
     box-shadow: 1px 6px 4px #f6f4f4;
 
+}
+.register{
+    display: flex;
+    flex-direction: row;
+    margin-top: 50px;
+}
+.register button{
+    margin-top:0;
+    margin-left: 30px;
+    box-shadow: 1px 6px 4px #cccdcf;
 }

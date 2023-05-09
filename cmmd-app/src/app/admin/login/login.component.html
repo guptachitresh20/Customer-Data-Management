@@ -24,6 +24,7 @@
             <form [formGroup]="loginForm">
                 <!-- <label for="email">Email</label><br> -->
                 <input type="text" name="email" placeholder="Email" formControlName="email"><br>
+             
                 <mat-error *ngIf="email && email.invalid && email.touched">
                     <strong>Email Required</strong>
                  </mat-error>
@@ -43,7 +44,6 @@
                 </div>
             </form>
         </div>
-
        
     </div>
 </div>
