@@ -27,7 +27,7 @@ export class LoginComponent {
       this.auth.login(this.loginForm.value).subscribe((result)=>{
         if(result)
         {
-          alertify.success("Login Successful");
+          alertify.success("Logged In");
           this.loginForm.reset();
           this.auth.storeToken(result.token);
           this.router.navigate(['customer']);

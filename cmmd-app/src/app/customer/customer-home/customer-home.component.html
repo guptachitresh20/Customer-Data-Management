@@ -21,8 +21,8 @@
               <td routerLink="/customer/{{customer.gstin}}/accounts"><img src="{{customer?.logo}}"></td>
               <td routerLink="/customer/{{customer.gstin}}/accounts" data-title="Name">{{customer?.cname}}</td>
               <td routerLink="/customer/{{customer.gstin}}/accounts" data-title="Sector">{{customer?.typeOfCompany}}</td>
-              <td  routerLink="/customer/{{customer.gstin}}/accounts" data-title="GSTIN">{{customer?.gstin}}</td>
-              <td  routerLink="/customer/{{customer.gstin}}/accounts" data-title="Email">{{customer?.email}}</td>
+              <td routerLink="/customer/{{customer.gstin}}/accounts" class="numeric" data-title="GSTIN">{{customer?.gstin}}</td>
+              <td routerLink="/customer/{{customer.gstin}}/accounts" data-title="Email">{{customer?.email}}</td>
               <td>
                 
                 <button class="update_btn" (click)="editCustomer(customer.gstin)">Update</button>

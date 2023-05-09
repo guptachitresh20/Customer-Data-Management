@@ -14,9 +14,9 @@ export class MapPlottingComponent implements OnInit{
 
   customerDetail:ICustomer;
   customer_id:string;  
-  lat = 22.4064172;
-  long = 69.0750171;
-  zoom=3;
+  lat = 20.5937;
+  long = 78.9629;
+  zoom=5;
   logoutButton: any;
 
   ngOnInit(){
