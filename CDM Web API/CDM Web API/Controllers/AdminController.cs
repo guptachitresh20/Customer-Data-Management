@@ -135,7 +135,7 @@ namespace CDM_Web_API.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!EmailExists(email))
+                if (await CheckEmailExistAsync(email)==false)
                 {
                     return NotFound();
                 }
@@ -198,15 +198,7 @@ namespace CDM_Web_API.Controllers
             return _authContext.Admins.AnyAsync(x => x.email == email);
         }
 
-        private bool EmailExists(string email)
-        {
-            var obj =  _authContext.Admins.AnyAsync(x => x.email == email);
-            if (obj == null)
-            {
-                return false;
-            }
-            return true;
-        }
+        
         private string CheckPasswordStreangth(string password)
         {
             StringBuilder sb = new StringBuilder();
