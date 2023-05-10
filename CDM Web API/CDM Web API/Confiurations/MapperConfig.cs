@@ -25,6 +25,8 @@ namespace CDM_Web_API.Confiurations
 
             CreateMap<Admin,LoginDto>().ReverseMap();
             CreateMap<Admin, ResetDto>().ReverseMap();
+            CreateMap<Admin, RegisterDto>().ReverseMap();
+            
 
 
 

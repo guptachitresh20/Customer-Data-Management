@@ -2,6 +2,8 @@
 {
     public class ResetDto
     {
+        public string NewPassword { get; set; }
+
         public string password { get; set; }
     }
 }

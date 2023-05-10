@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using CDM_Web_API.AccountDTO;
 using CDM_Web_API.AdminDto;
+using CDM_Web_API.CustomerDTO;
 using CDM_Web_API.Helper;
 using CDM_Web_API.Models;
 using Microsoft.AspNetCore.Http;
@@ -73,7 +74,7 @@ namespace CDM_Web_API.Controllers
         }
 
         [HttpPost("register")]
-        public async Task<IActionResult> RegisterUser([FromBody] Admin adminObj)
+        public async Task<IActionResult> RegisterUser([FromBody] RegisterDto adminObj)
         {
             if(adminObj == null)
             {
@@ -95,7 +96,8 @@ namespace CDM_Web_API.Controllers
 
             //Before sending to the database we will encrypt the password.
             adminObj.password = PasswordHasher.HashPassword(adminObj.password);
-            await _authContext.Admins.AddAsync(adminObj);   
+            var newadminObj = _mapper.Map<Admin>(adminObj);
+            await _authContext.Admins.AddAsync(newadminObj);   
             await _authContext.SaveChangesAsync();
             return Ok(new
             {
@@ -105,7 +107,7 @@ namespace CDM_Web_API.Controllers
 
 
         [HttpPut("reset")]
-        public async Task<IActionResult> ResetPassword(string email,string pwd, [FromBody] ResetDto adminObj)
+        public async Task<IActionResult> ResetPassword(string email, [FromBody] ResetDto adminObj)
         {
             if (email == null)
             {
@@ -116,17 +118,18 @@ namespace CDM_Web_API.Controllers
             {
                 return NotFound(new { Message = "User Not Found!!!" });
             }
-            if (!PasswordHasher.VerifyPassword(pwd, admin.password))
+            if (!PasswordHasher.VerifyPassword(adminObj.password, admin.password))
             {
-                return BadRequest(new { Message = "Old Password is Incorrect" });
+                return BadRequest(new { Message = "Old Password does not match!!!" });
             }
-            var pass = CheckPasswordStreangth(adminObj.password);
+            var pass = CheckPasswordStreangth(adminObj.NewPassword);
             if (!string.IsNullOrEmpty(pass))
             {
                 return BadRequest(new { Message = pass.ToString() });
             }
 
-            adminObj.password = PasswordHasher.HashPassword(adminObj.password);
+            adminObj.password = PasswordHasher.HashPassword(adminObj.NewPassword);
+            adminObj.NewPassword = "";
             _mapper.Map(adminObj, admin);
             _authContext.Entry(admin).State = EntityState.Modified;
             try
