@@ -107,13 +107,13 @@ namespace CDM_Web_API.Controllers
 
 
         [HttpPut("reset")]
-        public async Task<IActionResult> ResetPassword(string email, [FromBody] ResetDto adminObj)
+        public async Task<IActionResult> ResetPassword([FromBody] ResetDto adminObj)
         {
-            if (email == null)
+            if (adminObj.email == null)
             {
                 return BadRequest();
             }
-            var admin = await _authContext.Admins.FirstOrDefaultAsync(x => x.email == email);
+            var admin = await _authContext.Admins.FirstOrDefaultAsync(x => x.email == adminObj.email);
             if (admin == null)
             {
                 return NotFound(new { Message = "User Not Found!!!" });
@@ -138,7 +138,7 @@ namespace CDM_Web_API.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (await CheckEmailExistAsync(email)==false)
+                if (await CheckEmailExistAsync(adminObj.email) ==false)
                 {
                     return NotFound();
                 }
