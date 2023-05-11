@@ -66,6 +66,7 @@ export class AddCustomerComponent {
           .subscribe(async (result) => {
             if (result == null) {
               this.closePopup();
+              alertify.set('notifier','position', 'top-right');
               alertify.success('Updated Successfully');
               await new Promise((f) => setTimeout(f, 1000));
               window.location.reload();
@@ -89,6 +90,7 @@ export class AddCustomerComponent {
         async (result) => {
           if (result) {
             this.closePopup();
+            alertify.set('notifier','position', 'top-right');
             alertify.success('Added Successfully');
             await new Promise((f) => setTimeout(f, 1000));
             window.location.reload();
@@ -109,6 +111,7 @@ export class AddCustomerComponent {
         },
         (error) => {
           this.closePopup();
+          alertify.set('notifier','position', 'top-right');
           alertify.error('Customer with same GSTIN already Exists');
         }
       );

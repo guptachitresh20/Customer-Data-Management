@@ -114,6 +114,7 @@ export class HeaderComponent implements OnInit {
   logout()
   {
     this.auth.signOut();
+    alertify.set('notifier','position', 'top-right');
     alertify.error("Logged out")
   }
 

@@ -21,16 +21,19 @@ export class RegisterComponent {
       this.auth.signUp(this.registerForm.value).subscribe((result)=>{
         if(result)
         {
+          alertify.set('notifier','position', 'top-right');
           alertify.success("Registeration Successful");
           this.registerForm.reset();
           this.router.navigate(['login']);
         }
       },
       (error)=>{
+        alertify.set('notifier','position', 'top-right');
         alertify.error("Cannot Register.....User credentials already exist!");
       })
     }
     else{
+      alertify.set('notifier','position', 'top-right');
       alertify.error("Form is not valid...Please fill the form correctly!")
     }
   }

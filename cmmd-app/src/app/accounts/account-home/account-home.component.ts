@@ -97,9 +97,11 @@ export class AccountHomeComponent {
 
   deleteAccount(id: string) {
     // console.log(id);
+
     alertify.confirm("Delete Account", "Do you want to delete this account?", () => {
       this.getAccountName(id);
       this.accountService.deleteAccountbyId(id).subscribe(async result => {
+        alertify.set('notifier','position', 'top-right');
           alertify.error('Deleted Successfully');
           this.getList();
           await new Promise(f => setTimeout(f, 1000));
@@ -136,6 +138,7 @@ export class AccountHomeComponent {
       });
     }
     else{
+      alertify.set('notifier','position', 'top-right');
       alertify.error('No Accounts to Plot');
     }
     // console.log(this.customerDetail?.accounts);

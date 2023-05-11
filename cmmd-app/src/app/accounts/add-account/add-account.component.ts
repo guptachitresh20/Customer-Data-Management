@@ -90,6 +90,7 @@ export class AddAccountComponent {
           if (result==null) {
             this.getCustomerName();
             this.closePopup();
+            alertify.set('notifier','position', 'top-right');
             alertify.success("Updated Successfully");
             await new Promise(f => setTimeout(f, 1000));
             window.location.reload();
@@ -126,6 +127,7 @@ export class AddAccountComponent {
       if (result) {
         this.getCustomerName();
         this.closePopup();
+        alertify.set('notifier','position', 'top-right');
         alertify.success("Added Successfully");
         await new Promise(f => setTimeout(f, 1000));
         window.location.reload();
@@ -146,6 +148,7 @@ export class AddAccountComponent {
       (error) => 
       {
         this.closePopup();
+        alertify.set('notifier','position', 'top-right');
         alertify.error("Account with same email id already Exists");
       });
     }

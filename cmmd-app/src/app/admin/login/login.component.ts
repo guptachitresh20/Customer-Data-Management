@@ -27,6 +27,7 @@ export class LoginComponent {
       this.auth.login(this.loginForm.value).subscribe((result)=>{
         if(result)
         {
+          alertify.set('notifier','position', 'top-right');
           alertify.success("Logged In");
           this.loginForm.reset();
           this.auth.storeToken(result.token);
@@ -34,10 +35,12 @@ export class LoginComponent {
         }
       },
       (error)=>{
+        alertify.set('notifier','position', 'top-right');
         alertify.error("Please check your email id or password!")
       })
     }
     else{
+      alertify.set('notifier','position', 'top-right');
       alertify.error("Form is not valid...Please fill the form correctly!")
     }
   }

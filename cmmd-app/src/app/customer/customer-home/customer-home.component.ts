@@ -69,6 +69,7 @@ export class CustomerHomeComponent implements OnInit {
     alertify.confirm("Delete Customer", "Do you want to delete this customer?", () => {
       this.getCustomerName(id);
       this.service.deleteCustomerbyId(id).subscribe(r => {
+        alertify.set('notifier','position', 'top-right');
         alertify.error('Deleted Successfully');
         this.getList();
         this.logs.customerName=this.customer.cname;
@@ -87,6 +88,7 @@ export class CustomerHomeComponent implements OnInit {
       },
       (error) => 
       {
+        alertify.set('notifier','position', 'top-right');
         alertify.error("Customer has existing accounts");
       });
     }, function () {
