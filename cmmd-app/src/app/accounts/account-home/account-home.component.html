@@ -86,9 +86,9 @@
                             <tr>
                                 <th class="center-align">Account ID</th>
                                 <th>Account Name</th>
-                                <th colspan="2">Location</th>
+                                <th colspan="3">Location</th>
                       
-                                <th colspan="2">Email</th>
+                                <th >Email</th>
                                 <th class="center-align">Year of Establishment</th>
                                 <th></th>
                             </tr>
@@ -99,9 +99,9 @@
                             <tr class="body-row" *ngFor="let account of customerDetail?.accounts|accountSearchFilter:search.searchValue| paginate: {itemsPerPage: itemsPerPage, currentPage: p}"  >
                               <td class="center-align" routerLink="/customer/{{customerDetail?.gstin}}/accounts/{{account?.email}}" data-title="Account ID">{{account?.accountId}}</td>
                               <td class="left-align" routerLink="/customer/{{customerDetail?.gstin}}/accounts/{{account?.email}}" data-title="Account Name">{{account?.accountName}}</td>
-                              <td colspan="2" class="left-align" routerLink="/customer/{{customerDetail?.gstin}}/accounts/{{account?.email}}" data-title="Location">{{account?.location}}</td>
+                              <td colspan="3" class="left-align" routerLink="/customer/{{customerDetail?.gstin}}/accounts/{{account?.email}}" data-title="Location">{{account?.location}}</td>
 
-                              <td colspan="2" class="left-align" routerLink="/customer/{{customerDetail?.gstin}}/accounts/{{account?.email}}" data-title="Email"> <a href = "mailto:{{account.email}}">{{account.email}}</a></td>
+                              <td  class="left-align" routerLink="/customer/{{customerDetail?.gstin}}/accounts/{{account?.email}}" data-title="Email"> <a href = "mailto:{{account.email}}">{{account.email}}</a></td>
                              
                               <td class="center-align" routerLink="/customer/{{customerDetail?.gstin}}/accounts/{{account?.email}}" data-title="YearOFEst">{{account?.yearOfEst}}</td>
                               <td class="button-align">
