@@ -11,6 +11,10 @@ export class SearchFilterPipe implements PipeTransform {
     return Customer;
    }
    return Customer.filter(customer=>
-    customer.cname.toLocaleLowerCase().includes(searchValue.toLocaleLowerCase()));
+    customer.cname.toLocaleLowerCase().includes(searchValue.toLocaleLowerCase()) || 
+    customer.gstin.toLocaleLowerCase().includes(searchValue.toLocaleLowerCase()) ||
+    customer.email.toLocaleLowerCase().includes(searchValue.toLocaleLowerCase()) ||
+    customer.typeOfCompany.toLocaleLowerCase().includes(searchValue.toLocaleLowerCase())
+    );
   }
 }

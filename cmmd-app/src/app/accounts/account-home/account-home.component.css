@@ -65,7 +65,7 @@
   }
   td:before {
     margin: 20px;
-    position: absolute;
+    position: relative;
     top: 6px;
     left: 6px;
     width: 40%;
@@ -74,6 +74,7 @@
     font-weight: bold;
     top: 0px;
     content: attr(data-title);
+  
   }
 
 }
@@ -117,7 +118,7 @@ td {
  
 }
 .center-align {
-  text-align: center;
+  /* text-align: left; */
  
 }
 thead{
