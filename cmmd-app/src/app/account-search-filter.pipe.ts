@@ -11,10 +11,12 @@ export class AccountSearchFilterPipe implements PipeTransform {
      return Account;
     }
     return Account.filter(account=>
-      account.accountName.toLocaleLowerCase().includes(searchValue.toLocaleLowerCase())||
-      account.location.toLocaleLowerCase().includes(searchValue.toLocaleLowerCase()) ||
-      account.email.toLocaleLowerCase().includes(searchValue.toLocaleLowerCase()) ||
-      account.yearOfEst.toLocaleLowerCase().includes(searchValue.toLocaleLowerCase()));
+     account.accountName.toLocaleLowerCase().includes(searchValue.toLocaleLowerCase())||
+     account.location.toLocaleLowerCase().includes(searchValue.toLocaleLowerCase()) ||
+     account.email.toLocaleLowerCase().includes(searchValue.toLocaleLowerCase()) ||
+     account.yearOfEst.toLocaleLowerCase().includes(searchValue.toLocaleLowerCase())
+     );
+   
    }
 
 }

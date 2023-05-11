@@ -44,15 +44,20 @@
     left: 6px;
     width: 40%;
     padding-right: 10px;
-    text-align: left;
+    /* text-align: left; */
     font-weight: bold;
     top: 0px;
+
+  
   }
 
   td:before {
     content: attr(data-title);
     padding-right: 10%;  
   }
+
+ 
+
 }
 @media only screen and (max-width: 706px) {
   table{
