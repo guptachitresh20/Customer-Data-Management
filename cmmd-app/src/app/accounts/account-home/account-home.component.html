@@ -4,20 +4,20 @@
             <table>
                 <tbody>
                     <tr class="body-row">
-                        <td rowspan="3"><img src="{{customerDetail?.logo}}" alt=""></td>
-                        <td>
+                        <td  class="blockdata" rowspan="3"><img src="{{customerDetail?.logo}}" alt=""></td>
+                        <td class="blockdata">
                             <tr>
                                 <td class="title">Name : </td>
                                 <td>{{customerDetail?.cname}}</td>
                             </tr>
                         </td>
-                        <td>
+                        <td  class="blockdata">
                             <tr>
                                 <td class="title">Type : </td>
                                 <td>{{customerDetail?.typeOfCompany}}</td>
                             </tr>
                         </td>
-                        <td>
+                        <td  class="blockdata">
                             <tr>
                                 <td class="title">Phone No : </td>
                                 <td>{{customerDetail?.phoneNo}}</td>
@@ -27,20 +27,20 @@
                     </tr>
                     <tr class="body-row">
 
-                        <td>
-                            <tr>
+                        <td  class="blockdata">
+                            <tr  >
                                 <td class="title">GSTIN : </td>
                                 <td>{{customerDetail?.gstin}}</td>
                             </tr>
                         </td>
-                        <td>
+                        <td  class="blockdata">
                             <tr>
                                 <td class="title">Headquarter : </td>
                                 <td>{{customerDetail?.headquarter}}</td>
                             </tr>
                         </td>
          
-                        <td>
+                        <td  class="blockdata">
                             <tr>
                                 <td class="title">Country Code : </td>
                                 <td>{{customerDetail?.countryCode}}</td>
@@ -49,13 +49,13 @@
                     </tr>
                     <tr class="body-row">
 
-                        <td>
+                        <td  class="blockdata">
                             <tr>
                                 <td class="title">Email : </td>
                                 <td><a href = "mailto:{{customerDetail?.email}}">{{customerDetail?.email}}</a></td>
                             </tr>
                         </td>
-                        <td>
+                        <td  class="blockdata">
                             <tr>
                                 <td class="title">Website : </td>
                                 <td><a href="{{customerDetail?.website}}">{{customerDetail?.website}}</a></td>
@@ -66,7 +66,7 @@
 
                     <br>
                     <tr>
-                        <td colspan="4">{{customerDetail?.description}}</td>
+                        <td  class="blockdata" colspan="4">{{customerDetail?.description}}</td>
                     </tr>
                     <tr>
                         <td>
@@ -84,12 +84,12 @@
                     <table>
                         <thead>
                             <tr>
-                                <th>Account ID</th>
+                                <th class="center-align">Account ID</th>
                                 <th>Account Name</th>
-                                <th class="location" colspan="3">Location</th>
+                                <th colspan="2">Location</th>
                       
-                                <th class="email">Email</th>
-                                <th>Year of Establishment</th>
+                                <th colspan="2">Email</th>
+                                <th class="center-align">Year of Establishment</th>
                                 <th></th>
                             </tr>
                             <br>
@@ -97,14 +97,15 @@
 
                         <tbody class="accountlist">
                             <tr class="body-row" *ngFor="let account of customerDetail?.accounts|accountSearchFilter:search.searchValue| paginate: {itemsPerPage: itemsPerPage, currentPage: p}"  >
-                                <td class="center-align" routerLink="/customer/{{customerDetail?.gstin}}/accounts/{{account?.email}}" data-title="Account ID">{{account?.accountId}}</td>
-                              <td class="center-align" routerLink="/customer/{{customerDetail?.gstin}}/accounts/{{account?.email}}" data-title="Account Name">{{account?.accountName}}</td>
-                              <td colspan="3" class="left-align" routerLink="/customer/{{customerDetail?.gstin}}/accounts/{{account?.email}}" data-title="Location">{{account?.location}}</td>
+                              <td class="center-align" routerLink="/customer/{{customerDetail?.gstin}}/accounts/{{account?.email}}" data-title="Account ID">{{account?.accountId}}</td>
+                              <td class="left-align" routerLink="/customer/{{customerDetail?.gstin}}/accounts/{{account?.email}}" data-title="Account Name">{{account?.accountName}}</td>
+                              <td colspan="2" class="left-align" routerLink="/customer/{{customerDetail?.gstin}}/accounts/{{account?.email}}" data-title="Location">{{account?.location}}</td>
 
-                              <td class="center-align" routerLink="/customer/{{customerDetail?.gstin}}/accounts/{{account?.email}}" data-title="Email"> <a href = "mailto:{{account.email}}">{{account.email}}</a></td>
+                              <td colspan="2" class="left-align" routerLink="/customer/{{customerDetail?.gstin}}/accounts/{{account?.email}}" data-title="Email"> <a href = "mailto:{{account.email}}">{{account.email}}</a></td>
                              
                               <td class="center-align" routerLink="/customer/{{customerDetail?.gstin}}/accounts/{{account?.email}}" data-title="YearOFEst">{{account?.yearOfEst}}</td>
-                              <td class="center-align">                                
+                              <td class="button-align">
+                                
                                 <button class="update_btn" (click)="editAccount(account?.email)">Update</button>
                                 <button  class="delete_btn" (click)="deleteAccount(account?.email)">Delete</button>                                    
                               </td>

@@ -1,21 +1,16 @@
 .accounts {
-    padding-top: 110px;
-    padding-bottom: 7%;
-    margin-left:5%;
-    margin-right: 5%;
-    font-family: Roboto, sans-serif;
-    font-weight:400;
-  }
+  padding-top: 110px;
+  padding-bottom: 7%;
+  margin-left: 5%;
+  margin-right: 5%;
+  font-family: Roboto, sans-serif;
+  font-weight: 400;
+}
 
-  img{
-    width: 70px;
-    height: 70px;
-  }
-  .plottingclass{
-    width: 100vw;
-    display: flex;
-    justify-content: center;
-  }
+img {
+  width: 70px;
+  height: 70px;
+}
 
   .email{
     width: 20%;
@@ -37,53 +32,34 @@
     /* margin-bottom: 40%; */
   }
 
+.email {
+  width: 20%;
+}
+
+.location {
+  width: 25%;
+}
+
+.plot_button {
+  text-align: center;
+  font-family: Roboto, sans-serif;
+  font-weight: 400;
+  background-color: #00599C;
+  color: #FFFFFF;
+  /* z-index:1; */
+  margin-top: 2%;
+  margin-left: 0%;
+  /* margin-bottom: 40%; */
+}
+
 @media only screen and (max-width: 970px) {
-  
-  table{
-    padding-top: 10%;
-    padding-bottom: 7%;
-  }
-  table,
-  head,
-  tbody,
-  th,
-  td,
-  tr {
+
+
+
+  .blockdata {
     display: block;
+  }
 
-  }
-  thead tr {
-    display: none;
-  }
-  tr {
-
-    width: 100vw;
-    height: 100%;
-    
-  }
-  td {
-    border-bottom: 1px solid #eee;
-    position: relative;
-    padding-left: 50%;
-    white-space: normal;
-    /* text-align: left; */
-    min-height: 30px;
-    overflow: auto;
-    word-break: normal;
-  }
-  td:before {
-    margin: 20px;
-    position: relative;
-    top: 6px;
-    left: 6px;
-    width: 40%;
-    padding-right: 10px;
-    text-align: left;
-    font-weight: bold;
-    top: 0px;
-    content: attr(data-title);
-  
-  }
 
 }
 
@@ -95,10 +71,11 @@ thead th {
   font-size: 15px;
   height: 50px;
 
+
 }
 .table_section {
   /* height: 100vh; */
-  overflow:auto;
+  overflow: auto;
 }
 
 table {
@@ -107,10 +84,9 @@ table {
   table-layout: fixed;
   min-width: 1000px;
 
+
 }
-
 td {
-
   padding: 10px 2px;
   word-break: normal;
   /* text-align: left; */
@@ -119,25 +95,17 @@ td {
   color: black;
   cursor: pointer;
   background-color: #d2eafb;
-  
-}
-.left-align {
-  text-align: left;
- 
-}
-.center-align {
-  /* text-align: left; */
- 
-}
-thead{
-  text-align: center;
+
 }
 
-.title{
+thead {
+  text-align: center;
+}
+.title {
   font-weight: 500;
   padding-right: 10px;
 }
-button{
+button {
   outline: none;
   border: none;
   border-radius: 6px;
@@ -145,20 +113,27 @@ button{
   padding: 10px;
   margin: 5px;
 }
-.delete_btn{
+.delete_btn {
   background-color: red;
   color: white;
 }
-.update_btn{
+.update_btn {
   background-color: #00599C;
   color: white;
 }
 
-
-@media only screen and (max-width: 480px)
-{
-  .accounts{
+@media only screen and (max-width: 480px) {
+  .accounts {
     font-size: 10px;
   }
+}
 
+.center-align{
+  text-align: center;
+}
+.left-align{
+  text-align: left;
+}
+th{
+  text-align: left;
 }
