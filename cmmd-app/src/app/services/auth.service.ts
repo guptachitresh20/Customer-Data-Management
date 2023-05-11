@@ -8,6 +8,7 @@ import { IAdmin } from '../data-types';
 })
 export class AuthService {
 
+  email:string="";
   apiurl = 'https://localhost:7252/api/Admin/'
   constructor(private http:HttpClient, private router:Router) { }
 
@@ -19,6 +20,11 @@ export class AuthService {
   login(loginObj:any)
   {
     return this.http.post<any>(`${this.apiurl}authenticate`, loginObj);
+  }
+
+  reset(resetObj:any)
+  {
+    return this.http.put<any>(`${this.apiurl}reset`, resetObj);
   }
 
   getAdmin(id:any)

@@ -17,6 +17,14 @@
     justify-content: center;
   }
 
+  .email{
+    width: 20%;
+  }
+
+  .location{
+    width: 25%;
+  }
+
   .plot_button{
     text-align: center;
     font-family: Roboto, sans-serif;
@@ -65,7 +73,7 @@
   }
   td:before {
     margin: 20px;
-    position: absolute;
+    position: relative;
     top: 6px;
     left: 6px;
     width: 40%;

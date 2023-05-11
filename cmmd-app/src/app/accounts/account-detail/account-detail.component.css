@@ -1,7 +1,7 @@
 .container {
     position: absolute;
     left: 50%;
-    top: 50%;
+    top: 52%;
     -webkit-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
     width: 100%;
@@ -13,7 +13,7 @@
 
 table {
     border-collapse: collapse;
-    font-size: large;
+    font-size: smaller;
     width: 60%;
 }
 

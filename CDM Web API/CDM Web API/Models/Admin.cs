@@ -10,6 +10,6 @@ namespace CDM_Web_API.Models
         public string phone { get; set; }
         public string password { get; set; }
         public string Token { get; set; }
-        public string NewPassword { get; set; }
+        public string newPassword { get; set; }
     }
 }

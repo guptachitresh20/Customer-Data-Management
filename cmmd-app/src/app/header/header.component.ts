@@ -9,6 +9,7 @@ import { CustomerHomeComponent } from '../customer/customer-home/customer-home.c
 import { filter } from 'rxjs';
 import { AuthService } from '../services/auth.service';
 import * as alertify from 'alertifyjs';
+import { ResetPasswordComponent } from '../admin/reset-password/reset-password.component';
 
 
 @Component({
@@ -21,8 +22,8 @@ export class HeaderComponent implements OnInit {
   menuType:String='customer'
   customer_id:string;
   url:string;
-  adminName:string=localStorage.getItem('adminName');
-  
+  adminName:string=localStorage.getItem('adminName');  
+
   ngOnInit():void{
 
   this.url=this.router.snapshot['_routerState'].url;
@@ -123,11 +124,18 @@ export class HeaderComponent implements OnInit {
 
   onSearchTextChanged()
   {
-    console.log(this.enteredSearch)
     this.search.searchValue = this.enteredSearch;
   }
-  hideSearch()
+
+  resetPassword()
   {
-    
+    this.dialog.open(ResetPasswordComponent,{
+      disableClose:true,
+      maxHeight: 'calc(100vh - 120px)',
+      height: 'auto',
+      width: '25%',
+      backdropClass: "backgroundblur",
+    });
   }
+  
 }

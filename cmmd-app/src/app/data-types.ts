@@ -58,7 +58,8 @@ export interface IAdmin{
   email?:string,
   phone?:string,
   password?:string,
-  token?:string
+  token?:string,
+  newPassword?:string
 }
 
 export interface ILogs {

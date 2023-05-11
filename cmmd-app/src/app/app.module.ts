@@ -35,6 +35,8 @@ import { LogsComponent } from './logs/logs.component';
 import { TokenInterceptor } from './interceptors/token.interceptor';
 import { SearchFilterPipe } from './search-filter.pipe';
 import { AccountSearchFilterPipe } from './account-search-filter.pipe';
+import { AdminModule } from './admin/admin.module';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -70,7 +72,8 @@ import { AccountSearchFilterPipe } from './account-search-filter.pipe';
     MatMenuModule,
     MatSortModule,
     AccountsModule,
-    // CustomerModule,
+    CustomerModule,
+    AdminModule,
     NgxPaginationModule,
     FormsModule,
     BreadcrumbModule,

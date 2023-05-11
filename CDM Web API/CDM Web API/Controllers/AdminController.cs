@@ -122,14 +122,14 @@ namespace CDM_Web_API.Controllers
             {
                 return BadRequest(new { Message = "Old Password does not match!!!" });
             }
-            var pass = CheckPasswordStreangth(adminObj.NewPassword);
+            var pass = CheckPasswordStreangth(adminObj.newPassword);
             if (!string.IsNullOrEmpty(pass))
             {
                 return BadRequest(new { Message = pass.ToString() });
             }
 
-            adminObj.password = PasswordHasher.HashPassword(adminObj.NewPassword);
-            adminObj.NewPassword = "";
+            adminObj.password = PasswordHasher.HashPassword(adminObj.newPassword);
+            adminObj.newPassword = "";
             _mapper.Map(adminObj, admin);
             _authContext.Entry(admin).State = EntityState.Modified;
             try

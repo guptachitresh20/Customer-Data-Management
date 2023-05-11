@@ -53,6 +53,8 @@ export class LoginComponent {
       {
         this.adminDetails=result;
         localStorage.setItem('adminName',this.adminDetails.name);
+        localStorage.setItem('adminEmail',this.adminDetails.email);
+
       }
     })
   }
