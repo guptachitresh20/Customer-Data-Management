@@ -217,3 +217,22 @@ input[name='phone'] {
     margin-left: 30px;
     box-shadow: 1px 6px 4px #cccdcf;
 }
+.socialmedia{
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+}
+.socialmedia{
+	align-items: center;
+}
+.linkscontainer ul li{
+	list-style: none;
+	/* padding-right: 50%; */
+}
+.linkscontainer ul li a{
+	cursor: pointer;
+}
+img{
+	color: white;
+	font-size: large;
+}

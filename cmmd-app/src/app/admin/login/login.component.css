@@ -168,3 +168,24 @@ input[type='password'] {
     font-weight: 600;
     font-size: medium;
 }
+
+
+.socialmedia{
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+}
+.socialmedia{
+	align-items: center;
+}
+.linkscontainer ul li{
+	list-style: none;
+	/* padding-right: 50%; */
+}
+.linkscontainer ul li a{
+	cursor: pointer;
+}
+img{
+	color: white;
+	font-size: large;
+}

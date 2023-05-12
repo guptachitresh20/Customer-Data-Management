@@ -16,6 +16,12 @@
     margin-left: 1%;
     margin-right: 2.5%;
     height: 40px;
+    position: absolute;
+    border: none;
+    border-radius: 50px;
+    left: 0;
+    top: 12%;
+    
   }
 
 table {
@@ -59,5 +65,8 @@ td:nth-child(even) {
     }
     .container{
         width: 90%;
+    }
+    .buttonBack{
+       display: none;
     }
 }

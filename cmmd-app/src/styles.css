@@ -101,6 +101,7 @@ mat-dialog-content {
 }
 
 
+
 @media only screen and (max-width: 950px) {
     .dialog-responsive {
         width: 100vw !important;

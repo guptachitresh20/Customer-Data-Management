@@ -3,8 +3,8 @@
           <a routerLink="customer"><img routerLink="/customer/" src="../../assets/cdm logo.png" alt="" /></a>
       </div>
     <div class="nav-search" >
-      <input *ngIf="menuType==='customer'" (keyup)="onSearchTextChanged()" (blur)="hideSearch()" type="text" placeholder="Search for Customers" [(ngModel)]="enteredSearch"/>
-      <input *ngIf="menuType==='accounts'" (keyup)="onSearchTextChanged()" (blur)="hideSearch()" type="text" placeholder="Search for Accounts" [(ngModel)]="enteredSearch"/>
+      <input *ngIf="menuType==='customer'" (keyup)="onSearchTextChanged()" (blur)="clearSearch()" type="text" placeholder="Search for Customers" [(ngModel)]="enteredSearch"/>
+      <input *ngIf="menuType==='accounts'" (keyup)="onSearchTextChanged()" (blur)="clearSearch()" type="text" placeholder="Search for Accounts" [(ngModel)]="enteredSearch"/>
       <button *ngIf="menuType==='accounts'|| menuType==='customer'"><img src="../../assets/🦆 icon _search_.png" /></button>
     </div>
     <div class="nav-div">

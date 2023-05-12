@@ -3,9 +3,7 @@
     box-sizing: border-box !important;
 }
 
-.customize-bname{
-	display: none;
-}
+
 
 header{
     background-color: #00599C;
@@ -81,6 +79,7 @@ header{
 }
 
 
+
 .nav-div .nav-options .account{
     display: inline;
     list-style: none;
@@ -94,6 +93,7 @@ header{
 }
 ::ng-deep .customize {
 	background: #00599C;
+	
 }
 
 .mat-icon{
@@ -149,8 +149,5 @@ span{
 	}
 	.admin p{
 		display: none;
-	}
-	.customize-bname{
-		display:flex;
 	}
 }

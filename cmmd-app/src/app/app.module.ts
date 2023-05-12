@@ -37,6 +37,7 @@ import { SearchFilterPipe } from './search-filter.pipe';
 import { AccountSearchFilterPipe } from './account-search-filter.pipe';
 import { AdminModule } from './admin/admin.module';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -47,6 +48,7 @@ import { AdminModule } from './admin/admin.module';
     LoginComponent,
     RegisterComponent,
     LogsComponent,
+
     // AccountSearchFilterPipe,
     // SearchFilterPipe
   ],

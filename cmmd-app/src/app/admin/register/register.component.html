@@ -3,13 +3,15 @@
 
         <div class="logo">
             <img class="logoimg" src="../../../assets/fastenal_logo.png" alt="fastenal_logo"><br>
-            <a href="www.fastenal.com">About Us</a>
+            <a href="https://www.fastenal.com">About Us</a>
         </div>
         <div class="linkscontainer">
-            <img src="../../../assets/instagram.png" alt="instagram">
-            <img src="../../../assets/youtube.png" alt="youtube">
-            <img src="../../../assets/twitter.png" alt="twitter">
-            <img src="../../../assets/facebook.png" alt="facebook">
+            <ul class="socialmedia">
+                <li><a href="https://www.instagram.com/fastenal_company/?hl=en"><img src="../../../assets/instagram.png" alt="instagram"></a></li>
+                <li><a href="https://www.facebook.com/fastenalcompany/"><img src="../../../assets/youtube.png" alt="youtube"></a></li>
+                <li><a href="https://twitter.com/fastenal?lang=en"><img src="../../../assets/twitter.png" alt="twitter"></a></li>
+                <li><a href="https://www.linkedin.com/company/fastenal/"> <img src="../../../assets/facebook.png" alt="facebook"></a></li>
+              </ul>
         </div>
     </div>
     <div class="right">
@@ -21,7 +23,7 @@
 
             <p>Enter your details to register</p>
 
-            <form [formGroup]="registerForm">
+            <form [formGroup]="registerForm" autocomplete="off">
                 <!-- <label for="name">Name</label><br> -->
                 <input type="text" name="name" placeholder="Name" formControlName="name"><br>
                 <mat-error *ngIf="name && name.invalid && name.touched">

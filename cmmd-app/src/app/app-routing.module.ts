@@ -11,6 +11,7 @@ import { MapPlottingComponent } from './accounts/map-plotting/map-plotting.compo
 import { LogsComponent } from './logs/logs.component';
 import { AuthGuard } from './guards/auth.guard';
 
+
 const routes: Routes = [
   { path: "", redirectTo: "login", pathMatch: "full" },
   {
