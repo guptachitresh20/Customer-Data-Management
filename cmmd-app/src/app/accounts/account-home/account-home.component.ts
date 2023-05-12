@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { ResourceLoader } from '@angular/compiler';
 import { Component , Inject} from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { IAccount, ICustomer, IDisplayAccount, ILogs } from 'src/app/data-types';
 import { AccountService } from 'src/app/services/account.service';
@@ -13,6 +13,7 @@ import { GoogleMapComponent } from 'src/app/accounts/google-map/google-map.compo
 import { MapPlottingComponent } from 'src/app/accounts/map-plotting/map-plotting.component';
 import { LogsService } from 'src/app/services/logs.service';
 import { SearchService } from 'src/app/services/search.service';
+import {Location} from '@angular/common';
 
 
 @Component({
@@ -35,7 +36,7 @@ export class AccountHomeComponent {
   customerDetail:ICustomer;
   customer_id:string;
 
-  constructor(private accountService: AccountService,private logService:LogsService, private http:HttpClient, private route: ActivatedRoute, private dialog: MatDialog, private customerService:CustomerService, public search:SearchService){}
+  constructor(private location:Location, private accountService: AccountService,private logService:LogsService, private http:HttpClient, private route: ActivatedRoute, private dialog: MatDialog, private customerService:CustomerService, public search:SearchService){}
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(params=>{
@@ -148,5 +149,9 @@ export class AccountHomeComponent {
     this.dialog.closeAll();
   }
 
+  backButton()
+  {
+    this.location.back();
+  }
 
 }

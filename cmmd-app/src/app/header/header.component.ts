@@ -19,7 +19,8 @@ import { ResetPasswordComponent } from '../admin/reset-password/reset-password.c
 })
 export class HeaderComponent implements OnInit {
   constructor(private dialog: MatDialog, private route:Router, private router:ActivatedRoute, private auth:AuthService, private search:SearchService){}
-  menuType:String='customer'
+  menuType:String='customer';
+  enteredSearch:string="";
   customer_id:string;
   url:string;
   adminName:string=localStorage.getItem('adminName');  
@@ -119,11 +120,14 @@ export class HeaderComponent implements OnInit {
     alertify.error("Logged out")
   }
 
-
-  enteredSearch:string="";
-
   onSearchTextChanged()
   {
+    this.search.searchValue = this.enteredSearch;
+  }
+
+  hideSearch()
+  {
+    this.enteredSearch="";
     this.search.searchValue = this.enteredSearch;
   }
 

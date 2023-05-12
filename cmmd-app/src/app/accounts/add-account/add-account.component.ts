@@ -91,7 +91,7 @@ export class AddAccountComponent {
             this.getCustomerName();
             this.closePopup();
             alertify.set('notifier','position', 'top-right');
-            alertify.success("Updated Successfully");
+            alertify.success("Account Updated Successfully");
             await new Promise(f => setTimeout(f, 1000));
             window.location.reload();
             this.logs.customerName  = this.customer.cname;
@@ -128,7 +128,7 @@ export class AddAccountComponent {
         this.getCustomerName();
         this.closePopup();
         alertify.set('notifier','position', 'top-right');
-        alertify.success("Added Successfully");
+        alertify.success("Account Added Successfully");
         await new Promise(f => setTimeout(f, 1000));
         window.location.reload();
         this.logs.customerName  = this.customer.cname;

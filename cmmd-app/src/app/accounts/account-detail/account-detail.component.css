@@ -9,7 +9,14 @@
     justify-content: center;
 }
 
-
+.buttonBack{
+    padding: 10px;
+    background-color: #00599C;
+    color: #FFFFFF;
+    margin-left: 1%;
+    margin-right: 2.5%;
+    height: 40px;
+  }
 
 table {
     border-collapse: collapse;

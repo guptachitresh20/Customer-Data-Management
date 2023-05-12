@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { LogsService } from '../services/logs.service';
 import { ILogs } from '../data-types';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-logs',
@@ -8,7 +9,7 @@ import { ILogs } from '../data-types';
   styleUrls: ['./logs.component.css']
 })
 export class LogsComponent implements OnInit {
-  constructor(private logService:LogsService){}
+  constructor(private location:Location, private logService:LogsService){}
 
   logList:ILogs[];
   p:number =1;
@@ -24,4 +25,10 @@ export class LogsComponent implements OnInit {
         }
     })
   }
+
+  backButton()
+  {
+    this.location.back();
+  }
+
 }

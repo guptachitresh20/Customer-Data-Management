@@ -67,7 +67,7 @@ export class AddCustomerComponent {
             if (result == null) {
               this.closePopup();
               alertify.set('notifier','position', 'top-right');
-              alertify.success('Updated Successfully');
+              alertify.success('Customer Updated Successfully');
               await new Promise((f) => setTimeout(f, 1000));
               window.location.reload();
               this.logs.customerName  = this.customerAddForm.getRawValue().cname;
@@ -91,7 +91,7 @@ export class AddCustomerComponent {
           if (result) {
             this.closePopup();
             alertify.set('notifier','position', 'top-right');
-            alertify.success('Added Successfully');
+            alertify.success('Customer Added Successfully');
             await new Promise((f) => setTimeout(f, 1000));
             window.location.reload();
           }

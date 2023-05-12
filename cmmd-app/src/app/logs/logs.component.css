@@ -5,6 +5,16 @@
     margin-left: 3%;
     margin-right: 3%;
 }
+
+.buttonBack{
+    padding: 10px;
+    background-color: #00599C;
+    color: #FFFFFF;
+    margin-left: 1%;
+    margin-right: 2.5%;
+    height: 40px;
+}
+
 table {
     width: 100%;
 }

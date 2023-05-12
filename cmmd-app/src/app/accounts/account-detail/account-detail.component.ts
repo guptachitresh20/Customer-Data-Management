@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { IAccount } from 'src/app/data-types';
 import { AccountService } from 'src/app/services/account.service';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-account-detail',
@@ -16,7 +17,8 @@ export class AccountDetailComponent implements OnInit {
   constructor(
     private accountService: AccountService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private location: Location
   ) {}
 
   menuType: string;
@@ -42,4 +44,10 @@ export class AccountDetailComponent implements OnInit {
       }
     });
   }
+
+  backButton()
+  {
+    this.location.back();
+  }
+
 }
