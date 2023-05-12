@@ -3,7 +3,9 @@
     box-sizing: border-box !important;
 }
 
-
+.customize-bname{
+	display: none;
+}
 
 header{
     background-color: #00599C;
@@ -149,5 +151,8 @@ span{
 	}
 	.admin p{
 		display: none;
+	}
+	.customize-bname{
+		display: flex;
 	}
 }
