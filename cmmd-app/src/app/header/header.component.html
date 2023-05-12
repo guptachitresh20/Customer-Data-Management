@@ -17,15 +17,20 @@
             </li>
             <ul class="account">
               <li>
-                <button mat-icon-button [matMenuTriggerFor]="menu">
-                  <mat-icon id="icon">account_circle</mat-icon>
-                </button>
+                <div class="admin">
+                  <button mat-icon-button [matMenuTriggerFor]="menu" >
+                    <mat-icon id="icon">account_circle</mat-icon>
+                    <p >{{adminName|titlecase}}</p>
+                  </button>
+                  
+                </div>
+                
       
                 <mat-menu #menu="matMenu" class="customize">
-                  <button mat-menu-item class="customize-b">
+                  <!-- <button mat-menu-item class="customize-b">
                     <mat-icon>badge</mat-icon>
                     <span>{{adminName|titlecase}}</span>
-                  </button>
+                  </button> -->
                   <button routerLink="logs" mat-menu-item class="customize-b" >
                     <mat-icon>description</mat-icon>
                     <span>Logs</span>
