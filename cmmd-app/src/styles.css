@@ -93,9 +93,11 @@ mat-dialog-content {
     min-width: 112px;
     max-width: 280px;
     overflow: auto;
+    
     -webkit-overflow-scrolling: touch;
     position: relative;
-    margin-top: 5%;
+    margin-top: 15%;
+    right:0 ;
 }
 
 
