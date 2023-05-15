@@ -33,9 +33,10 @@ import { LoginComponent } from './admin/login/login.component';
 import { RegisterComponent } from './admin/register/register.component';
 import { LogsComponent } from './logs/logs.component';
 import { TokenInterceptor } from './interceptors/token.interceptor';
-import { SearchFilterPipe } from './search-filter.pipe';
+import { SearchFilterPipe } from './customer-search-filter.pipe';
 import { AccountSearchFilterPipe } from './account-search-filter.pipe';
 import { AdminModule } from './admin/admin.module';
+import { LogSearchFilterPipe } from './log-search-filter.pipe';
 
 
 @NgModule({
@@ -48,6 +49,7 @@ import { AdminModule } from './admin/admin.module';
     LoginComponent,
     RegisterComponent,
     LogsComponent,
+    LogSearchFilterPipe,
 
     // AccountSearchFilterPipe,
     // SearchFilterPipe

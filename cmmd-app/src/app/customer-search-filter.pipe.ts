@@ -2,7 +2,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 import { IDisplayAccount, IDisplayCustomer } from './data-types';
 
 @Pipe({
-  name: 'searchFilter'
+  name: 'customerSearchFilter'
 })
 export class SearchFilterPipe implements PipeTransform {
 

@@ -5,7 +5,8 @@
     <div class="nav-search" >
       <input *ngIf="menuType==='customer'" (keyup)="onSearchTextChanged()" (blur)="clearSearch()" type="text" placeholder="Search for Customers" [(ngModel)]="enteredSearch"/>
       <input *ngIf="menuType==='accounts'" (keyup)="onSearchTextChanged()" (blur)="clearSearch()" type="text" placeholder="Search for Accounts" [(ngModel)]="enteredSearch"/>
-      <button *ngIf="menuType==='accounts'|| menuType==='customer'"><img src="../../assets/🦆 icon _search_.png" /></button>
+      <input *ngIf="menuType==='logs'" (keyup)="onSearchTextChanged()" (blur)="clearSearch()" type="text" placeholder="Search for Logs" [(ngModel)]="enteredSearch"/>
+      <button *ngIf="menuType==='accounts'|| menuType==='customer'||menuType==='logs'"><img src="../../assets/🦆 icon _search_.png" /></button>
     </div>
     <div class="nav-div">
         <ul class="nav-options">

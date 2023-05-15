@@ -25,7 +25,7 @@ export class CustomerHomeComponent implements OnInit {
   p:number =1;
   itemsPerPage:number = 10;
   totalProduct:any;
-  constructor(private service: CustomerService, private dialog: MatDialog,    private auth:AuthService, public search:SearchService, private logService:LogsService) {
+  constructor(private service: CustomerService, private dialog: MatDialog, private auth:AuthService, public search:SearchService, private logService:LogsService) {
 
   }
 

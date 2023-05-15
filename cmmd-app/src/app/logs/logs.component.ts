@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { LogsService } from '../services/logs.service';
 import { ILogs } from '../data-types';
 import { Location } from '@angular/common';
+import { SearchService } from '../services/search.service';
 
 @Component({
   selector: 'app-logs',
@@ -9,7 +10,7 @@ import { Location } from '@angular/common';
   styleUrls: ['./logs.component.css']
 })
 export class LogsComponent implements OnInit {
-  constructor(private location:Location, private logService:LogsService){}
+  constructor(private location:Location,  public logSearch:SearchService, private logService:LogsService){}
 
   logList:ILogs[];
   p:number =1;
