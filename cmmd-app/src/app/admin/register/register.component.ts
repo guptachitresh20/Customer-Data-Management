@@ -29,12 +29,12 @@ export class RegisterComponent {
       },
       (error)=>{
         alertify.set('notifier','position', 'top-right');
-        alertify.error("Cannot Register.....User credentials already exist!");
+        alertify.error("Cannot Register! User credentials already exist!");
       })
     }
     else{
       alertify.set('notifier','position', 'top-right');
-      alertify.error("Form is not valid...Please fill the form correctly!")
+      alertify.error("Invalid Form");
     }
   }
 

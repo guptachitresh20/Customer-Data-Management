@@ -72,19 +72,7 @@ export class CustomerHomeComponent implements OnInit {
         alertify.set('notifier','position', 'top-right');
         alertify.error('Deleted Successfully');
         this.getList();
-        this.logs.customerName=this.customer.cname;
-        this.logs.adminName=localStorage.getItem('adminName');
-        this.logs.accountName="-";
-        this.logs.action="Delete";
-        this.logs.sectionModified='Customer';
-        this.logs.date=new Date().toString();
-        this.logs.time=new Date().toString();
-        this.logService.addLog(this.logs).subscribe((result)=>{
-          if(result)
-          {
-            console.log(result);
-          }
-        });
+        this.addLog('Delete');
       },
       (error) => 
       {
@@ -95,6 +83,23 @@ export class CustomerHomeComponent implements OnInit {
 
     });
 
+  }
+
+  addLog(action:string)
+  {
+    this.logs.customerName=this.customer.cname;
+    this.logs.adminName=localStorage.getItem('adminName');
+    this.logs.accountName="-";
+    this.logs.action="Delete";
+    this.logs.sectionModified='Customer';
+    this.logs.date=new Date().toString();
+    this.logs.time=new Date().toString();
+    this.logService.addLog(this.logs).subscribe((result)=>{
+      if(result)
+      {
+        console.log(result);
+      }
+    });
   }
 
 }

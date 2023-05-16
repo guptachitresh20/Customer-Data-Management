@@ -59,10 +59,10 @@
                     </mat-form-field>
                 </td>
                 <td>
-                    <mat-form-field >
-                        <mat-label>Phone</mat-label>
-                        <span matPrefix>+91 &nbsp;</span>
-                        <input type="tel" matInput placeholder="555-555-1234" name="phoneNo" formControlName="phoneNo" >
+                    <mat-form-field appearance="fill" >
+                        <!-- <mat-label>Phone</mat-label> -->
+                        <!-- <span matPrefix>+91 &nbsp;</span> -->
+                        <input type="tel" ng2TelInput id="phoneNo" (countryChange)="onCountryChange($event)" matInput placeholder="555-555-1234" name="phoneNo" formControlName="phoneNo" >
                         <mat-icon matSuffix>call</mat-icon>
                         <mat-error><strong>Required</strong></mat-error>
                     </mat-form-field>
@@ -83,8 +83,9 @@
                 <td>
                     <mat-form-field appearance="fill">
                         <mat-label>Headquarter</mat-label>
-                        <input type="text" matInput formControlName="headquarter" name="headquarter" >
-                        <mat-icon matSuffix>location_on</mat-icon>
+                        <mat-select type="text" name="headquarter" formControlName="headquarter" >
+                            <mat-option *ngFor="let country of countryList" value={{country.name}}>{{country.name}}</mat-option>
+                        </mat-select>
                         <mat-error><strong>Required</strong></mat-error>
                     </mat-form-field>
                 </td>

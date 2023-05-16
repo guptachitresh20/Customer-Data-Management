@@ -94,18 +94,7 @@ export class AddAccountComponent {
             alertify.success("Account Updated Successfully");
             await new Promise(f => setTimeout(f, 1000));
             window.location.reload();
-            this.logs.customerName  = this.customer.cname;
-            this.logs.adminName=localStorage.getItem('adminName');
-            this.logs.accountName=this.accountAddForm.getRawValue().accountName;
-            this.logs.action = 'Update';
-            this.logs.sectionModified = 'Account';
-            this.logs.date = new Date().toString();
-            this.logs.time = new Date().toString();
-            this.logService.addLog(this.logs).subscribe((result) => {
-              if (result) {
-                console.log(result);
-              }
-            });
+            this.addLog('Update');
           }
         });
       }
@@ -131,18 +120,7 @@ export class AddAccountComponent {
         alertify.success("Account Added Successfully");
         await new Promise(f => setTimeout(f, 1000));
         window.location.reload();
-        this.logs.customerName  = this.customer.cname;
-        this.logs.adminName=localStorage.getItem('adminName');
-        this.logs.accountName=this.accountAddForm.getRawValue().accountName;
-        this.logs.action = 'Create';
-        this.logs.sectionModified = 'Account';
-        this.logs.date = new Date().toString();
-        this.logs.time = new Date().toString();
-        this.logService.addLog(this.logs).subscribe((result) => {
-          if (result) {
-            console.log(result);
-          }
-        });
+        this.addLog('Create');
         }
       },
       (error) => 
@@ -160,6 +138,21 @@ export class AddAccountComponent {
 
   generateRandomInteger(min, max) {
     return Math.floor(min + Math.random()*(max - min + 1))
+  }
+
+  addLog(action:string){
+    this.logs.customerName  = this.customer.cname;
+    this.logs.adminName=localStorage.getItem('adminName');
+    this.logs.accountName=this.accountAddForm.getRawValue().accountName;
+    this.logs.action = action;
+    this.logs.sectionModified = 'Account';
+    this.logs.date = new Date().toString();
+    this.logs.time = new Date().toString();
+    this.logService.addLog(this.logs).subscribe((result) => {
+      if (result) {
+        console.log(result);
+      }
+    });
   }
 
   accountAddForm = new FormGroup({

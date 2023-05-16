@@ -1,5 +1,5 @@
 import { identifierName } from '@angular/compiler';
-import { Component, Inject, inject } from '@angular/core';
+import { Component, Inject, OnInit, inject } from '@angular/core';
 import {
   FormBuilder,
   FormControl,
@@ -15,27 +15,59 @@ import { CustomerHomeComponent } from '../customer-home/customer-home.component'
 import * as alertify from 'alertifyjs';
 import { delay } from 'rxjs';
 import { LogsService } from 'src/app/services/logs.service';
+import { GoogleMapComponent } from 'src/app/accounts/google-map/google-map.component';
+import * as intlTelInput from 'intl-tel-input';
+import countries from '../../countries.json';
+
+
+interface Coordinates {
+  address?: string;
+}
+
 
 @Component({
   selector: 'app-add-customer',
   templateUrl: './add-customer.component.html',
   styleUrls: ['./add-customer.component.css'],
 })
-export class AddCustomerComponent {
+export class AddCustomerComponent implements OnInit{
   formName: string;
   editdata: any;
   error: boolean = false;
   errorMessage = '';
   logs: ILogs={};
+  coordinates: Coordinates;
+
+
+  countryList:{name:string,code:string}[]=countries;
 
   constructor(
     private customer: CustomerService,
     private dialog: MatDialog,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private logService: LogsService,
-  ) {}
+  ) {
+    this.coordinates={} as Coordinates;
+    if(this.coordinates.address)
+    {
+      this.customerAddForm.controls.headquarter.patchValue(this.coordinates.address);
+    }
+
+  }
 
   ngOnInit(): void {
+
+
+    // const inputElement=document.getElementById('#phoneNo');
+    // if(inputElement){
+    //   intlTelInput(inputElement,{
+    //     initialCountry:'US',
+    //     separateDialCode:true,
+    //     utilsScript:"https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/11.0.0/js/utils.js"
+    //   });
+    // }
+
+
     if (this.data.id != '' && this.data.id != null) {
       this.customer.getCustomerbyId(this.data.id).subscribe((response) => {
         this.editdata = response;
@@ -70,18 +102,7 @@ export class AddCustomerComponent {
               alertify.success('Customer Updated Successfully');
               await new Promise((f) => setTimeout(f, 1000));
               window.location.reload();
-              this.logs.customerName  = this.customerAddForm.getRawValue().cname;
-              this.logs.adminName=localStorage.getItem('adminName');
-              this.logs.accountName="-";
-              this.logs.action = 'Update';
-              this.logs.sectionModified = 'Customer';
-              this.logs.date = new Date().toString();
-              this.logs.time = new Date().toString();
-              this.logService.addLog(this.logs).subscribe((result) => {
-                if (result) {
-                  console.log(result);
-                }
-              });
+              this.addLog('Update');
             } 
           });
       }
@@ -94,20 +115,8 @@ export class AddCustomerComponent {
             alertify.success('Customer Added Successfully');
             await new Promise((f) => setTimeout(f, 1000));
             window.location.reload();
+            this.addLog('Create');
           }
-          this.logs.customerName=this.customerAddForm.value.cname;
-          this.logs.adminName=localStorage.getItem('adminName');
-          this.logs.accountName="-";
-          this.logs.action='Create';
-          this.logs.sectionModified='Customer';
-          this.logs.date=new Date().toString();
-          this.logs.time=new Date().toString();
-          this.logService.addLog(this.logs).subscribe((result)=>{
-            if(result)
-            {
-              console.log(result);
-            }
-          });
         },
         (error) => {
           this.closePopup();
@@ -116,6 +125,23 @@ export class AddCustomerComponent {
         }
       );
     }
+  }
+
+  addLog(action:string)
+  {
+    this.logs.customerName=this.customerAddForm.value.cname;
+    this.logs.adminName=localStorage.getItem('adminName');
+    this.logs.accountName="-";
+    this.logs.action=action;
+    this.logs.sectionModified='Customer';
+    this.logs.date=new Date().toString();
+    this.logs.time=new Date().toString();
+    this.logService.addLog(this.logs).subscribe((result)=>{
+      if(result)
+      {
+        console.log(result);
+      }
+    });
   }
 
   closePopup() {
@@ -166,4 +192,36 @@ export class AddCustomerComponent {
   get phoneNo() {
     return this.customerAddForm.get('phoneNo');
   }
+
+
+  openGoogleMap()
+  {
+    let dialogRef=this.dialog.open(GoogleMapComponent,{
+      disableClose:true,
+      data: {
+        address: 'Some Data',
+        latitude: 'From Parent Component',
+        longitude: 'This Can be anything'
+      },
+      height: '80vh',
+      width: '40vw',
+      panelClass:"dialog-responsive"
+    });
+    dialogRef.afterClosed().subscribe((result)=>{
+      this.coordinates=result;
+      if(this.coordinates.address)
+      {
+        this.customerAddForm.controls.headquarter.patchValue(this.coordinates.address);
+      }
+      console.log(this.coordinates.address);
+    }, (error)=>{
+      console.log("error found");
+    })
+  }
+
+  onCountryChange(event){
+    console.log(event);
+
+  }
+
 }

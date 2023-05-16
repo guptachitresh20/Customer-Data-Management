@@ -15,7 +15,6 @@ import { LogsService } from 'src/app/services/logs.service';
 import { SearchService } from 'src/app/services/search.service';
 import {Location} from '@angular/common';
 
-
 @Component({
   selector: 'app-account-home',
   templateUrl: './account-home.component.html',
@@ -107,19 +106,7 @@ export class AccountHomeComponent {
           this.getList();
           await new Promise(f => setTimeout(f, 1000));
           window.location.reload();
-          this.logs.customerName=this.customerDetail.cname;
-          this.logs.adminName=localStorage.getItem('adminName');
-          this.logs.accountName=this.account.accountName;
-          this.logs.action="Delete";
-          this.logs.sectionModified='Account';
-          this.logs.date=new Date().toString();
-          this.logs.time=new Date().toString();
-          this.logService.addLog(this.logs).subscribe((result)=>{
-          if(result)
-          {
-            console.log(result);
-          }
-        });
+          this.addLog('Delete');
       });
     }, function () {
 
@@ -127,6 +114,22 @@ export class AccountHomeComponent {
 
   }
 
+  addLog(action:string)
+  {
+    this.logs.customerName=this.customerDetail.cname;
+    this.logs.adminName=localStorage.getItem('adminName');
+    this.logs.accountName=this.account.accountName;
+    this.logs.action=action;
+    this.logs.sectionModified='Account';
+    this.logs.date=new Date().toString();
+    this.logs.time=new Date().toString();
+    this.logService.addLog(this.logs).subscribe((result)=>{
+    if(result)
+    {
+      console.log(result);
+    }
+  });
+  }
 
   plotOnMap()
   {

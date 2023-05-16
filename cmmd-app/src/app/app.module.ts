@@ -37,7 +37,7 @@ import { SearchFilterPipe } from './customer-search-filter.pipe';
 import { AccountSearchFilterPipe } from './account-search-filter.pipe';
 import { AdminModule } from './admin/admin.module';
 import { LogSearchFilterPipe } from './log-search-filter.pipe';
-
+import {Ng2TelInputModule} from 'ng2-tel-input';
 
 @NgModule({
   declarations: [
@@ -80,6 +80,7 @@ import { LogSearchFilterPipe } from './log-search-filter.pipe';
     AdminModule,
     NgxPaginationModule,
     FormsModule,
+    Ng2TelInputModule,
     BreadcrumbModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyAzfzsRZ4XEwzxiXnjzTybY6TflZnRTeq4',

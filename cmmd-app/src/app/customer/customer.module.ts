@@ -22,6 +22,8 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import {NgxPaginationModule} from 'ngx-pagination';
 import { RouterModule } from '@angular/router';
 import { SearchFilterPipe } from '../customer-search-filter.pipe';
+import { Ng2TelInputModule } from 'ng2-tel-input';
+
 @NgModule({
   declarations: [
     AddCustomerComponent,
@@ -50,7 +52,8 @@ import { SearchFilterPipe } from '../customer-search-filter.pipe';
     MatMenuModule,
     MatSortModule,
     NgxPaginationModule,
-    RouterModule
+    RouterModule,
+    Ng2TelInputModule
   ],
   exports:[
     AddCustomerComponent,

@@ -39,17 +39,19 @@
                         </td>
                         <td  class="blockdata">
                             <tr>
-                                <td class="title">Headquarter : </td>
-                                <td>{{customerDetail?.headquarter}}</td>
-                            </tr>
-                        </td>
-         
-                        <td  class="blockdata">
-                            <tr>
                                 <td class="title">Country Code : </td>
                                 <td>{{customerDetail?.countryCode}}</td>
                             </tr>
                         </td>
+                        
+                       
+                        <td  class="blockdata">
+                            <tr>
+                                <td class="title">Website : </td>
+                                <td><a href="{{customerDetail?.website}}">{{customerDetail?.website}}</a></td>
+                            </tr>
+                        </td>
+
                     </tr>
                     <tr class="body-row">
 
@@ -59,10 +61,11 @@
                                 <td><a href = "mailto:{{customerDetail?.email}}">{{customerDetail?.email}}</a></td>
                             </tr>
                         </td>
-                        <td  class="blockdata">
+                       
+                        <td  class="blockdata" colspan="2">
                             <tr>
-                                <td class="title">Website : </td>
-                                <td><a href="{{customerDetail?.website}}">{{customerDetail?.website}}</a></td>
+                                <td class="title">Headquarter : </td>
+                                <td>{{customerDetail?.headquarter}}</td>
                             </tr>
                         </td>
                     
@@ -121,7 +124,7 @@
                     </table>
                     <div class="paginationclass">
                         <pagination-controls (pageChange)="p = $event"></pagination-controls>
-                    </div> 
+                    </div>
                 </div>
             </div>
 

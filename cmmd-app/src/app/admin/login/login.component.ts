@@ -41,7 +41,7 @@ export class LoginComponent {
     }
     else{
       alertify.set('notifier','position', 'top-right');
-      alertify.error("Form is not valid...Please fill the form correctly!")
+      alertify.error("Invalid Form")
     }
   }
 

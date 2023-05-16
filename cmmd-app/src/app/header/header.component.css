@@ -68,8 +68,6 @@ header{
 	color:white;
 	font-size: small;
 }
-
-
 .nav-div .nav-options{
     background-color: #00599C;
     display: inline;
@@ -79,9 +77,6 @@ header{
     flex-direction: row;
 	padding: 0px;
 }
-
-
-
 .nav-div .nav-options .account{
     display: inline;
     list-style: none;
