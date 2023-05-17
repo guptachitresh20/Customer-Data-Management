@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
@@ -12,12 +12,20 @@ import { IAdmin } from 'src/app/data-types';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
 
   adminDetails:IAdmin;
 
 
   constructor(private auth:AuthService, private router : Router){}
+
+  ngOnInit()
+  {
+    if(this.auth.getToken())
+    {
+      this.router.navigate(['customer']);
+    }
+  }
 
   login(){
     if(this.loginForm.valid)

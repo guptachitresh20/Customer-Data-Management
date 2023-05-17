@@ -74,3 +74,13 @@ export interface ILogs {
   date?: string;
   time?:string
 }
+
+export interface IPaginatedResults<T>{
+  totalCount:number,
+  items: T[]
+}
+
+export interface IAccountsPaginatedResults{
+  totalCount:number,
+  item:ICustomer
+}

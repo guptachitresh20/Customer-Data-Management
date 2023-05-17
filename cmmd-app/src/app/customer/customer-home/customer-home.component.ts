@@ -1,6 +1,6 @@
 import { Component, ViewChild, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { IAdmin, ICustomer, IDisplayCustomer, ILogs } from 'src/app/data-types';
+import { IAccountsPaginatedResults, IAdmin, ICustomer, IDisplayCustomer, ILogs, IPaginatedResults } from 'src/app/data-types';
 import { CustomerService } from 'src/app/services/customer.service';
 import { AddCustomerComponent } from '../add-customer/add-customer.component';
 import * as alertify from 'alertifyjs';
@@ -22,11 +22,24 @@ export class CustomerHomeComponent implements OnInit {
   totalCustomer : any;
   customer:ICustomer;
 
-  p:number =1;
-  itemsPerPage:number = 10;
-  totalProduct:any;
-  constructor(private service: CustomerService, private dialog: MatDialog, private auth:AuthService, public search:SearchService, private logService:LogsService) {
+  pageNumber:number =1;
+  pageSize:number = 10;
+  constructor(private customerService: CustomerService, private dialog: MatDialog, private auth:AuthService, public searchService:SearchService, private logService:LogsService) {
+    this.searchService.invokeEvent.subscribe(value => {
+      if(value){
+       this.searchCustomers(value); 
+     }
+     else{
+      this.getList();
+     }
+    });
 
+    this.customerService.invokeEvent.subscribe(value=>{
+      if(value)
+      {
+        this.getList();
+      }
+    });
   }
 
 
@@ -34,13 +47,10 @@ export class CustomerHomeComponent implements OnInit {
     this.getList();
   }
 
-
-  
-
   getList(){
-    this.service.getCustomer().subscribe((result)=>{
-      this.customerList = result;
-      this.totalCustomer = result.length;
+    this.customerService.getCustomer((this.pageNumber-1)*this.pageSize,this.pageSize).subscribe((result:IPaginatedResults<IDisplayCustomer>)=>{
+      this.customerList = result.items;
+      this.totalCustomer = result.totalCount;
     });
   }
 
@@ -60,7 +70,7 @@ export class CustomerHomeComponent implements OnInit {
 
   getCustomerName(id)
   {
-    this.service.getCustomerbyId(id).subscribe((result)=>{
+    this.customerService.getCustomerbyId(id).subscribe((result:ICustomer)=>{
       this.customer=result;
     })
   }
@@ -68,7 +78,7 @@ export class CustomerHomeComponent implements OnInit {
   deleteCustomer(id: string) {
     alertify.confirm("Delete Customer", "Do you want to delete this customer?", () => {
       this.getCustomerName(id);
-      this.service.deleteCustomerbyId(id).subscribe(r => {
+      this.customerService.deleteCustomerbyId(id).subscribe(r => {
         alertify.set('notifier','position', 'top-right');
         alertify.error('Deleted Successfully');
         this.getList();
@@ -100,6 +110,23 @@ export class CustomerHomeComponent implements OnInit {
         console.log(result);
       }
     });
+  }
+
+  onPageChange(event:number){
+    this.pageNumber=event;
+    this.getList();
+  }
+
+
+  searchCustomers(value)
+  {
+    console.log(value);
+      this.customerService.searchCustomers(value).subscribe((result)=>{
+          if(result)
+          {
+            this.customerList=result;
+          }
+      });
   }
 
 }

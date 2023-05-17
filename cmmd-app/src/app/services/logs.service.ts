@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { ILogs } from '../data-types';
+import { ILogs, IPaginatedResults } from '../data-types';
 
 @Injectable({
   providedIn: 'root'
@@ -12,11 +12,15 @@ export class LogsService {
 
 
   // to get the list of all the logs
-  getLogs(){
-    return this.http.get<ILogs[]>(this.apiurl);
+  getLogs(startIndex,pageSize){
+    return this.http.get<IPaginatedResults<ILogs>>(`${this.apiurl}?startIndex=${startIndex}&pageSize=${pageSize}`);
   }
 
   addLog(data:ILogs){
     return this.http.post(this.apiurl, data);
+  }
+
+  searchLogs(data:string){
+    return this.http.get<ILogs[]>(`${this.apiurl}$like?search=${data}`);
   }
 }

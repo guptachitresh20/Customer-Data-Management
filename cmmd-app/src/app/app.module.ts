@@ -24,8 +24,6 @@ import { FooterComponent } from './footer/footer.component';
 import { AccountsModule } from './accounts/accounts.module';
 import { CustomerModule } from './customer/customer.module';
 import { FormsModule } from '@angular/forms';
-// import {BreadcrumbModule} from 'angular-crumbs';
-import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component'
 import {BreadcrumbModule} from 'primeng/breadcrumb';
 import { GoogleMapComponent } from './accounts/google-map/google-map.component';
 import { AgmCoreModule } from '@agm/core';
@@ -33,10 +31,7 @@ import { LoginComponent } from './admin/login/login.component';
 import { RegisterComponent } from './admin/register/register.component';
 import { LogsComponent } from './logs/logs.component';
 import { TokenInterceptor } from './interceptors/token.interceptor';
-import { SearchFilterPipe } from './customer-search-filter.pipe';
-import { AccountSearchFilterPipe } from './account-search-filter.pipe';
 import { AdminModule } from './admin/admin.module';
-import { LogSearchFilterPipe } from './log-search-filter.pipe';
 import {Ng2TelInputModule} from 'ng2-tel-input';
 
 @NgModule({
@@ -44,15 +39,10 @@ import {Ng2TelInputModule} from 'ng2-tel-input';
     AppComponent,
     HeaderComponent,
     FooterComponent,
-    BreadcrumbComponent,
     GoogleMapComponent,
     LoginComponent,
     RegisterComponent,
     LogsComponent,
-    LogSearchFilterPipe,
-
-    // AccountSearchFilterPipe,
-    // SearchFilterPipe
   ],
   imports: [
     BrowserModule,

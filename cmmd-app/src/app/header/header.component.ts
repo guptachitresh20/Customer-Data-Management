@@ -10,6 +10,8 @@ import { filter } from 'rxjs';
 import { AuthService } from '../services/auth.service';
 import * as alertify from 'alertifyjs';
 import { ResetPasswordComponent } from '../admin/reset-password/reset-password.component';
+import { LogsService } from '../services/logs.service';
+import { TransitionCheckState } from '@angular/material/checkbox';
 
 
 @Component({
@@ -18,7 +20,7 @@ import { ResetPasswordComponent } from '../admin/reset-password/reset-password.c
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  constructor(private dialog: MatDialog, private route:Router, private router:ActivatedRoute, private auth:AuthService, private search:SearchService){}
+  constructor(private logs:LogsService, private dialog: MatDialog, private route:Router, private router:ActivatedRoute, private auth:AuthService, private search:SearchService){}
   menuType:String='customer';
   enteredSearch:string="";
   customer_id:string;
@@ -43,7 +45,7 @@ export class HeaderComponent implements OnInit {
     }
     else if(this.url && !this.url.includes('/accounts')){  
       if(this.url && !this.url.includes('/accounts')){
-        this.menuType='customer';
+        this.menuType='customers';
         console.warn(this.menuType)
       }
     }
@@ -71,7 +73,7 @@ export class HeaderComponent implements OnInit {
     }
     else if(val.url && !val.url.includes('/accounts')){  
       if(val.url && !val.url.includes('/accounts')){
-        this.menuType='customer';
+        this.menuType='customers';
         console.warn(this.menuType)
       }
     }
@@ -123,6 +125,7 @@ export class HeaderComponent implements OnInit {
   onSearchTextChanged()
   {
     this.search.searchValue = this.enteredSearch;
+    this.search.callSecondComponent();
   }
 
   clearSearch()

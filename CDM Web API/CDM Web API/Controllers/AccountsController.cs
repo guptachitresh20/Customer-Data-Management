@@ -9,6 +9,7 @@ using CDM_Web_API.Models;
 using CDM_Web_API.AccountDTO;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
+using CDM_Web_API.CustomerDTO;
 
 namespace CDM_Web_API.Controllers
 {
@@ -48,6 +49,16 @@ namespace CDM_Web_API.Controllers
             var records1 = _mapper.Map<GetAccountDto>(account);
 
             return Ok(records1);
+        }
+
+        [HttpGet]
+        [Route("/api/Accounts$like")]
+        public async Task<ActionResult<IEnumerable<DispAccountDto>>> SearchAccounts([FromQuery] string search)
+        {
+            var accounts = await _context.Accounts.Where(d => d.accountName.Contains(search)
+            || d.location.Contains(search) || d.accountId.Contains(search) || d.email.Contains(search) || d.yearOfEst.Contains(search)).ToListAsync();
+            var records = _mapper.Map<List<DispAccountDto>>(accounts);
+            return Ok(records);
         }
 
         // PUT: api/Accounts/5

@@ -103,7 +103,7 @@
                         </thead>
 
                         <tbody class="accountlist">
-                            <tr class="body-row" *ngFor="let account of customerDetail?.accounts|accountSearchFilter:search.searchValue| paginate: {itemsPerPage: itemsPerPage, currentPage: p}"  >
+                            <tr class="body-row" *ngFor="let account of accountList|paginate: {itemsPerPage: pageSize, currentPage: pageNumber, totalItems:totalAccount}"  >
                               <td class="center-align" routerLink="/customer/{{customerDetail?.gstin}}/accounts/{{account?.email}}" data-title="Account ID">{{account?.accountId}}</td>
                               <td class="left-align" routerLink="/customer/{{customerDetail?.gstin}}/accounts/{{account?.email}}" data-title="Account Name">{{account?.accountName}}</td>
                               <td colspan="3" class="left-align" routerLink="/customer/{{customerDetail?.gstin}}/accounts/{{account?.email}}" data-title="Location">{{account?.location}}</td>
@@ -123,7 +123,7 @@
                         </div> -->
                     </table>
                     <div class="paginationclass">
-                        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                        <pagination-controls (pageChange)="onPageChange($event)"></pagination-controls>
                     </div>
                 </div>
             </div>

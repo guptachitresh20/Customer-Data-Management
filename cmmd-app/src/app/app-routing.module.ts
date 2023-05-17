@@ -22,7 +22,6 @@ const routes: Routes = [
     path: "customer/:id/accounts/:accountid",
     component: AccountDetailComponent,
     canActivate:[AuthGuard],
-    data: { breadcrumb: 'Customer>Accounts>AccountDetail' }
   },
   {
     path: 'register',
@@ -37,13 +36,11 @@ const routes: Routes = [
     path: "customer/:id/accounts",
     component: AccountHomeComponent,
     canActivate:[AuthGuard],
-    data: { breadcrumb: 'Customer>Accounts' }
   },
   {
     path: "customer",
     component: CustomerHomeComponent,
     canActivate:[AuthGuard],
-    data: { breadcrumb: 'Customer' }
   }
 ];
 

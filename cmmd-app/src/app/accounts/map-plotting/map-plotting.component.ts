@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CustomerService } from '../../services/customer.service';
-import { ICustomer } from '../../data-types';
+import { IAccountsPaginatedResults, ICustomer, IDisplayAccount, IPaginatedResults } from '../../data-types';
 
 @Component({
   selector: 'app-map-plotting',
@@ -24,13 +24,13 @@ export class MapPlottingComponent implements OnInit{
   }
 
   getCustomerList(){
-    this.customerService.getCustomerbyId(localStorage.getItem('id')).subscribe((result)=>{
-      this.customerDetail = result;
-      console.log(this.customerDetail.accounts);
+    this.customerService.getCustomerbyId(localStorage.getItem('id')).subscribe((result:ICustomer)=>{
+      if(result)
+      {
+        this.customerDetail = result;
+        console.log(this.customerDetail.accounts);
+      }
     });
   }
 
-  close(){
-
-  }
 }

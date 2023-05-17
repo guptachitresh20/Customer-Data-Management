@@ -11,6 +11,8 @@ using AutoMapper;
 using System.Diagnostics.Metrics;
 using CDM_Web_API.CustomerDTO;
 using Microsoft.AspNetCore.Authorization;
+using System.Drawing.Printing;
+using CDM_Web_API.Helper;
 
 namespace CDM_Web_API.Controllers
 {
@@ -31,28 +33,68 @@ namespace CDM_Web_API.Controllers
 
         // GET: api/Customers
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<GetCustomerDto>>> GetCustomers()
+        public async Task<ActionResult<PaginationResult<GetCustomerDto>>> GetCustomers([FromQuery] int startIndex, [FromQuery] int pageSize)
         {
-            var records = await _context.Customers.ToListAsync();
+            var records = await _context.Customers.Skip(startIndex).Take(pageSize).ToListAsync();
+            int totalCount = await _context.Customers.CountAsync();
+
             //refactoring the data to final in the form of getcustomerdto
             var records1 = _mapper.Map<List<GetCustomerDto>>(records);
-            return Ok(records1);
+            return new PaginationResult<GetCustomerDto>
+            {
+                Items = records1,
+                TotalCount = totalCount
+            };
+            //return Ok(records1);
         }
 
-        // GET: api/Customers/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<GetCustomerDetailsDto>> GetCustomer(string id)
+        public async Task<ActionResult<IEnumerable<GetCustomerDetailsDto>>> GetCustomer(string id)
         {
             //this will include the list of accounts associated with that particular customer
             var customer = await _context.Customers.Include(q => q.Accounts).FirstOrDefaultAsync(q => q.gstin == id);
-
+            int totalCount = await _context.Accounts.CountAsync();
             if (customer == null)
             {
                 return NotFound();
             }
             var customerDetailDto = _mapper.Map<GetCustomerDetailsDto>(customer);
+
             return Ok(customerDetailDto);
         }
+
+        // GET: api/Customers/5
+        [HttpGet("fetch/{id}")]
+        public async Task<ActionResult<AccountsPaginationResult>> GetPagedCustomer(string id, [FromQuery] int startIndex, [FromQuery] int pageSize)
+        {
+            //this will include the list of accounts associated with that particular customer
+            var customer = await _context.Customers.Include(q => q.Accounts.Skip(startIndex).Take(pageSize)).FirstOrDefaultAsync(q => q.gstin == id);
+            int totalCount = await _context.Accounts.CountAsync();
+            if (customer == null)
+            {
+                return NotFound();
+            }
+            var customerDetailDto = _mapper.Map<GetCustomerDetailsDto>(customer);
+
+            return new AccountsPaginationResult
+            {
+                Item = customerDetailDto,
+                TotalCount = totalCount
+            };
+            //return Ok(customerDetailDto);
+        }
+
+
+        [HttpGet]
+        [Route("/api/Customers$like")]
+        public async Task<ActionResult<IEnumerable<GetCustomerDto>>> SearchCustomers([FromQuery] string search)
+        {
+            var customers = await _context.Customers.Where(d => d.cname.Contains(search) || d.typeOfCompany.Contains(search) || d.gstin.Contains(search) || d.email.Contains(search)).ToListAsync();
+            var records = _mapper.Map<List<GetCustomerDto>>(customers);
+            return Ok(records);
+        }
+
+
 
         // PUT: api/Customers/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754

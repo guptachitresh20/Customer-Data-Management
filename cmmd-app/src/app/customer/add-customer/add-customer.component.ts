@@ -9,14 +9,14 @@ import {
   Validators,
 } from '@angular/forms';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { IAdmin, ICustomer, ILogs } from 'src/app/data-types';
+import { IAccountsPaginatedResults, IAdmin, ICustomer, ILogs } from 'src/app/data-types';
 import { CustomerService } from '../../services/customer.service';
 import { CustomerHomeComponent } from '../customer-home/customer-home.component';
 import * as alertify from 'alertifyjs';
 import { delay } from 'rxjs';
 import { LogsService } from 'src/app/services/logs.service';
 import { GoogleMapComponent } from 'src/app/accounts/google-map/google-map.component';
-import * as intlTelInput from 'intl-tel-input';
+import intlTelInput from 'intl-tel-input';
 import countries from '../../countries.json';
 
 
@@ -32,7 +32,7 @@ interface Coordinates {
 })
 export class AddCustomerComponent implements OnInit{
   formName: string;
-  editdata: any;
+  editdata: ICustomer;
   error: boolean = false;
   errorMessage = '';
   logs: ILogs={};
@@ -42,7 +42,7 @@ export class AddCustomerComponent implements OnInit{
   countryList:{name:string,code:string}[]=countries;
 
   constructor(
-    private customer: CustomerService,
+    private customerService: CustomerService,
     private dialog: MatDialog,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private logService: LogsService,
@@ -69,21 +69,24 @@ export class AddCustomerComponent implements OnInit{
 
 
     if (this.data.id != '' && this.data.id != null) {
-      this.customer.getCustomerbyId(this.data.id).subscribe((response) => {
-        this.editdata = response;
-        console.log(this.data);
-        this.customerAddForm.setValue({
-          cname: this.editdata.cname,
-          logo: this.editdata.logo,
-          typeOfCompany: this.editdata.typeOfCompany,
-          description: this.editdata.description,
-          email: this.editdata.email,
-          gstin: this.editdata.gstin,
-          headquarter: this.editdata.headquarter,
-          phoneNo: this.editdata.phoneNo,
-          website: this.editdata.website,
-          countryCode: this.editdata.countryCode,
-        });
+      this.customerService.getCustomerbyId(this.data.id).subscribe((response) => {
+        if(response)
+        {
+          this.editdata = response;
+          console.log(this.editdata);
+          this.customerAddForm.setValue({
+            cname: this.editdata.cname,
+            logo: this.editdata.logo,
+            typeOfCompany: this.editdata.typeOfCompany,
+            description: this.editdata.description,
+            email: this.editdata.email,
+            gstin: this.editdata.gstin,
+            headquarter: this.editdata.headquarter,
+            phoneNo: this.editdata.phoneNo,
+            website: this.editdata.website,
+            countryCode: this.editdata.countryCode,
+          });
+        }
       });
     }
   }
@@ -93,7 +96,7 @@ export class AddCustomerComponent implements OnInit{
       const Editid = this.customerAddForm.getRawValue().gstin;
 
       if (Editid != '' && Editid != null) {
-        this.customer
+        this.customerService
           .updateCustomer(Editid, this.customerAddForm.getRawValue())
           .subscribe(async (result) => {
             if (result == null) {
@@ -101,20 +104,23 @@ export class AddCustomerComponent implements OnInit{
               alertify.set('notifier','position', 'top-right');
               alertify.success('Customer Updated Successfully');
               await new Promise((f) => setTimeout(f, 1000));
-              window.location.reload();
+              // window.location.reload();
+              this.customerService.callSecondComponent();
               this.addLog('Update');
             } 
           });
       }
+
     } else {
-      this.customer.addCustomer(this.customerAddForm.value).subscribe(
+      this.customerService.addCustomer(this.customerAddForm.value).subscribe(
         async (result) => {
           if (result) {
             this.closePopup();
             alertify.set('notifier','position', 'top-right');
             alertify.success('Customer Added Successfully');
             await new Promise((f) => setTimeout(f, 1000));
-            window.location.reload();
+            // window.location.reload();
+            this.customerService.callSecondComponent();
             this.addLog('Create');
           }
         },
@@ -122,8 +128,7 @@ export class AddCustomerComponent implements OnInit{
           this.closePopup();
           alertify.set('notifier','position', 'top-right');
           alertify.error('Customer with same GSTIN already Exists');
-        }
-      );
+        });
     }
   }
 

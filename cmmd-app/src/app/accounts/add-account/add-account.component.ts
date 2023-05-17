@@ -7,7 +7,7 @@ import * as alertify from 'alertifyjs';
 import AccessTimeIcon from '@material-ui/icons/AccessTime';
 import { ActivatedRoute } from '@angular/router';
 import { GoogleMapComponent } from 'src/app/accounts/google-map/google-map.component';
-import { ICustomer, ILogs } from 'src/app/data-types';
+import { IAccountsPaginatedResults, ICustomer, ILogs, IPaginatedResults } from 'src/app/data-types';
 import { LogsService } from 'src/app/services/logs.service';
 import { CustomerService } from 'src/app/services/customer.service';
 interface Coordinates {
@@ -29,7 +29,7 @@ export class AddAccountComponent {
   logs: ILogs={};
   customer:ICustomer;
 
-  constructor(private dialog: MatDialog,private customerService:CustomerService, private logService:LogsService, private account:AccountService,@Inject(MAT_DIALOG_DATA) public data: any, private route:ActivatedRoute){
+  constructor(private dialog: MatDialog,private customerService:CustomerService, private logService:LogsService, private accountService:AccountService,@Inject(MAT_DIALOG_DATA) public data: any, private route:ActivatedRoute){
     this.coordinates={} as Coordinates;
     if(this.coordinates.address)
     {
@@ -46,7 +46,7 @@ export class AddAccountComponent {
 
   ngOnInit(): void {
     if (this.data.id != '' && this.data.id != null) {
-      this.account.getAccountbyId(this.data.id).subscribe(response => {
+      this.accountService.getAccountbyId(this.data.id).subscribe(response => {
         this.editdata = response;
         console.log(this.editdata);
         this.accountAddForm.setValue({
@@ -74,7 +74,7 @@ export class AddAccountComponent {
 
 
   getCustomerName(){
-    this.customerService.getCustomerbyId(localStorage.getItem('id')).subscribe((result)=>{
+    this.customerService.getCustomerbyId(localStorage.getItem('id')).subscribe((result:ICustomer)=>{
       if(result){
         this.customer=result;
       }
@@ -86,32 +86,24 @@ export class AddAccountComponent {
     if (this.accountAddForm.valid && this.data.button=='Update') {
       const Editid = this.accountAddForm.getRawValue().email;
       if (Editid != '' && Editid != null) {
-        this.account.updateAccount(Editid, this.accountAddForm.getRawValue()).subscribe(async (result) => {
+        this.accountService.updateAccount(Editid, this.accountAddForm.getRawValue()).subscribe(async (result) => {
           if (result==null) {
             this.getCustomerName();
             this.closePopup();
             alertify.set('notifier','position', 'top-right');
             alertify.success("Account Updated Successfully");
             await new Promise(f => setTimeout(f, 1000));
-            window.location.reload();
+            // window.location.reload();
+            this.accountService.callSecondComponent();
             this.addLog('Update');
           }
         });
       }
     }
     else{
-      this.accountAddForm.value.yearOfEst=this.accountAddForm.value.yearOfEst.toString();
-      this.accountAddForm.value.noOfEmp=this.accountAddForm.value.noOfEmp.toString();
-      this.accountAddForm.value.noOfDept=this.accountAddForm.value.noOfDept.toString();
-      this.accountAddForm.value.operatingHours=this.accountAddForm.value.operatingHours.toString();
-      this.accountAddForm.value.profit=this.accountAddForm.value.profit.toString();
-      this.accountAddForm.value.expenses=this.accountAddForm.value.expenses.toString();
-      this.accountAddForm.value.revenue=this.accountAddForm.value.revenue.toString();
-      this.accountAddForm.value.phoneNo=this.accountAddForm.value.phoneNo.toString();
-      this.accountAddForm.value.longitude=this.coordinates.longitude;
-      this.accountAddForm.value.latitude=this.coordinates.latitude;
+      this.assignStringValues();
       console.log(this.accountAddForm.value);
-      this.account.addAccount(this.accountAddForm.value).subscribe(async (result) => {
+      this.accountService.addAccount(this.accountAddForm.value).subscribe(async (result) => {
       console.log(result);
       if (result) {
         this.getCustomerName();
@@ -119,7 +111,8 @@ export class AddAccountComponent {
         alertify.set('notifier','position', 'top-right');
         alertify.success("Account Added Successfully");
         await new Promise(f => setTimeout(f, 1000));
-        window.location.reload();
+        // window.location.reload();
+        this.accountService.callSecondComponent();
         this.addLog('Create');
         }
       },
@@ -130,6 +123,20 @@ export class AddAccountComponent {
         alertify.error("Account with same email id already Exists");
       });
     }
+  }
+
+  assignStringValues()
+  {
+    this.accountAddForm.value.yearOfEst=this.accountAddForm.value.yearOfEst.toString();
+    this.accountAddForm.value.noOfEmp=this.accountAddForm.value.noOfEmp.toString();
+    this.accountAddForm.value.noOfDept=this.accountAddForm.value.noOfDept.toString();
+    this.accountAddForm.value.operatingHours=this.accountAddForm.value.operatingHours.toString();
+    this.accountAddForm.value.profit=this.accountAddForm.value.profit.toString();
+    this.accountAddForm.value.expenses=this.accountAddForm.value.expenses.toString();
+    this.accountAddForm.value.revenue=this.accountAddForm.value.revenue.toString();
+    this.accountAddForm.value.phoneNo=this.accountAddForm.value.phoneNo.toString();
+    this.accountAddForm.value.longitude=this.coordinates.longitude;
+    this.accountAddForm.value.latitude=this.coordinates.latitude;
   }
 
   closePopup() {

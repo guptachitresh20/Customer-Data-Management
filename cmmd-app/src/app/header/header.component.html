@@ -3,14 +3,12 @@
           <a routerLink="customer"><img routerLink="/customer/" src="../../assets/cdm logo.png" alt="" /></a>
       </div>
     <div class="nav-search" >
-      <input *ngIf="menuType==='customer'" (keyup)="onSearchTextChanged()" (blur)="clearSearch()" type="text" placeholder="Search for Customers" [(ngModel)]="enteredSearch"/>
-      <input *ngIf="menuType==='accounts'" (keyup)="onSearchTextChanged()" (blur)="clearSearch()" type="text" placeholder="Search for Accounts" [(ngModel)]="enteredSearch"/>
-      <input *ngIf="menuType==='logs'" (keyup)="onSearchTextChanged()" (blur)="clearSearch()" type="text" placeholder="Search for Logs" [(ngModel)]="enteredSearch"/>
-      <button *ngIf="menuType==='accounts'|| menuType==='customer'||menuType==='logs'"><img src="../../assets/🦆 icon _search_.png" /></button>
+      <input *ngIf="menuType==='customers'||menuType==='accounts'||menuType==='logs'" (blur)="clearSearch()" (keyup)="onSearchTextChanged()" type="text" placeholder="Search for {{menuType}}" [(ngModel)]="enteredSearch"/>
+      <button *ngIf="menuType==='accounts'|| menuType==='customers'||menuType==='logs'"><img src="../../assets/🦆 icon _search_.png" /></button>
     </div>
     <div class="nav-div">
         <ul class="nav-options">
-            <li *ngIf="menuType==='customer'">
+            <li *ngIf="menuType==='customers'">
               <a (click)="addCustomer()"><mat-icon>person_add_alt_1</mat-icon></a>
             </li>
             <li *ngIf="menuType==='accounts'">

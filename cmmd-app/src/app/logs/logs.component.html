@@ -14,7 +14,7 @@
         <th>Time</th>
         <th>Action</th>
       </tr>
-      <tr *ngFor="let log of logList| logSearchFilter:logSearch.searchValue|paginate: {itemsPerPage: itemsPerPage, currentPage: p}">
+      <tr *ngFor="let log of logList|paginate: {itemsPerPage: pageSize, currentPage: pageNumber, totalItems:totalLogs}">
         <td class="center-align">{{log.logId}}</td>
         <td>{{log.adminName|titlecase}}</td>
         <td>{{log.customerName}}</td>
@@ -26,6 +26,6 @@
       </tr>
     </table>
     <div class="paginationclass">
-      <pagination-controls (pageChange)="p = $event"></pagination-controls>
+      <pagination-controls (pageChange)="onPageChange($event)"></pagination-controls>
     </div>
   </div>
