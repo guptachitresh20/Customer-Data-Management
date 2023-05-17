@@ -46,7 +46,7 @@ export class ResetPasswordComponent{
         alertify.set('notifier','position', 'top-right');
         alertify.success("Password has been Reset");
         setTimeout(()=>{
-          this.router.navigate(['/login']);
+          this.auth.signOut();
           alertify.set('notifier','position', 'top-right');
           alertify.success("Please Login with the New Password");
         },1000);
