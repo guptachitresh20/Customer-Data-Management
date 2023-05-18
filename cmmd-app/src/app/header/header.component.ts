@@ -106,6 +106,7 @@ export class HeaderComponent implements OnInit {
       disableClose:true,
       maxHeight: 'calc(100vh - 120px)',
       height: 'auto',
+      width: '55%',
       backdropClass: "backgroundblur",
       data:{
         customer_id:this.customer_id,

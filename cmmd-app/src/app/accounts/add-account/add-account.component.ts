@@ -176,7 +176,7 @@ export class AddAccountComponent {
     email: new FormControl('', [Validators.required, Validators.email]),
     noOfEmp: new FormControl('', [Validators.required]),
     operatingHours: new FormControl('', [Validators.required]),
-    phoneNo: new FormControl('', [Validators.required, Validators.minLength(10), Validators.maxLength(10)]),
+    phoneNo: new FormControl('', [Validators.required]),
     gstin: new FormControl(localStorage.getItem('id')),
     longitude: new FormControl(),
     latitude: new FormControl()

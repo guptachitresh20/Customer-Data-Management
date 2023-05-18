@@ -22,6 +22,7 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import {NgxPaginationModule} from 'ngx-pagination';
 import { RouterModule } from '@angular/router';
 import { Ng2TelInputModule } from 'ng2-tel-input';
+import { NgxMatIntlTelInputComponent } from 'ngx-mat-intl-tel-input';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,8 @@ import { Ng2TelInputModule } from 'ng2-tel-input';
     MatSortModule,
     NgxPaginationModule,
     RouterModule,
-    Ng2TelInputModule
+    Ng2TelInputModule,
+    NgxMatIntlTelInputComponent
   ],
   exports:[
     AddCustomerComponent,

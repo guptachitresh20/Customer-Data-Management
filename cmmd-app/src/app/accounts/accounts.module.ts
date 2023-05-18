@@ -28,6 +28,8 @@ import { MatListModule } from '@angular/material/list';
 import {MatCardModule} from '@angular/material/card';
 import {MatExpansionModule} from '@angular/material/expansion';
 import { AgmCoreModule } from '@agm/core';
+import { NgxMatIntlTelInputComponent } from 'ngx-mat-intl-tel-input';
+
 
 @NgModule({
   declarations: [
@@ -63,6 +65,7 @@ import { AgmCoreModule } from '@agm/core';
     MatListModule ,
     MatCardModule,
     MatExpansionModule,
+    NgxMatIntlTelInputComponent,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyAzfzsRZ4XEwzxiXnjzTybY6TflZnRTeq4',
       libraries: ['places']

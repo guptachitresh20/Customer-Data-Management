@@ -61,13 +61,20 @@
 
         <table class="example-full-width" cellspacing="0">
             <tr class="table-row">
-            <td>
-                <mat-form-field appearance="fill">
-                    <mat-label>Location</mat-label>
-                    <input type="text" matInput formControlName="location" name="location" (click)="openGoogleMap()">
-                    <mat-icon matSuffix>location_on</mat-icon>
-                </mat-form-field>
-            </td>
+                <td>
+                    <mat-form-field appearance="fill">
+                        <ngx-mat-intl-tel-input
+                            name="phoneNo"
+                            [preferredCountries]="['in', 'us']"
+                            [enablePlaceholder]="true"
+                            [enableSearch]="true"
+                            placeholder="Phone"
+                            formControlName="phoneNo">
+                        </ngx-mat-intl-tel-input>
+                        <mat-error *ngIf="accountAddForm.controls.phoneNo.errors?.required">Phone <strong>Required</strong></mat-error>
+                        <mat-error *ngIf="accountAddForm.controls.phoneNo.errors?.validatePhoneNumber">invalid <strong>Number</strong></mat-error>
+                        </mat-form-field>
+                </td>
             <td>
                 <mat-form-field appearance="fill">
                     <mat-label>Year Of Establishment</mat-label>
@@ -103,20 +110,6 @@
                     </mat-error>
                 </mat-form-field>
             </td>
-            </tr>
-        </table>
-
-        <table class="example-full-width" cellspacing="0">
-            <tr class="table-row">
-            <td>
-                    <mat-form-field >
-                        <mat-label>Phone</mat-label>
-                        <span matPrefix>+91 &nbsp;</span>
-                        <input type="tel" matInput placeholder="555-555-1234" name="phoneNo" formControlName="phoneNo" >
-                        <mat-icon matSuffix>call</mat-icon>
-                        <mat-error *ngIf="phoneNo && phoneNo.invalid && phoneNo.touched"><strong>Please enter a valid phone number</strong></mat-error>
-                    </mat-form-field>
-            </td>
             <td>
                 <mat-form-field appearance="fill">
                     <mat-label>Operating Hours</mat-label>
@@ -125,6 +118,18 @@
                     <mat-error *ngIf="operatingHours && operatingHours.invalid && operatingHours.touched">
                     <strong>Please Enter valid operating hours</strong>
                     </mat-error>
+                </mat-form-field>
+            </td>
+            </tr>
+        </table>
+
+        <table class="example-full-width" cellspacing="0">
+            <tr class="table-row">
+            <td>
+                <mat-form-field appearance="fill">
+                    <mat-label>Location</mat-label>
+                    <input type="text" matInput formControlName="location" name="location" (click)="openGoogleMap()">
+                    <mat-icon matSuffix>location_on</mat-icon>
                 </mat-form-field>
             </td>
             </tr>

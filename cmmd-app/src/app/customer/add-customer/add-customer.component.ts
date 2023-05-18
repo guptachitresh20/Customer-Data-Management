@@ -18,7 +18,7 @@ import { LogsService } from 'src/app/services/logs.service';
 import { GoogleMapComponent } from 'src/app/accounts/google-map/google-map.component';
 import intlTelInput from 'intl-tel-input';
 import countries from '../../countries.json';
-
+import { NgxMatIntlTelInputComponent } from 'ngx-mat-intl-tel-input';
 
 interface Coordinates {
   address?: string;
@@ -37,7 +37,7 @@ export class AddCustomerComponent implements OnInit{
   errorMessage = '';
   logs: ILogs={};
   coordinates: Coordinates;
-
+  disablePlaceholder:boolean=false;
 
   countryList:{name:string,code:string}[]=countries;
 
@@ -56,18 +56,6 @@ export class AddCustomerComponent implements OnInit{
   }
 
   ngOnInit(): void {
-
-
-    // const inputElement=document.getElementById('#phoneNo');
-    // if(inputElement){
-    //   intlTelInput(inputElement,{
-    //     initialCountry:'US',
-    //     separateDialCode:true,
-    //     utilsScript:"https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/11.0.0/js/utils.js"
-    //   });
-    // }
-
-
     if (this.data.id != '' && this.data.id != null) {
       this.customerService.getCustomerbyId(this.data.id).subscribe((response) => {
         if(response)
@@ -94,7 +82,6 @@ export class AddCustomerComponent implements OnInit{
   addCustomer() {
     if (this.customerAddForm.valid && this.data.button === 'Update') {
       const Editid = this.customerAddForm.getRawValue().gstin;
-
       if (Editid != '' && Editid != null) {
         this.customerService
           .updateCustomer(Editid, this.customerAddForm.getRawValue())
@@ -166,12 +153,10 @@ export class AddCustomerComponent implements OnInit{
     ]),
     headquarter: new FormControl('', [Validators.required]),
     phoneNo: new FormControl('', [
-      Validators.required,
-      Validators.minLength(10),
-      Validators.maxLength(10)
+      Validators.required
     ]),
     website: new FormControl('', []),
-    countryCode: new FormControl('', [Validators.required]),
+    countryCode: new FormControl('')
   });
 
   get email() {
@@ -225,8 +210,7 @@ export class AddCustomerComponent implements OnInit{
   }
 
   onCountryChange(event){
-    console.log(event);
-
+    this.customerAddForm.controls.countryCode.patchValue(event.dialCode);
   }
 
 }

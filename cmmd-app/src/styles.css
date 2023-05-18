@@ -113,3 +113,27 @@ th{
     background-color:#00599C;
     color: white;
 }
+
+.country-selector {
+    opacity: 1 !important;
+    width: 19% !important;
+    display: flex !important;
+    justify-content: flex-start !important;
+}
+
+input.country-search{
+    padding: 0 !important;
+    text-align: center;
+}
+
+.mdc-text-field--no-label:not(.mdc-text-field--textarea) .mat-mdc-form-field-input-control.mdc-text-field__input, .mat-mdc-text-field-wrapper .mat-mdc-form-field-input-control {
+    height: 30px !important;
+}
+
+@media only screen and (max-width: 1102px) 
+{
+    .country-selector {
+        width: 11.5% !important;
+    }
+    
+}

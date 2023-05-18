@@ -25,22 +25,10 @@ mat-label {
 td {
     padding-right: 8px;
 }
+
 .mat-raised-button{
     background-color: #C8CCCE;
 }
-
-/* .phonetd{
-    width: 100%;
-
-}
-
-.phoneInput{
-    background-color: white;
-    border: 1px solid black;
-    border-radius: 5px;
-    width: 30vw;
-    height: 57px;
-} */
 
 .submitbtn{
     background-color: #00599C;
@@ -53,7 +41,6 @@ td {
     color: black;
     cursor: pointer;
 }
-
 
 @media only screen and (max-width: 1102px) {
     .table-row{
