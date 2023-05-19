@@ -35,8 +35,8 @@
                 <!-- <label for="password">Password</label><br> -->
                 <input type="password" name="password" placeholder="Password" formControlName="password"><br>
                 <mat-error *ngIf="password && password.invalid && password.touched">
-                    <strong> Password Invalid</strong>
-                 </mat-error>
+                    <strong> Password Required</strong>
+                </mat-error>
                  <br><br>
 
                 <button class="loginbtn" type="submit" (click)="login()">Login</button>

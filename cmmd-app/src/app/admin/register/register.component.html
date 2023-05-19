@@ -55,7 +55,7 @@
                 <!-- <label for="password">Password</label><br> -->
                 <input type="password" name="password" placeholder="Password" formControlName="password"><br>
                 <mat-error *ngIf="password && password.invalid && password.touched">
-                    <strong> Password Invalid</strong>
+                    <mat-hint>Password should be of minimum 10 characters containing :<br>-> Alphanumeric characters<br>-> Atleast one Uppercase letter<br>-> Atleast one Lowercase letter<br>-> Atleast one Special character</mat-hint>
                  </mat-error>
                  <br>
 

@@ -48,32 +48,31 @@
             <strong>Please Enter valid email</strong>
             </mat-error>
         </mat-form-field>
-        
-        <mat-form-field appearance="fill">
-            <mat-label>Manager</mat-label>
-            <input type="text" matInput formControlName="manager" name="manager" >
-            <mat-icon matSuffix>supervisor_account</mat-icon>
-            <mat-error *ngIf="manager && manager.invalid && manager.touched">
-                <strong>Please Enter valid text</strong>
-            </mat-error>
-        </mat-form-field>
 
+        <mat-form-field appearance="fill">
+            <ngx-mat-intl-tel-input
+                name="phoneNo"
+                [preferredCountries]="['in', 'us']"
+                [enablePlaceholder]="true"
+                [enableSearch]="true"
+                placeholder="Phone"
+                formControlName="phoneNo">
+            </ngx-mat-intl-tel-input>
+            <mat-error *ngIf="accountAddForm.controls.phoneNo.errors?.required">Phone <strong>Required</strong></mat-error>
+            <mat-error *ngIf="accountAddForm.controls.phoneNo.errors?.validatePhoneNumber">invalid <strong>Number</strong></mat-error>
+            </mat-form-field>
 
         <table class="example-full-width" cellspacing="0">
             <tr class="table-row">
                 <td>
                     <mat-form-field appearance="fill">
-                        <ngx-mat-intl-tel-input
-                            name="phoneNo"
-                            [preferredCountries]="['in', 'us']"
-                            [enablePlaceholder]="true"
-                            [enableSearch]="true"
-                            placeholder="Phone"
-                            formControlName="phoneNo">
-                        </ngx-mat-intl-tel-input>
-                        <mat-error *ngIf="accountAddForm.controls.phoneNo.errors?.required">Phone <strong>Required</strong></mat-error>
-                        <mat-error *ngIf="accountAddForm.controls.phoneNo.errors?.validatePhoneNumber">invalid <strong>Number</strong></mat-error>
-                        </mat-form-field>
+                        <mat-label>Manager</mat-label>
+                        <input type="text" matInput formControlName="manager" name="manager" >
+                        <mat-icon matSuffix>supervisor_account</mat-icon>
+                        <mat-error *ngIf="manager && manager.invalid && manager.touched">
+                            <strong>Please Enter valid text</strong>
+                        </mat-error>
+                    </mat-form-field>
                 </td>
             <td>
                 <mat-form-field appearance="fill">

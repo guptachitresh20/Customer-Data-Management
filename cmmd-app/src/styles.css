@@ -116,7 +116,6 @@ th{
 
 .country-selector {
     opacity: 1 !important;
-    width: 19% !important;
     display: flex !important;
     justify-content: flex-start !important;
 }
@@ -135,5 +134,4 @@ input.country-search{
     .country-selector {
         width: 11.5% !important;
     }
-    
 }
