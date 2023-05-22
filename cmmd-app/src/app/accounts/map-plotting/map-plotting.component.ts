@@ -28,7 +28,7 @@ export class MapPlottingComponent implements OnInit{
       if(result)
       {
         this.customerDetail = result;
-        console.log(this.customerDetail.accounts);
+        console.log(this.customerDetail.Accounts);
       }
     });
   }

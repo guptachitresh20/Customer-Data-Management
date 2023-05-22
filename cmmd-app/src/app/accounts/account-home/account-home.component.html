@@ -8,23 +8,23 @@
             <table>
                 <tbody>
                     <tr class="body-row">
-                        <td  class="blockdata" rowspan="3"><img src="{{customerDetail?.logo}}" alt=""></td>
+                        <td  class="blockdata" rowspan="3"><img src="{{customerDetail?.Logo}}" alt=""></td>
                         <td class="blockdata">
                             <tr>
                                 <td class="title">Name : </td>
-                                <td>{{customerDetail?.cname}}</td>
+                                <td>{{customerDetail?.CustomerName}}</td>
                             </tr>
                         </td>
                         <td  class="blockdata">
                             <tr>
                                 <td class="title">Type : </td>
-                                <td>{{customerDetail?.typeOfCompany}}</td>
+                                <td>{{customerDetail?.TypeOfCompany}}</td>
                             </tr>
                         </td>
                         <td  class="blockdata">
                             <tr>
                                 <td class="title">Phone No : </td>
-                                <td>{{customerDetail?.phoneNo}}</td>
+                                <td>{{customerDetail?.PhoneNo}}</td>
                             </tr>
                         </td>
                     
@@ -34,13 +34,13 @@
                         <td  class="blockdata">
                             <tr  >
                                 <td class="title">GSTIN : </td>
-                                <td>{{customerDetail?.gstin}}</td>
+                                <td>{{customerDetail?.Gstin}}</td>
                             </tr>
                         </td>
                         <td  class="blockdata">
                             <tr>
                                 <td class="title">Country Code : </td>
-                                <td>{{customerDetail?.countryCode}}</td>
+                                <td>{{customerDetail?.CountryCode}}</td>
                             </tr>
                         </td>
                         
@@ -48,7 +48,7 @@
                         <td  class="blockdata">
                             <tr>
                                 <td class="title">Website : </td>
-                                <td><a href="{{customerDetail?.website}}">{{customerDetail?.website}}</a></td>
+                                <td><a href="{{customerDetail?.Website}}">{{customerDetail?.Website}}</a></td>
                             </tr>
                         </td>
 
@@ -58,14 +58,14 @@
                         <td  class="blockdata">
                             <tr>
                                 <td class="title">Email : </td>
-                                <td><a href = "mailto:{{customerDetail?.email}}">{{customerDetail?.email}}</a></td>
+                                <td><a href = "mailto:{{customerDetail?.Email}}">{{customerDetail?.Email}}</a></td>
                             </tr>
                         </td>
                        
                         <td  class="blockdata" colspan="2">
                             <tr>
                                 <td class="title">Headquarter : </td>
-                                <td>{{customerDetail?.headquarter}}</td>
+                                <td>{{customerDetail?.Headquarter}}</td>
                             </tr>
                         </td>
                     
@@ -73,7 +73,7 @@
 
                     <br>
                     <tr>
-                        <td  class="blockdata" colspan="4">{{customerDetail?.description}}</td>
+                        <td  class="blockdata" colspan="4">{{customerDetail?.Description}}</td>
                     </tr>
                     <tr>
                         <td>
@@ -104,23 +104,20 @@
 
                         <tbody class="accountlist">
                             <tr class="body-row" *ngFor="let account of accountList|paginate: {itemsPerPage: pageSize, currentPage: pageNumber, totalItems:totalAccount}"  >
-                              <td class="center-align" routerLink="/customer/{{customerDetail?.gstin}}/accounts/{{account?.email}}" data-title="Account ID">{{account?.accountId}}</td>
-                              <td class="left-align" routerLink="/customer/{{customerDetail?.gstin}}/accounts/{{account?.email}}" data-title="Account Name">{{account?.accountName}}</td>
-                              <td colspan="3" class="left-align" routerLink="/customer/{{customerDetail?.gstin}}/accounts/{{account?.email}}" data-title="Location">{{account?.location}}</td>
+                              <td class="center-align" routerLink="/customer/{{customerDetail?.Gstin}}/accounts/{{account?.Email}}" data-title="Account ID">{{account?.AccountId}}</td>
+                              <td class="left-align" routerLink="/customer/{{customerDetail?.Gstin}}/accounts/{{account?.Email}}" data-title="Account Name">{{account?.AccountName}}</td>
+                              <td colspan="3" class="left-align" routerLink="/customer/{{customerDetail?.Gstin}}/accounts/{{account?.Email}}" data-title="Location">{{account?.Location}}</td>
 
-                              <td  class="left-align" routerLink="/customer/{{customerDetail?.gstin}}/accounts/{{account?.email}}" data-title="Email"> <a href = "mailto:{{account.email}}">{{account.email}}</a></td>
+                              <td  class="left-align" routerLink="/customer/{{customerDetail?.Gstin}}/accounts/{{account?.Email}}" data-title="Email"> <a href = "mailto:{{account.Email}}">{{account.Email}}</a></td>
                              
-                              <td class="center-align" routerLink="/customer/{{customerDetail?.gstin}}/accounts/{{account?.email}}" data-title="YearOFEst">{{account?.yearOfEst}}</td>
+                              <td class="center-align" routerLink="/customer/{{customerDetail?.Gstin}}/accounts/{{account?.Email}}" data-title="YearOFEst">{{account?.YearOfEst}}</td>
                               <td class="button-align">
                                 
-                                <button class="update_btn" (click)="editAccount(account?.email)">Update</button>
-                                <button  class="delete_btn" (click)="deleteAccount(account?.email)">Delete</button>                                    
+                                <button class="update_btn" (click)="editAccount(account?.Email)">Update</button>
+                                <button  class="delete_btn" (click)="deleteAccount(account?.Email)">Delete</button>                                    
                               </td>
                             </tr>
                         </tbody>
-                        <!-- <div class="plottingclass">
-                            <button class="plot_button" (click)="plotOnMap()">Plot Accounts On Map</button>
-                        </div> -->
                     </table>
                     <div class="paginationclass">
                         <pagination-controls (pageChange)="onPageChange($event)"></pagination-controls>

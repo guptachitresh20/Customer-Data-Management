@@ -20,7 +20,7 @@ export class CustomerService {
   }
   // to get the list of all the customers
   getCustomer(startIndex,pageSize){
-    return this.http.get<IPaginatedResults<IDisplayCustomer[]>>(`${this.apiurl}?startIndex=${startIndex}&pageSize=${pageSize}`);
+    return this.http.get<IPaginatedResults<IDisplayCustomer>>(`${this.apiurl}?startIndex=${startIndex}&pageSize=${pageSize}`);
   }
   // to delete the customer 
   deleteCustomerbyId(id:any){

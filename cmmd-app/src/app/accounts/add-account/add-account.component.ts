@@ -11,9 +11,9 @@ import { IAccountsPaginatedResults, ICustomer, ILogs, IPaginatedResults } from '
 import { LogsService } from 'src/app/services/logs.service';
 import { CustomerService } from 'src/app/services/customer.service';
 interface Coordinates {
-  address?: string;
-  latitude?: number;
-  longitude?: number;
+  Address?: string;
+  Latitude?: number;
+  Longitude?: number;
 }
 
 
@@ -31,11 +31,11 @@ export class AddAccountComponent {
 
   constructor(private dialog: MatDialog,private customerService:CustomerService, private logService:LogsService, private accountService:AccountService,@Inject(MAT_DIALOG_DATA) public data: any, private route:ActivatedRoute){
     this.coordinates={} as Coordinates;
-    if(this.coordinates.address)
+    if(this.coordinates.Address)
     {
-      this.accountAddForm.controls.location.patchValue(this.coordinates.address);
-      this.accountAddForm.controls.latitude.patchValue(this.coordinates.latitude);
-      this.accountAddForm.controls.longitude.patchValue(this.coordinates.longitude);
+      this.AccountAddForm.controls.Location.patchValue(this.coordinates.Address);
+      this.AccountAddForm.controls.Latitude.patchValue(this.coordinates.Latitude);
+      this.AccountAddForm.controls.Longitude.patchValue(this.coordinates.Longitude);
     }
   }
 
@@ -49,24 +49,24 @@ export class AddAccountComponent {
       this.accountService.getAccountbyId(this.data.id).subscribe(response => {
         this.editdata = response;
         console.log(this.editdata);
-        this.accountAddForm.setValue({
-          accountId:this.editdata.accountId,
-          accountName: this.editdata.accountName,
-          gstin: this.editdata.gstin,
-          location: this.editdata.location,
-          yearOfEst: this.editdata.yearOfEst,
-          manager: this.editdata.manager,
-          email: this.editdata.email,
-          servicesOffered: this.editdata.servicesOffered,
-          expenses: this.editdata.expenses,
-          profit: this.editdata.profit,
-          revenue: this.editdata.revenue,
-          noOfDept: this.editdata.noOfDept,
-          noOfEmp: this.editdata.noOfEmp,
-          phoneNo: this.editdata.phoneNo,
-          operatingHours: this.editdata.operatingHours,
-          longitude: this.editdata.longitude,
-          latitude: this.editdata.latitude
+        this.AccountAddForm.setValue({
+          AccountId:this.editdata.AccountId,
+          AccountName: this.editdata.AccountName,
+          Gstin: this.editdata.Gstin,
+          Location: this.editdata.Location,
+          YearOfEst: this.editdata.YearOfEst,
+          Manager: this.editdata.Manager,
+          Email: this.editdata.Email,
+          ServicesOffered: this.editdata.ServicesOffered,
+          Expenses: this.editdata.Expenses,
+          Profit: this.editdata.Profit,
+          Revenue: this.editdata.Revenue,
+          NoOfDept: this.editdata.NoOfDept,
+          NoOfEmp: this.editdata.NoOfEmp,
+          PhoneNo: this.editdata.PhoneNo,
+          OperatingHours: this.editdata.OperatingHours,
+          Longitude: this.editdata.Longitude,
+          Latitude: this.editdata.Latitude
         })
       })
     }
@@ -82,18 +82,16 @@ export class AddAccountComponent {
   }
 
   addAccount() {
-    // console.log(this.accountAddForm.value)
-    if (this.accountAddForm.valid && this.data.button=='Update') {
-      const Editid = this.accountAddForm.getRawValue().email;
+    if (this.AccountAddForm.valid && this.data.button=='Update') {
+      const Editid = this.AccountAddForm.getRawValue().Email;
       if (Editid != '' && Editid != null) {
-        this.accountService.updateAccount(Editid, this.accountAddForm.getRawValue()).subscribe(async (result) => {
+        this.accountService.updateAccount(Editid, this.AccountAddForm.getRawValue()).subscribe(async (result) => {
           if (result==null) {
             this.getCustomerName();
             this.closePopup();
             alertify.set('notifier','position', 'top-right');
             alertify.success("Account Updated Successfully");
             await new Promise(f => setTimeout(f, 1000));
-            // window.location.reload();
             this.accountService.callSecondComponent();
             this.addLog('Update');
           }
@@ -102,8 +100,8 @@ export class AddAccountComponent {
     }
     else{
       this.assignStringValues();
-      console.log(this.accountAddForm.value);
-      this.accountService.addAccount(this.accountAddForm.value).subscribe(async (result) => {
+      console.log(this.AccountAddForm.value);
+      this.accountService.addAccount(this.AccountAddForm.value).subscribe(async (result) => {
       console.log(result);
       if (result) {
         this.getCustomerName();
@@ -111,7 +109,6 @@ export class AddAccountComponent {
         alertify.set('notifier','position', 'top-right');
         alertify.success("Account Added Successfully");
         await new Promise(f => setTimeout(f, 1000));
-        // window.location.reload();
         this.accountService.callSecondComponent();
         this.addLog('Create');
         }
@@ -127,16 +124,16 @@ export class AddAccountComponent {
 
   assignStringValues()
   {
-    this.accountAddForm.value.yearOfEst=this.accountAddForm.value.yearOfEst.toString();
-    this.accountAddForm.value.noOfEmp=this.accountAddForm.value.noOfEmp.toString();
-    this.accountAddForm.value.noOfDept=this.accountAddForm.value.noOfDept.toString();
-    this.accountAddForm.value.operatingHours=this.accountAddForm.value.operatingHours.toString();
-    this.accountAddForm.value.profit=this.accountAddForm.value.profit.toString();
-    this.accountAddForm.value.expenses=this.accountAddForm.value.expenses.toString();
-    this.accountAddForm.value.revenue=this.accountAddForm.value.revenue.toString();
-    this.accountAddForm.value.phoneNo=this.accountAddForm.value.phoneNo.toString();
-    this.accountAddForm.value.longitude=this.coordinates.longitude;
-    this.accountAddForm.value.latitude=this.coordinates.latitude;
+    this.AccountAddForm.value.YearOfEst=this.AccountAddForm.value.YearOfEst.toString();
+    this.AccountAddForm.value.NoOfEmp=this.AccountAddForm.value.NoOfEmp.toString();
+    this.AccountAddForm.value.NoOfDept=this.AccountAddForm.value.NoOfDept.toString();
+    this.AccountAddForm.value.OperatingHours=this.AccountAddForm.value.OperatingHours.toString();
+    this.AccountAddForm.value.Profit=this.AccountAddForm.value.Profit.toString();
+    this.AccountAddForm.value.Expenses=this.AccountAddForm.value.Expenses.toString();
+    this.AccountAddForm.value.Revenue=this.AccountAddForm.value.Revenue.toString();
+    this.AccountAddForm.value.PhoneNo=this.AccountAddForm.value.PhoneNo.toString();
+    this.AccountAddForm.value.Longitude=this.coordinates.Longitude;
+    this.AccountAddForm.value.Latitude=this.coordinates.Latitude;
   }
 
   closePopup() {
@@ -148,13 +145,13 @@ export class AddAccountComponent {
   }
 
   addLog(action:string){
-    this.logs.customerName  = this.customer.cname;
-    this.logs.adminName=localStorage.getItem('adminName');
-    this.logs.accountName=this.accountAddForm.getRawValue().accountName;
-    this.logs.action = action;
-    this.logs.sectionModified = 'Account';
-    this.logs.date = new Date().toString();
-    this.logs.time = new Date().toString();
+    this.logs.CustomerName  = this.customer.CustomerName;
+    this.logs.AdminName=localStorage.getItem('adminName');
+    this.logs.AccountName=this.AccountAddForm.getRawValue().AccountName;
+    this.logs.Action = action;
+    this.logs.SectionModified = 'Account';
+    this.logs.Date = new Date().toString();
+    this.logs.Time = new Date().toString();
     this.logService.addLog(this.logs).subscribe((result) => {
       if (result) {
         console.log(result);
@@ -162,84 +159,84 @@ export class AddAccountComponent {
     });
   }
 
-  accountAddForm = new FormGroup({
-    accountId: new FormControl(this.randomAccountId.toString()),
-    accountName: new FormControl('', [Validators.required]),
-    location: new FormControl('', [Validators.required]),
-    yearOfEst: new FormControl('', [Validators.required, Validators.minLength(4), Validators.maxLength(4)]),
-    manager: new FormControl('', [Validators.required]),
-    servicesOffered: new FormControl('', [Validators.required]),
-    expenses: new FormControl('', [Validators.required]),
-    profit: new FormControl('', [Validators.required]),
-    revenue: new FormControl('', [Validators.required]),
-    noOfDept: new FormControl('', [Validators.required]),
-    email: new FormControl('', [Validators.required, Validators.email]),
-    noOfEmp: new FormControl('', [Validators.required]),
-    operatingHours: new FormControl('', [Validators.required]),
-    phoneNo: new FormControl('', [Validators.required]),
-    gstin: new FormControl(localStorage.getItem('id')),
-    longitude: new FormControl(),
-    latitude: new FormControl()
+  AccountAddForm = new FormGroup({
+    AccountId: new FormControl(this.randomAccountId.toString()),
+    AccountName: new FormControl('', [Validators.required]),
+    Location: new FormControl('', [Validators.required]),
+    YearOfEst: new FormControl('', [Validators.required, Validators.minLength(4), Validators.maxLength(4)]),
+    Manager: new FormControl('', [Validators.required]),
+    ServicesOffered: new FormControl('', [Validators.required]),
+    Expenses: new FormControl('', [Validators.required]),
+    Profit: new FormControl('', [Validators.required]),
+    Revenue: new FormControl('', [Validators.required]),
+    NoOfDept: new FormControl('', [Validators.required]),
+    Email: new FormControl('', [Validators.required, Validators.email]),
+    NoOfEmp: new FormControl('', [Validators.required]),
+    OperatingHours: new FormControl('', [Validators.required]),
+    PhoneNo: new FormControl('', [Validators.required]),
+    Gstin: new FormControl(localStorage.getItem('id')),
+    Longitude: new FormControl(),
+    Latitude: new FormControl()
   });
 
-  get accountId() {
-    return this.accountAddForm.get('accountId');
+  get AccountId() {
+    return this.AccountAddForm.get('AccountId');
   }
 
-  get gstin() {
-    return this.accountAddForm.get('gstin');
+  get Gstin() {
+    return this.AccountAddForm.get('Gstin');
   }
 
-  get email() {
-    return this.accountAddForm.get('email');
+  get Email() {
+    return this.AccountAddForm.get('Email');
   }
 
-  get operatingHours() {
-    return this.accountAddForm.get('operatingHours');
+  get OperatingHours() {
+    return this.AccountAddForm.get('OperatingHours');
   }
 
-  get accountName() {
-    return this.accountAddForm.get('accountName');
+  get AccountName() {
+    return this.AccountAddForm.get('AccountName');
   }
   
-  get location() {
-    return this.accountAddForm.get('location');
+  get Location() {
+    return this.AccountAddForm.get('Location');
   }
   
-  get manager() {
-    return this.accountAddForm.get('manager');
+  get Manager() {
+    return this.AccountAddForm.get('Manager');
   }
 
-  get yearOfEst() {
-    return this.accountAddForm.get('yearOfEst');
+  get YearOfEst() {
+    return this.AccountAddForm.get('YearOfEst');
   }
   
-  get servicesOffered() {
-    return this.accountAddForm.get('servicesOffered');
+  get ServicesOffered() {
+    return this.AccountAddForm.get('ServicesOffered');
   }
   
-  get expenses() {
-    return this.accountAddForm.get('expenses');
+  get Expenses() {
+    return this.AccountAddForm.get('Expenses');
   }
 
-  get profit() {
-    return this.accountAddForm.get('profit');
+  get Profit() {
+    return this.AccountAddForm.get('Profit');
   }
 
-  get revenue() {
-    return this.accountAddForm.get('revenue');
+  get rRevenue() {
+    return this.AccountAddForm.get('Revenue');
   }
 
-  get noOfDept() {
-    return this.accountAddForm.get('noOfDept');
+  get NoOfDept() {
+    return this.AccountAddForm.get('NoOfDept');
   }
 
-  get noOfEmp() {
-    return this.accountAddForm.get('noOfEmp');
+  get NoOfEmp() {
+    return this.AccountAddForm.get('NoOfEmp');
   }
 
-  get phoneNo() {
-    return this.accountAddForm.get('phoneNo');
+  get PhoneNo() {
+    return this.AccountAddForm.get('PhoneNo');
   }
 
 
@@ -260,13 +257,13 @@ export class AddAccountComponent {
     });
     dialogRef.afterClosed().subscribe((result)=>{
       this.coordinates=result;
-      if(this.coordinates.address)
+      if(this.coordinates.Address)
       {
-        this.accountAddForm.controls.location.patchValue(this.coordinates.address);
-        this.accountAddForm.controls.latitude.patchValue(this.coordinates.latitude);
-        this.accountAddForm.controls.longitude.patchValue(this.coordinates.longitude);
+        this.AccountAddForm.controls.Location.patchValue(this.coordinates.Address);
+        this.AccountAddForm.controls.Latitude.patchValue(this.coordinates.Latitude);
+        this.AccountAddForm.controls.Longitude.patchValue(this.coordinates.Longitude);
       }
-      console.log(this.coordinates.address);
+      console.log(this.coordinates.Address);
     }, (error)=>{
       console.log("error found");
     })

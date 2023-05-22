@@ -60,8 +60,8 @@ export class LoginComponent implements OnInit {
       if(result)
       {
         this.adminDetails=result;
-        localStorage.setItem('adminName',this.adminDetails.name);
-        localStorage.setItem('adminEmail',this.adminDetails.email);
+        localStorage.setItem('adminName',this.adminDetails.Name);
+        localStorage.setItem('adminEmail',this.adminDetails.Email);
 
       }
     })

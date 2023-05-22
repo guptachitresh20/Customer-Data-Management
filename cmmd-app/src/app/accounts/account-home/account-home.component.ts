@@ -68,10 +68,10 @@ export class AccountHomeComponent implements OnInit{
       if(result)
       {
         console.log(result);
-        this.customerDetail=result.item;
+        this.customerDetail=result.Item;
         console.log(this.customerDetail);
-        this.accountList=result.item.accounts;
-        this.totalAccount=result.totalCount;
+        this.accountList=result.Item.Accounts;
+        this.totalAccount=result.TotalCount;
       }
     });
   }
@@ -120,13 +120,13 @@ export class AccountHomeComponent implements OnInit{
 
   addLog(action:string)
   {
-    this.logs.customerName=this.customerDetail.cname;
-    this.logs.adminName=localStorage.getItem('adminName');
-    this.logs.accountName=this.account.accountName;
-    this.logs.action=action;
-    this.logs.sectionModified='Account';
-    this.logs.date=new Date().toString();
-    this.logs.time=new Date().toString();
+    this.logs.CustomerName=this.customerDetail.CustomerName;
+    this.logs.AdminName=localStorage.getItem('adminName');
+    this.logs.AccountName=this.account.AccountName;
+    this.logs.Action=action;
+    this.logs.SectionModified='Account';
+    this.logs.Date=new Date().toString();
+    this.logs.Time=new Date().toString();
     this.logService.addLog(this.logs).subscribe((result)=>{
     if(result)
     {
@@ -137,7 +137,7 @@ export class AccountHomeComponent implements OnInit{
 
   plotOnMap()
   {
-    if(this.customerDetail.accounts.length!==0)
+    if(this.customerDetail.Accounts.length!==0)
     {
       this.dialog.open(MapPlottingComponent, {
         height: '50vh',
@@ -149,7 +149,6 @@ export class AccountHomeComponent implements OnInit{
       alertify.set('notifier','position', 'top-right');
       alertify.error('No Accounts to Plot');
     }
-    // console.log(this.customerDetail?.accounts);
   }
   closeDialog(sendData:any)
   {

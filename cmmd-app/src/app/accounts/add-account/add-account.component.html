@@ -1,7 +1,7 @@
 <h1 mat-dialog-title class="titlehead">{{data.modalTitle}}</h1>
 <div mat-dialog-content style="max-height: 100vh;">
 
-    <form [formGroup]="accountAddForm" >
+    <form [formGroup]="AccountAddForm" >
 
         <table class="example-full-width" cellspacing="0">
             <tr class="table-row">
@@ -26,7 +26,7 @@
             <mat-label>Account Name</mat-label>
             <input matInput type="text" formControlName="accountName" name="accountName" >
             <mat-icon matSuffix>person</mat-icon>
-            <mat-error *ngIf="accountName && accountName.invalid">
+            <mat-error *ngIf="AccountName && AccountName.invalid">
             <strong>Name Required</strong>
             </mat-error>
         </mat-form-field>
@@ -35,7 +35,7 @@
             <mat-label>Email</mat-label>
             <input type="email" matInput formControlName="email" name="email" >
             <mat-icon matSuffix>email</mat-icon>
-            <mat-error *ngIf="email && email.invalid && email.touched">
+            <mat-error *ngIf="Email && Email.invalid && Email.touched">
             <strong>Please Enter valid email</strong>
             </mat-error>
         </mat-form-field>
@@ -44,7 +44,7 @@
             <mat-label>Email</mat-label>
             <input type="email" matInput formControlName="email" name="email" readonly>
             <mat-icon matSuffix>email</mat-icon>
-            <mat-error *ngIf="email && email.invalid && email.touched">
+            <mat-error *ngIf="Email && Email.invalid && Email.touched">
             <strong>Please Enter valid email</strong>
             </mat-error>
         </mat-form-field>
@@ -58,8 +58,8 @@
                 placeholder="Phone"
                 formControlName="phoneNo">
             </ngx-mat-intl-tel-input>
-            <mat-error *ngIf="accountAddForm.controls.phoneNo.errors?.required">Phone <strong>Required</strong></mat-error>
-            <mat-error *ngIf="accountAddForm.controls.phoneNo.errors?.validatePhoneNumber">invalid <strong>Number</strong></mat-error>
+            <mat-error *ngIf="AccountAddForm.controls.PhoneNo.errors?.required">Phone <strong>Required</strong></mat-error>
+            <mat-error *ngIf="AccountAddForm.controls.PhoneNo.errors?.validatePhoneNumber">invalid <strong>Number</strong></mat-error>
             </mat-form-field>
 
         <table class="example-full-width" cellspacing="0">
@@ -69,7 +69,7 @@
                         <mat-label>Manager</mat-label>
                         <input type="text" matInput formControlName="manager" name="manager" >
                         <mat-icon matSuffix>supervisor_account</mat-icon>
-                        <mat-error *ngIf="manager && manager.invalid && manager.touched">
+                        <mat-error *ngIf="Manager && Manager.invalid && Manager.touched">
                             <strong>Please Enter valid text</strong>
                         </mat-error>
                     </mat-form-field>
@@ -79,7 +79,7 @@
                     <mat-label>Year Of Establishment</mat-label>
                     <input type="text" matInput formControlName="yearOfEst" name="yearOfEst" ngModel pattern="[0-9]*">
                     <mat-icon matSuffix>today</mat-icon>
-                    <mat-error *ngIf="yearOfEst && yearOfEst.invalid && yearOfEst.touched">
+                    <mat-error *ngIf="YearOfEst && YearOfEst.invalid && YearOfEst.touched">
                         <strong>Please Enter a valid year</strong>
                     </mat-error>
                 </mat-form-field>        
@@ -94,7 +94,7 @@
                     <mat-label>No. of Employees</mat-label>
                     <input type="number" matInput formControlName="noOfEmp" name="noOfEmp" >
                     <mat-icon matSuffix>groups</mat-icon>
-                    <mat-error *ngIf="noOfEmp && noOfEmp.invalid && noOfEmp.touched">
+                    <mat-error *ngIf="NoOfEmp && NoOfEmp.invalid && NoOfEmp.touched">
                         <strong>Please Enter valid Number</strong>
                     </mat-error>
                 </mat-form-field>
@@ -104,7 +104,7 @@
                     <mat-label>Number Of Departments</mat-label>
                     <input type="number" matInput formControlName="noOfDept" name="noOfDept" >
                     <mat-icon matSuffix>account_balance</mat-icon>
-                    <mat-error *ngIf="noOfDept && noOfDept.invalid && noOfDept.touched">
+                    <mat-error *ngIf="NoOfDept && NoOfDept.invalid && NoOfDept.touched">
                         <strong>Please Enter valid Number Of Departments</strong>
                     </mat-error>
                 </mat-form-field>
@@ -114,7 +114,7 @@
                     <mat-label>Operating Hours</mat-label>
                     <input type="number" matInput formControlName="operatingHours" name="operatingHours" >
                     <mat-icon matSuffix>watch_later</mat-icon>
-                    <mat-error *ngIf="operatingHours && operatingHours.invalid && operatingHours.touched">
+                    <mat-error *ngIf="OperatingHours && OperatingHours.invalid && OperatingHours.touched">
                     <strong>Please Enter valid operating hours</strong>
                     </mat-error>
                 </mat-form-field>
@@ -175,6 +175,6 @@
     </form>
     <div mat-dialog-action [align]="'end'" class="button-class">
         <button mat-raised-button color="warn" mat-dialog-close class="closebtn">Close</button>
-        <button style="background-color: #00599C;" [disabled]="accountAddForm.invalid" mat-raised-button color="primary" type="submit" class="submitbtn"  (click)="addAccount()">{{data.button}}</button>
+        <button style="background-color: #00599C;" [disabled]="AccountAddForm.invalid" mat-raised-button color="primary" type="submit" class="submitbtn"  (click)="addAccount()">{{data.button}}</button>
     </div>
 </div>

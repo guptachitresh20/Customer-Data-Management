@@ -63,16 +63,16 @@ export class AddCustomerComponent implements OnInit{
           this.editdata = response;
           console.log(this.editdata);
           this.customerAddForm.setValue({
-            cname: this.editdata.cname,
-            logo: this.editdata.logo,
-            typeOfCompany: this.editdata.typeOfCompany,
-            description: this.editdata.description,
-            email: this.editdata.email,
-            gstin: this.editdata.gstin,
-            headquarter: this.editdata.headquarter,
-            phoneNo: this.editdata.phoneNo,
-            website: this.editdata.website,
-            countryCode: this.editdata.countryCode,
+            CustomerName: this.editdata.CustomerName,
+            logo: this.editdata.Logo,
+            typeOfCompany: this.editdata.TypeOfCompany,
+            description: this.editdata.Description,
+            email: this.editdata.Email,
+            gstin: this.editdata.Gstin,
+            headquarter: this.editdata.Headquarter,
+            phoneNo: this.editdata.PhoneNo,
+            website: this.editdata.Website,
+            countryCode: this.editdata.CountryCode,
           });
         }
       });
@@ -121,13 +121,13 @@ export class AddCustomerComponent implements OnInit{
 
   addLog(action:string)
   {
-    this.logs.customerName=this.customerAddForm.value.cname;
-    this.logs.adminName=localStorage.getItem('adminName');
-    this.logs.accountName="-";
-    this.logs.action=action;
-    this.logs.sectionModified='Customer';
-    this.logs.date=new Date().toString();
-    this.logs.time=new Date().toString();
+    this.logs.CustomerName=this.customerAddForm.value.CustomerName;
+    this.logs.AdminName=localStorage.getItem('adminName');
+    this.logs.AccountName="-";
+    this.logs.Action=action;
+    this.logs.SectionModified='Customer';
+    this.logs.Date=new Date().toString();
+    this.logs.Time=new Date().toString();
     this.logService.addLog(this.logs).subscribe((result)=>{
       if(result)
       {
@@ -141,7 +141,7 @@ export class AddCustomerComponent implements OnInit{
   }
 
   customerAddForm = new FormGroup({
-    cname: new FormControl('', [Validators.required]),
+    CustomerName: new FormControl('', [Validators.required]),
     logo: new FormControl('', [Validators.required]),
     typeOfCompany: new FormControl('', [Validators.required]),
     description: new FormControl('', [Validators.required]),
@@ -162,8 +162,8 @@ export class AddCustomerComponent implements OnInit{
   get email() {
     return this.customerAddForm.get('email');
   }
-  get cname() {
-    return this.customerAddForm.get('cname');
+  get CustomerName() {
+    return this.customerAddForm.get('CustomerName');
   }
 
   get gstin() {

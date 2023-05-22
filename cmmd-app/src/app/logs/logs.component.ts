@@ -34,8 +34,8 @@ export class LogsComponent implements OnInit {
   {
     this.logService.getLogs((this.pageNumber-1)*this.pageSize,this.pageSize).subscribe((result:IPaginatedResults<ILogs>)=>{
       if(result){
-        this.logList=result.items;
-        this.totalLogs=result.totalCount;
+        this.logList=result.Items;
+        this.totalLogs=result.TotalCount;
       }
     });
   }

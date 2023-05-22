@@ -7,7 +7,7 @@
             <mat-label>Name</mat-label>
             <input matInput type="text" formControlName="cname" name="cname" >
             <mat-icon matSuffix>person</mat-icon>
-            <mat-error *ngIf="cname && cname.invalid">
+            <mat-error *ngIf="CustomerName && CustomerName.invalid">
                Name <strong>Required</strong>
             </mat-error>
         </mat-form-field>

@@ -49,8 +49,8 @@ export class CustomerHomeComponent implements OnInit {
 
   getList(){
     this.customerService.getCustomer((this.pageNumber-1)*this.pageSize,this.pageSize).subscribe((result:IPaginatedResults<IDisplayCustomer>)=>{
-      this.customerList = result.items;
-      this.totalCustomer = result.totalCount;
+      this.customerList = result.Items;
+      this.totalCustomer = result.TotalCount;
     });
   }
 
@@ -97,13 +97,13 @@ export class CustomerHomeComponent implements OnInit {
 
   addLog(action:string)
   {
-    this.logs.customerName=this.customer.cname;
-    this.logs.adminName=localStorage.getItem('adminName');
-    this.logs.accountName="-";
-    this.logs.action="Delete";
-    this.logs.sectionModified='Customer';
-    this.logs.date=new Date().toString();
-    this.logs.time=new Date().toString();
+    this.logs.CustomerName=this.customer.CustomerName;
+    this.logs.AdminName=localStorage.getItem('adminName');
+    this.logs.AccountName="-";
+    this.logs.Action="Delete";
+    this.logs.SectionModified='Customer';
+    this.logs.Date=new Date().toString();
+    this.logs.Time=new Date().toString();
     this.logService.addLog(this.logs).subscribe((result)=>{
       if(result)
       {

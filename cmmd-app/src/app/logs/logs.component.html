@@ -15,14 +15,14 @@
         <th>Action</th>
       </tr>
       <tr *ngFor="let log of logList|paginate: {itemsPerPage: pageSize, currentPage: pageNumber, totalItems:totalLogs}">
-        <td class="center-align">{{log.logId}}</td>
-        <td>{{log.adminName|titlecase}}</td>
-        <td>{{log.customerName}}</td>
-        <td>{{log.accountName}}</td>
-        <td>{{log.sectionModified}}</td>
-        <td>{{log.date|date:'mediumDate'}}</td>
-        <td>{{log.time|date:'mediumTime'}}</td>
-        <td class="action" [ngStyle]="log.action === 'Delete' ? {color:'red'} : log.action === 'Update' ?  {color:'orange'}: {color:'green'}">{{log.action}}</td>
+        <td class="center-align">{{log.LogId}}</td>
+        <td>{{log.AdminName|titlecase}}</td>
+        <td>{{log.CustomerName}}</td>
+        <td>{{log.AccountName}}</td>
+        <td>{{log.SectionModified}}</td>
+        <td>{{log.Date|date:'mediumDate'}}</td>
+        <td>{{log.Time|date:'mediumTime'}}</td>
+        <td class="action" [ngStyle]="log.Action === 'Delete' ? {color:'red'} : log.Action === 'Update' ?  {color:'orange'}: {color:'green'}">{{log.Action}}</td>
       </tr>
     </table>
     <div class="paginationclass">

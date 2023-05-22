@@ -10,14 +10,13 @@ import {Location} from '@angular/common';
   styleUrls: ['./account-detail.component.css'],
 })
 export class AccountDetailComponent implements OnInit {
-  account_id: string;
+  Account_id: string;
 
   accountDetails: IAccount;
 
   constructor(
     private accountService: AccountService,
     private route: ActivatedRoute,
-    private router: Router,
     private location: Location
   ) {}
 
@@ -29,16 +28,15 @@ export class AccountDetailComponent implements OnInit {
         let id = res.get('accountid');
 
         if (id) {
-          this.account_id = id;
+          this.Account_id = id;
         }
       });
 
-      this.getAccountbyid(this.account_id);
+      this.getAccountbyid(this.Account_id);
   }
 
   getAccountbyid(account_id: string) {
     this.accountService.getAccountbyId(account_id).subscribe(async (result) => {
-      // console.log(result);
       if (result) {
         this.accountDetails = await result;
       }

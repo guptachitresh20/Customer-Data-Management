@@ -6,11 +6,11 @@
     [zoom]='zoom'
     >          
           <agm-marker 
-              *ngFor="let marker of customerDetail?.accounts" 
-              [latitude]="marker.latitude" 
-                [longitude]="marker.longitude">    
+              *ngFor="let marker of customerDetail?.Accounts" 
+              [latitude]="marker.Latitude" 
+                [longitude]="marker.Longitude">    
                     <agm-info-window #infoWindow>
-                        {{ marker.location}}
+                        {{ marker.Location}}
                   </agm-info-window>
           </agm-marker>
           
