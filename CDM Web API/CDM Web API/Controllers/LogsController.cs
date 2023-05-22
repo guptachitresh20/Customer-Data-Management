@@ -24,19 +24,12 @@ namespace CDM_Web_API.Controllers
             _context = context;
         }
 
-        // GET: api/Logs
-        //[HttpGet]
-        //public async Task<ActionResult<IEnumerable<Logs>>> GetLogs([FromQuery] int startIndex, [FromQuery] int pageSize)
-        //{
-        //    int totalCount = await _context.Logs.CountAsync();
-        //    return await _context.Logs.Skip(startIndex).Take(pageSize).ToListAsync();
-        //}
 
         [HttpGet]
         public async Task<ActionResult<PaginationResult<Logs>>> GetLogs([FromQuery] int startIndex, [FromQuery] int pageSize)
         {
             int totalCount = await _context.Logs.CountAsync();
-            var items = await _context.Logs.OrderByDescending(x=>x.logId).Skip(startIndex).Take(pageSize).ToListAsync();
+            var items = await _context.Logs.OrderByDescending(x=>x.LogId).Skip(startIndex).Take(pageSize).ToListAsync();
             return new PaginationResult<Logs>
             {
                 Items = items,
@@ -48,58 +41,11 @@ namespace CDM_Web_API.Controllers
         [Route("/api/Logs$like")]
         public async Task<ActionResult<IEnumerable<Logs>>> SearchLogs([FromQuery] string search)
         {
-            return Ok(await _context.Logs.Where(d => d.adminName.Contains(search) || d.customerName.Contains(search) || d.accountName.Contains(search) || d.sectionModified.Contains(search)
-            || d.date.Contains(search) || d.time.Contains(search) || d.action.Contains(search)).ToListAsync());
+            return Ok(await _context.Logs.Where(d => d.AdminName.Contains(search) || d.CustomerName.Contains(search) || d.AccountName.Contains(search) || d.SectionModified.Contains(search)
+            || d.Date.Contains(search) || d.Time.Contains(search) || d.Action.Contains(search)).ToListAsync());
         }
-
-                // GET: api/Logs/5
-                //[HttpGet("{id}")]
-                //public async Task<ActionResult<Logs>> GetLogs(string id)
-                //{
-                //    var logs = await _context.Logs.FindAsync(id);
-
-                //    if (logs == null)
-                //    {
-                //        return NotFound();
-                //    }
-
-                //    return logs;
-                //}
-
-                // PUT: api/Logs/5
-                // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-                //[HttpPut("{id}")]
-                //public async Task<IActionResult> PutLogs(string id, Logs logs)
-                //{
-                //    if (id != logs.logId)
-                //    {
-                //        return BadRequest();
-                //    }
-
-                //    _context.Entry(logs).State = EntityState.Modified;
-
-                //    try
-                //    {
-                //        await _context.SaveChangesAsync();
-                //    }
-                //    catch (DbUpdateConcurrencyException)
-                //    {
-                //        if (!LogsExists(id))
-                //        {
-                //            return NotFound();
-                //        }
-                //        else
-                //        {
-                //            throw;
-                //        }
-                //    }
-
-                //    return NoContent();
-                //}
-
-                // POST: api/Logs
-                // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-                [HttpPost]
+        
+        [HttpPost]
         public async Task<ActionResult<Logs>> PostLogs(Logs logs)
         {
             _context.Logs.Add(logs);
@@ -109,38 +55,20 @@ namespace CDM_Web_API.Controllers
             }
             catch (DbUpdateException)
             {
-                if (LogsExists(logs.logId))
-                {
+                if (LogsExists(logs.LogId))
                     return Conflict();
-                }
                 else
-                {
                     throw;
-                }
             }
 
-            return CreatedAtAction("GetLogs", new { id = logs.logId }, logs);
+            return CreatedAtAction("GetLogs", new { id = logs.LogId }, logs);
         }
 
-        // DELETE: api/Logs/5
-        //[HttpDelete("{id}")]
-        //public async Task<IActionResult> DeleteLogs(string id)
-        //{
-        //    var logs = await _context.Logs.FindAsync(id);
-        //    if (logs == null)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    _context.Logs.Remove(logs);
-        //    await _context.SaveChangesAsync();
-
-        //    return NoContent();
-        //}
+        
 
         private bool LogsExists(int id)
         {
-            return _context.Logs.Any(e => e.logId == id);
+            return _context.Logs.Any(e => e.LogId == id);
         }
     }
 }

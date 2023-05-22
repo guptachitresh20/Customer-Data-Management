@@ -33,14 +33,14 @@ namespace CDM_Web_API.Controllers
 
         // GET: api/Customers
         [HttpGet]
-        public async Task<ActionResult<PaginationResult<GetCustomerDto>>> GetCustomers([FromQuery] int startIndex, [FromQuery] int pageSize)
+        public async Task<ActionResult<PaginationResult<DisplayCustomerDto>>> GetCustomers([FromQuery] int startIndex, [FromQuery] int pageSize)
         {
             var records = await _context.Customers.Skip(startIndex).Take(pageSize).ToListAsync();
             int totalCount = await _context.Customers.CountAsync();
 
             //refactoring the data to final in the form of getcustomerdto
-            var records1 = _mapper.Map<List<GetCustomerDto>>(records);
-            return new PaginationResult<GetCustomerDto>
+            var records1 = _mapper.Map<List<DisplayCustomerDto>>(records);
+            return new PaginationResult<DisplayCustomerDto>
             {
                 Items = records1,
                 TotalCount = totalCount
@@ -52,12 +52,10 @@ namespace CDM_Web_API.Controllers
         public async Task<ActionResult<IEnumerable<GetCustomerDetailsDto>>> GetCustomer(string id)
         {
             //this will include the list of accounts associated with that particular customer
-            var customer = await _context.Customers.Include(q => q.Accounts).FirstOrDefaultAsync(q => q.gstin == id);
+            var customer = await _context.Customers.Include(q => q.Accounts).FirstOrDefaultAsync(q => q.Gstin == id);
             int totalCount = await _context.Accounts.CountAsync();
             if (customer == null)
-            {
                 return NotFound();
-            }
             var customerDetailDto = _mapper.Map<GetCustomerDetailsDto>(customer);
 
             return Ok(customerDetailDto);
@@ -68,12 +66,10 @@ namespace CDM_Web_API.Controllers
         public async Task<ActionResult<AccountsPaginationResult>> GetPagedCustomer(string id, [FromQuery] int startIndex, [FromQuery] int pageSize)
         {
             //this will include the list of accounts associated with that particular customer
-            var customer = await _context.Customers.Include(q => q.Accounts.Skip(startIndex).Take(pageSize)).FirstOrDefaultAsync(q => q.gstin == id);
+            var customer = await _context.Customers.Include(q => q.Accounts.Skip(startIndex).Take(pageSize)).FirstOrDefaultAsync(q => q.Gstin == id);
             int totalCount = await _context.Accounts.CountAsync();
             if (customer == null)
-            {
                 return NotFound();
-            }
             var customerDetailDto = _mapper.Map<GetCustomerDetailsDto>(customer);
 
             return new AccountsPaginationResult
@@ -87,11 +83,10 @@ namespace CDM_Web_API.Controllers
 
         [HttpGet]
         [Route("/api/Customers$like")]
-        public async Task<ActionResult<IEnumerable<GetCustomerDto>>> SearchCustomers([FromQuery] string search)
+        public async Task<ActionResult<IEnumerable<DisplayCustomerDto>>> SearchCustomers([FromQuery] string search)
         {
-            var customers = await _context.Customers.Where(d => d.cname.Contains(search) || d.typeOfCompany.Contains(search) || d.gstin.Contains(search) || d.email.Contains(search)).ToListAsync();
-            var records = _mapper.Map<List<GetCustomerDto>>(customers);
-            return Ok(records);
+            var customers = await _context.Customers.Where(d => d.CustomerName.Contains(search) || d.TypeOfCompany.Contains(search) || d.Gstin.Contains(search) || d.Email.Contains(search)).ToListAsync();
+            return Ok(_mapper.Map<List<DisplayCustomerDto>>(customers));
         }
 
 
@@ -99,18 +94,14 @@ namespace CDM_Web_API.Controllers
         // PUT: api/Customers/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutCustomer(string id, PutCustomerDto putCustomerDto)
+        public async Task<IActionResult> UpdateCustomer(string id, UpdateCustomerDto putCustomerDto)
         {
-            if (id != putCustomerDto.gstin)
-            {
+            if (id != putCustomerDto.Gstin)
                 return BadRequest();
-            }
             //Find the record of customer with help of gstin.
             var customer = await _context.Customers.FindAsync(id);
             if (customer == null)
-            {
                 return NotFound();
-            }
 
             //refactoring the data
             _mapper.Map(putCustomerDto, customer);
@@ -123,22 +114,18 @@ namespace CDM_Web_API.Controllers
             catch (DbUpdateConcurrencyException)
             {
                 if (!CustomerExists(id))
-                {
                     return NotFound();
-                }
                 else
-                {
                     throw;
-                }
             }
 
             return NoContent();
         }
 
         // POST: api/Customers
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        
         [HttpPost]
-        public async Task<ActionResult<Customer>> PostCustomer(AddCustomerDto addCustomerDto)
+        public async Task<ActionResult<Customer>> AddCustomer(AddCustomerDto addCustomerDto)
         {
             //gets the data dan save the data
             var customer = _mapper.Map<Customer>(addCustomerDto);
@@ -149,17 +136,13 @@ namespace CDM_Web_API.Controllers
             }
             catch (DbUpdateException)
             {
-                if (CustomerExists(customer.gstin))
-                {
+                if (CustomerExists(customer.Gstin))
                     return Conflict();
-                }
                 else
-                {
                     throw;
-                }
             }
 
-            return CreatedAtAction("GetCustomer", new { id = customer.gstin }, customer);
+            return CreatedAtAction("GetCustomer", new { id = customer.Gstin }, customer);
         }
 
         // DELETE: api/Customers/5
@@ -168,9 +151,7 @@ namespace CDM_Web_API.Controllers
         {
             var customer = await _context.Customers.FindAsync(id);
             if (customer == null)
-            {
                 return NotFound();
-            }
 
             _context.Customers.Remove(customer);
             await _context.SaveChangesAsync();
@@ -180,7 +161,7 @@ namespace CDM_Web_API.Controllers
 
         private bool CustomerExists(string id)
         {
-            return _context.Customers.Any(e => e.gstin == id);
+            return _context.Customers.Any(e => e.Gstin == id);
         }
     }
 }

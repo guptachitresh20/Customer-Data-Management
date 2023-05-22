@@ -18,21 +18,21 @@ namespace CDM_Web_API.Models
         {
 
             modelBuilder.Entity<Customer>()
-                .HasKey(c => c.gstin);
+                .HasKey(c => c.Gstin);
 
             modelBuilder.Entity<Account>()
-                .HasKey(a => a.email);
+                .HasKey(a => a.Email);
 
             modelBuilder.Entity<Admin>()
-                .HasKey(a => a.email);
+                .HasKey(a => a.Email);
 
             modelBuilder.Entity<Logs>()
-                .HasKey(l => l.logId);
+                .HasKey(l => l.LogId);
 
             modelBuilder.Entity<Customer>()
                 .HasMany(c => c.Accounts)
                 .WithOne(a => a.Customer)
-                .HasForeignKey(a => a.gstin);
+                .HasForeignKey(a => a.Gstin);
 
 
         }

@@ -39,10 +39,8 @@ namespace CDM_Web_API.Helper
             for(int i = 0; i < HashSize; i++)
             {
                 if (hashBytes[i+ SaltSize] != hash[i])
-                {
                     return false;
-                }
-                
+
             }
             return true;
         }

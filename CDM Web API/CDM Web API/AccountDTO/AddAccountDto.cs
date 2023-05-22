@@ -1,34 +1,25 @@
 ﻿namespace CDM_Web_API.AccountDTO
 {
-    public class AddAccountDto
+    public class AddAccountDto : BaseAccountDto
     {
-        public string email { get; set; }
-        public string accountId { get; set; }
-        public double latitude { get; set; }
-        public double longitude { get; set; }
-        public string location { get; set; }
-        public string gstin { get; set; }
+       
+        public string Gstin { get; set; }
 
-        public string accountName { get; set; }
+        public string PhoneNo { get; set; }
 
+        public string OperatingHours { get; set; }
 
-        public string phoneNo { get; set; }
+        public string Manager { get; set; }
 
-        public string yearOfEst { get; set; }
+        public string ServicesOffered { get; set; }
 
-        public string operatingHours { get; set; }
+        public string Expenses { get; set; }
 
-        public string manager { get; set; }
+        public string Profit { get; set; }
 
-        public string servicesOffered { get; set; }
+        public string Revenue { get; set; }
 
-        public string expenses { get; set; }
-
-        public string profit { get; set; }
-
-        public string revenue { get; set; }
-
-        public string noOfDept { get; set; }
-        public string noOfEmp { get; set; }
+        public string NoOfDept { get; set; }
+        public string NoOfEmp { get; set; }
     }
 }

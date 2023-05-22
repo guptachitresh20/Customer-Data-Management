@@ -28,12 +28,6 @@ namespace CDM_Web_API.Controllers
             _mapper = mapper;
         }
 
-        // GET: api/Accounts
-        //[HttpGet]
-        //public async Task<ActionResult<IEnumerable<Account>>> GetAccounts()
-        //{
-        //    return await _context.Accounts.ToListAsync();
-        //}
 
         // GET: api/Accounts/5
         [HttpGet("{id}")]
@@ -43,40 +37,31 @@ namespace CDM_Web_API.Controllers
             var account = await _context.Accounts.FindAsync(id);
 
             if (account == null)
-            {
                 return NotFound();
-            }
-            var records1 = _mapper.Map<GetAccountDto>(account);
-
-            return Ok(records1);
+            return Ok(_mapper.Map<GetAccountDto>(account));
         }
 
         [HttpGet]
         [Route("/api/Accounts$like")]
-        public async Task<ActionResult<IEnumerable<DispAccountDto>>> SearchAccounts([FromQuery] string search)
+        public async Task<ActionResult<IEnumerable<DisplayAccountDto>>> SearchAccounts([FromQuery] string search)
         {
-            var accounts = await _context.Accounts.Where(d => d.accountName.Contains(search)
-            || d.location.Contains(search) || d.accountId.Contains(search) || d.email.Contains(search) || d.yearOfEst.Contains(search)).ToListAsync();
-            var records = _mapper.Map<List<DispAccountDto>>(accounts);
-            return Ok(records);
+            var accounts = await _context.Accounts.Where(d => d.AccountName.Contains(search)
+            || d.Location.Contains(search) || d.AccountId.Contains(search) || d.Email.Contains(search) || d.YearOfEst.Contains(search)).ToListAsync();
+            return Ok(_mapper.Map<List<DisplayAccountDto>>(accounts));
         }
 
         // PUT: api/Accounts/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutAccount(string id, PutAccountDto putAccountDto)
+        public async Task<IActionResult> UpdateAccount(string id, UpdateAccountDto putAccountDto)
         {
             //check if any account exists or not
-            if (id != putAccountDto.email)
-            {
+            if (id != putAccountDto.Email)
                 return BadRequest();
-            }
             //get the account detail
             var account = await _context.Accounts.FindAsync(id);
             if (account == null)
-            {
                 return NotFound();
-            }
             //reafactoring the data
             _mapper.Map(putAccountDto, account);
             //save the modified state
@@ -89,22 +74,18 @@ namespace CDM_Web_API.Controllers
             catch (DbUpdateConcurrencyException)
             {
                 if (!AccountExists(id))
-                {
                     return NotFound();
-                }
                 else
-                {
                     throw;
-                }
             }
 
             return NoContent();
         }
 
         // POST: api/Accounts
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        
         [HttpPost]
-        public async Task<ActionResult<Account>> PostAccount(AddAccountDto addAccountDto)
+        public async Task<ActionResult<Account>> AddAccount(AddAccountDto addAccountDto)
         {
             //gets the data dan save the data
             var account = _mapper.Map<Account>(addAccountDto);
@@ -115,17 +96,13 @@ namespace CDM_Web_API.Controllers
             }
             catch (DbUpdateException)
             {
-                if (AccountExists(account.email))
-                {
+                if (AccountExists(account.Email))
                     return Conflict();
-                }
                 else
-                {
                     throw;
-                }
             }
 
-            return CreatedAtAction("GetAccount", new { id = account.email }, account);
+            return CreatedAtAction("GetAccount", new { id = account.Email }, account);
         }
 
         // DELETE: api/Accounts/5
@@ -134,9 +111,7 @@ namespace CDM_Web_API.Controllers
         {
             var account = await _context.Accounts.FindAsync(id);
             if (account == null)
-            {
                 return NotFound();
-            }
 
             _context.Accounts.Remove(account);
             await _context.SaveChangesAsync();
@@ -146,7 +121,7 @@ namespace CDM_Web_API.Controllers
 
         private bool AccountExists(string id)
         {
-            return _context.Accounts.Any(e => e.email == id);
+            return _context.Accounts.Any(e => e.Email == id);
         }
     }
 }

@@ -1,10 +1,8 @@
 ﻿using CDM_Web_API.CustomerDTO;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CDM_Web_API.DTO
 {
-    public class AddCustomerDto : BaseCustomerDto
+    public class UpdateCustomerDto : BaseCustomerDto
     {
         public string Description { get; set; }
 

@@ -8,30 +8,30 @@ namespace CDM_Web_API.Models
     {
         //Primary Key
         [Key]
-        public string gstin { get; set; }
+        public string Gstin { get; set; }
 
         //Not more than 250 charaters are allowed
         [Column(TypeName = "nvarchar(250)")]
-        public string cname { get; set; }
+        public string CustomerName { get; set; }
 
-        public string logo { get; set; }
+        public string Logo { get; set; }
 
-        public string typeOfCompany { get; set; }
+        public string TypeOfCompany { get; set; }
 
-        public string description { get; set; }
-
-        [Column(TypeName = "nvarchar(250)")]
-        public string email { get; set; }
+        public string Description { get; set; }
 
         [Column(TypeName = "nvarchar(250)")]
-        public string headquarter { get; set; }
-
-        public string phoneNo { get; set; }
+        public string Email { get; set; }
 
         [Column(TypeName = "nvarchar(250)")]
-        public string website { get; set; }
+        public string Headquarter { get; set; }
 
-        public string countryCode { get; set; }
+        public string PhoneNo { get; set; }
+
+        [Column(TypeName = "nvarchar(250)")]
+        public string Website { get; set; }
+
+        public string CountryCode { get; set; }
 
         //Each cutomer can have a list of accounts
         public virtual ICollection<Account> Accounts { get; set; }

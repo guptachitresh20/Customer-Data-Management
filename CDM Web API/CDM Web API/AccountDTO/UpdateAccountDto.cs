@@ -1,11 +1,10 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using CDM_Web_API.Models;
+using System;
 
 namespace CDM_Web_API.AccountDTO
 {
-    public class GetAccountDto : BaseAccountDto
-    { 
-        public string Gstin { get; set; }
-       
+    public class UpdateAccountDto : BaseAccountDto
+    {
         public string PhoneNo { get; set; }
         public string OperatingHours { get; set; }
 
