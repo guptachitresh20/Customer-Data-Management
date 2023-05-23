@@ -41,7 +41,7 @@ namespace CDM_Web_API.Controllers
         [Route("/api/Logs$like")]
         public async Task<ActionResult<IEnumerable<Logs>>> SearchLogs([FromQuery] string search)
         {
-            return Ok(await _context.Logs.Where(d => d.AdminName.Contains(search) || d.CustomerName.Contains(search) || d.AccountName.Contains(search) || d.SectionModified.Contains(search)
+            return Ok(await _context.Logs.OrderByDescending(x=>x.LogId).Where(d => d.AdminName.Contains(search) || d.CustomerName.Contains(search) || d.AccountName.Contains(search) || d.SectionModified.Contains(search)
             || d.Date.Contains(search) || d.Time.Contains(search) || d.Action.Contains(search)).ToListAsync());
         }
         
