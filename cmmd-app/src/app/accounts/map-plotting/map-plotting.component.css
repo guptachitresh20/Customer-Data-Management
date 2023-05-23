@@ -1,17 +1,13 @@
 agm-map{
-    /* z-index: 0; */
     width: 50vw;
     height: 50vh;
     position: fixed;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
-    /* border: 2px solid black; */
-  
+    transform: translate(-50%, -50%);  
   }
   
   .container{
-    /* z-index: 0; */
     width: 100vw;
     height: 100vh;
   }

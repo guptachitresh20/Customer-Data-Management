@@ -1,4 +1,4 @@
-<button (click)="backButton()" class="buttonBack">
+<button (click)="BackButton()" class="buttonBack">
     <mat-icon>arrow_back</mat-icon>
 </button>
 <div class="accounts">
@@ -78,7 +78,7 @@
                     <tr>
                         <td>
                             
-                            <button class="plot_button" (click)="plotOnMap()">Plot Accounts On Map</button>
+                            <button class="plot_button" (click)="PlotOnMap()">Plot Accounts On Map</button>
                             
                         </td>
                     </tr>
@@ -113,14 +113,14 @@
                               <td class="center-align" routerLink="/customer/{{customerDetail?.Gstin}}/accounts/{{account?.Email}}" data-title="YearOFEst">{{account?.YearOfEst}}</td>
                               <td class="button-align">
                                 
-                                <button class="update_btn" (click)="editAccount(account?.Email)">Update</button>
-                                <button  class="delete_btn" (click)="deleteAccount(account?.Email)">Delete</button>                                    
+                                <button class="update_btn" (click)="UpdateAccount(account?.Email)">Update</button>
+                                <button  class="delete_btn" (click)="DeleteAccount(account?.Email)">Delete</button>                                    
                               </td>
                             </tr>
                         </tbody>
                     </table>
                     <div class="paginationclass">
-                        <pagination-controls (pageChange)="onPageChange($event)"></pagination-controls>
+                        <pagination-controls (pageChange)="OnPageChange($event)"></pagination-controls>
                     </div>
                 </div>
             </div>

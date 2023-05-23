@@ -1,15 +1,12 @@
-﻿using System;
+﻿using AutoMapper;
+using CDM_Web_API.AccountDTO;
+using CDM_Web_API.Models;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using CDM_Web_API.Models;
-using CDM_Web_API.AccountDTO;
-using AutoMapper;
-using Microsoft.AspNetCore.Authorization;
-using CDM_Web_API.CustomerDTO;
 
 namespace CDM_Web_API.Controllers
 {
@@ -43,10 +40,10 @@ namespace CDM_Web_API.Controllers
 
         [HttpGet]
         [Route("/api/Accounts$like")]
-        public async Task<ActionResult<IEnumerable<DisplayAccountDto>>> SearchAccounts([FromQuery] string search)
+        public async Task<ActionResult<IEnumerable<DisplayAccountDto>>> SearchAccounts([FromQuery] string search,string id)
         {
-            var accounts = await _context.Accounts.Where(d => d.AccountName.Contains(search)
-            || d.Location.Contains(search) || d.AccountId.Contains(search) || d.Email.Contains(search) || d.YearOfEst.Contains(search)).ToListAsync();
+            var accounts = await _context.Accounts.Where(d => d.Gstin==id && (d.AccountName.Contains(search)
+            || d.Location.Contains(search) || d.AccountId.Contains(search) || d.Email.Contains(search) || d.YearOfEst.Contains(search))).ToListAsync();
             return Ok(_mapper.Map<List<DisplayAccountDto>>(accounts));
         }
 

@@ -27,34 +27,34 @@ export class CustomerHomeComponent implements OnInit {
   constructor(private customerService: CustomerService, private dialog: MatDialog, private auth:AuthService, public searchService:SearchService, private logService:LogsService) {
     this.searchService.invokeEvent.subscribe(value => {
       if(value){
-       this.searchCustomers(value); 
+       this.SearchCustomers(value); 
      }
      else{
-      this.getList();
+      this.GetList();
      }
     });
 
     this.customerService.invokeEvent.subscribe(value=>{
       if(value)
       {
-        this.getList();
+        this.GetList();
       }
     });
   }
 
 
   ngOnInit(): void {
-    this.getList();
+    this.GetList();
   }
 
-  getList(){
-    this.customerService.getCustomer((this.pageNumber-1)*this.pageSize,this.pageSize).subscribe((result:IPaginatedResults<IDisplayCustomer>)=>{
+  GetList(){
+    this.customerService.GetCustomer((this.pageNumber-1)*this.pageSize,this.pageSize).subscribe((result:IPaginatedResults<IDisplayCustomer>)=>{
       this.customerList = result.Items;
       this.totalCustomer = result.TotalCount;
     });
   }
 
-  editCustomer(id: string) {
+  UpdateCustomer(id: string) {
     this.dialog.open(AddCustomerComponent, {
       maxHeight: 'calc(100vh - 120px)',
       height: 'auto',
@@ -68,21 +68,21 @@ export class CustomerHomeComponent implements OnInit {
     });
   }
 
-  getCustomerName(id)
+  GetCustomerName(id)
   {
-    this.customerService.getCustomerbyId(id).subscribe((result:ICustomer)=>{
+    this.customerService.GetCustomerbyId(id).subscribe((result:ICustomer)=>{
       this.customer=result;
     })
   }
 
-  deleteCustomer(id: string) {
+  DeleteCustomer(id: string) {
     alertify.confirm("Delete Customer", "Do you want to delete this customer?", () => {
-      this.getCustomerName(id);
-      this.customerService.deleteCustomerbyId(id).subscribe(r => {
+      this.GetCustomerName(id);
+      this.customerService.DeleteCustomerbyId(id).subscribe(r => {
         alertify.set('notifier','position', 'top-right');
         alertify.error('Deleted Successfully');
-        this.getList();
-        this.addLog('Delete');
+        this.GetList();
+        this.AddLog('Delete');
       },
       (error) => 
       {
@@ -95,7 +95,7 @@ export class CustomerHomeComponent implements OnInit {
 
   }
 
-  addLog(action:string)
+  AddLog(action:string)
   {
     this.logs.CustomerName=this.customer.CustomerName;
     this.logs.AdminName=localStorage.getItem('adminName');
@@ -104,24 +104,19 @@ export class CustomerHomeComponent implements OnInit {
     this.logs.SectionModified='Customer';
     this.logs.Date=new Date().toString();
     this.logs.Time=new Date().toString();
-    this.logService.addLog(this.logs).subscribe((result)=>{
-      if(result)
-      {
-        console.log(result);
-      }
+    this.logService.AddLog(this.logs).subscribe((result)=>{
     });
   }
 
-  onPageChange(event:number){
+  OnPageChange(event:number){
     this.pageNumber=event;
-    this.getList();
+    this.GetList();
   }
 
 
-  searchCustomers(value)
+  SearchCustomers(value)
   {
-    console.log(value);
-      this.customerService.searchCustomers(value).subscribe((result)=>{
+      this.customerService.SearchCustomers(value).subscribe((result)=>{
           if(result)
           {
             this.customerList=result;

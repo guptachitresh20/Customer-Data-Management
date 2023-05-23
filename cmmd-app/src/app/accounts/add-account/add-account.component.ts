@@ -11,9 +11,9 @@ import { IAccountsPaginatedResults, ICustomer, ILogs, IPaginatedResults } from '
 import { LogsService } from 'src/app/services/logs.service';
 import { CustomerService } from 'src/app/services/customer.service';
 interface Coordinates {
-  Address?: string;
-  Latitude?: number;
-  Longitude?: number;
+  address?: string;
+  latitude?: number;
+  longitude?: number;
 }
 
 
@@ -31,24 +31,23 @@ export class AddAccountComponent {
 
   constructor(private dialog: MatDialog,private customerService:CustomerService, private logService:LogsService, private accountService:AccountService,@Inject(MAT_DIALOG_DATA) public data: any, private route:ActivatedRoute){
     this.coordinates={} as Coordinates;
-    if(this.coordinates.Address)
+    if(this.coordinates.address)
     {
-      this.AccountAddForm.controls.Location.patchValue(this.coordinates.Address);
-      this.AccountAddForm.controls.Latitude.patchValue(this.coordinates.Latitude);
-      this.AccountAddForm.controls.Longitude.patchValue(this.coordinates.Longitude);
+      this.AccountAddForm.controls.Location.patchValue(this.coordinates.address);
+      this.AccountAddForm.controls.Latitude.patchValue(this.coordinates.latitude);
+      this.AccountAddForm.controls.Longitude.patchValue(this.coordinates.longitude);
     }
   }
 
   editdata: any;
-  randomAccountId:string=this.generateRandomInteger(1, 1000).toString();
+  randomAccountId:string=this.GenerateRandomInteger(1, 1000).toString();
   customer_id:string=this.data.customer_id;
 
 
   ngOnInit(): void {
     if (this.data.id != '' && this.data.id != null) {
-      this.accountService.getAccountbyId(this.data.id).subscribe(response => {
+      this.accountService.GetAccountbyId(this.data.id).subscribe(response => {
         this.editdata = response;
-        console.log(this.editdata);
         this.AccountAddForm.setValue({
           AccountId:this.editdata.AccountId,
           AccountName: this.editdata.AccountName,
@@ -73,56 +72,54 @@ export class AddAccountComponent {
   }
 
 
-  getCustomerName(){
-    this.customerService.getCustomerbyId(localStorage.getItem('id')).subscribe((result:ICustomer)=>{
+  GetCustomerName(){
+    this.customerService.GetCustomerbyId(localStorage.getItem('id')).subscribe((result:ICustomer)=>{
       if(result){
         this.customer=result;
       }
     })
   }
 
-  addAccount() {
+  AddAccount() {
     if (this.AccountAddForm.valid && this.data.button=='Update') {
       const Editid = this.AccountAddForm.getRawValue().Email;
       if (Editid != '' && Editid != null) {
-        this.accountService.updateAccount(Editid, this.AccountAddForm.getRawValue()).subscribe(async (result) => {
+        this.accountService.UpdateAccount(Editid, this.AccountAddForm.getRawValue()).subscribe(async (result) => {
           if (result==null) {
-            this.getCustomerName();
-            this.closePopup();
+            this.GetCustomerName();
+            this.ClosePopup();
             alertify.set('notifier','position', 'top-right');
             alertify.success("Account Updated Successfully");
             await new Promise(f => setTimeout(f, 1000));
-            this.accountService.callSecondComponent();
-            this.addLog('Update');
+            this.accountService.CallSecondComponent();
+            this.AddLog('Update');
           }
         });
       }
     }
     else{
-      this.assignStringValues();
-      console.log(this.AccountAddForm.value);
-      this.accountService.addAccount(this.AccountAddForm.value).subscribe(async (result) => {
-      console.log(result);
+      this.AssignStringValues();
+      this.accountService.AddAccount(this.AccountAddForm.value).subscribe(async (result) => {
       if (result) {
-        this.getCustomerName();
-        this.closePopup();
+        this.GetCustomerName();
+        this.ClosePopup();
         alertify.set('notifier','position', 'top-right');
         alertify.success("Account Added Successfully");
         await new Promise(f => setTimeout(f, 1000));
-        this.accountService.callSecondComponent();
-        this.addLog('Create');
+        this.accountService.CallSecondComponent();
+        this.AddLog('Create');
         }
       },
       (error) => 
       {
-        this.closePopup();
+        this.ClosePopup();
         alertify.set('notifier','position', 'top-right');
         alertify.error("Account with same email id already Exists");
       });
     }
   }
 
-  assignStringValues()
+  AssignStringValues()
   {
     this.AccountAddForm.value.YearOfEst=this.AccountAddForm.value.YearOfEst.toString();
     this.AccountAddForm.value.NoOfEmp=this.AccountAddForm.value.NoOfEmp.toString();
@@ -132,19 +129,19 @@ export class AddAccountComponent {
     this.AccountAddForm.value.Expenses=this.AccountAddForm.value.Expenses.toString();
     this.AccountAddForm.value.Revenue=this.AccountAddForm.value.Revenue.toString();
     this.AccountAddForm.value.PhoneNo=this.AccountAddForm.value.PhoneNo.toString();
-    this.AccountAddForm.value.Longitude=this.coordinates.Longitude;
-    this.AccountAddForm.value.Latitude=this.coordinates.Latitude;
+    this.AccountAddForm.value.Longitude=this.coordinates.longitude;
+    this.AccountAddForm.value.Latitude=this.coordinates.latitude;
   }
 
-  closePopup() {
+  ClosePopup() {
     this.dialog.closeAll();
   }
 
-  generateRandomInteger(min, max) {
+  GenerateRandomInteger(min, max) {
     return Math.floor(min + Math.random()*(max - min + 1))
   }
 
-  addLog(action:string){
+  AddLog(action:string){
     this.logs.CustomerName  = this.customer.CustomerName;
     this.logs.AdminName=localStorage.getItem('adminName');
     this.logs.AccountName=this.AccountAddForm.getRawValue().AccountName;
@@ -152,10 +149,7 @@ export class AddAccountComponent {
     this.logs.SectionModified = 'Account';
     this.logs.Date = new Date().toString();
     this.logs.Time = new Date().toString();
-    this.logService.addLog(this.logs).subscribe((result) => {
-      if (result) {
-        console.log(result);
-      }
+    this.logService.AddLog(this.logs).subscribe((result) => {
     });
   }
 
@@ -242,7 +236,7 @@ export class AddAccountComponent {
 
 
 
-  openGoogleMap()
+  OpenGoogleMap()
   {
     let dialogRef=this.dialog.open(GoogleMapComponent,{
       disableClose:true,
@@ -257,15 +251,13 @@ export class AddAccountComponent {
     });
     dialogRef.afterClosed().subscribe((result)=>{
       this.coordinates=result;
-      if(this.coordinates.Address)
+      if(this.coordinates.address)
       {
-        this.AccountAddForm.controls.Location.patchValue(this.coordinates.Address);
-        this.AccountAddForm.controls.Latitude.patchValue(this.coordinates.Latitude);
-        this.AccountAddForm.controls.Longitude.patchValue(this.coordinates.Longitude);
+        this.AccountAddForm.controls.Location.patchValue(this.coordinates.address);
+        this.AccountAddForm.controls.Latitude.patchValue(this.coordinates.latitude);
+        this.AccountAddForm.controls.Longitude.patchValue(this.coordinates.longitude);
       }
-      console.log(this.coordinates.Address);
     }, (error)=>{
-      console.log("error found");
     })
   }
 

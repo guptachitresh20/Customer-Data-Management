@@ -16,7 +16,7 @@ export class TokenInterceptor implements HttpInterceptor {
   constructor(private auth:AuthService, private router:Router) {}
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-    const token=this.auth.getToken();
+    const token=this.auth.GetToken();
 
     if(token){
       request=request.clone({
@@ -30,7 +30,7 @@ export class TokenInterceptor implements HttpInterceptor {
           if(err.status===401)
           {
             alert('Token is expired....Login again');
-            this.auth.signOut();
+            this.auth.SignOut();
           }
         }
         return throwError(()=>{new Error("Some other error occured")});

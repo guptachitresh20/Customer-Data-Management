@@ -13,32 +13,27 @@ export class AccountService {
 
   invokeEvent: Subject<any> = new Subject(); 
   // to add account
-  addAccount(data:IAccount){
+  AddAccount(data:IAccount){
     return this.http.post(this.apiurl, data);
   }
   // to delete the account 
-  deleteAccountbyId(id:any){
+  DeleteAccountbyId(id:any){
     return this.http.delete<IAccount>(`${this.apiurl}/${id}`);
   }
   // to update the specific account
-  updateAccount(id:any, accountData:IAccount){
+  UpdateAccount(id:any, accountData:IAccount){
     return this.http.put(`${this.apiurl}/${id}`,accountData);
   }
 
-  getAccountbyId(id:any): Observable<IAccount>{
+  GetAccountbyId(id:any): Observable<IAccount>{
     return this.http.get<IAccount>(`${this.apiurl}/${id}`);
   }
 
-  searchAccounts(data:string){
-    return this.http.get<IDisplayAccount[]>(`${this.apiurl}$like?search=${data}`);
+  SearchAccounts(data:string, id:string){
+    return this.http.get<IDisplayAccount[]>(`${this.apiurl}$like?search=${data}&id=${id}`);
   }
 
-  callSecondComponent() { 
+  CallSecondComponent() { 
     this.invokeEvent.next("getList");   
   }
-  // accounts
-  // call when user click on specific customer row -> to fetch all the data of that specific customer
-  // getCAccountDetail(id:any){
-  //   return this.http.get<IAccount>(`${this.apiurl}/${id}`);
-  // }
 }

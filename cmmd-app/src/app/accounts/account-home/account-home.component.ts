@@ -37,16 +37,16 @@ export class AccountHomeComponent implements OnInit{
   constructor(private location:Location, private accountService: AccountService,private logService:LogsService, private http:HttpClient, private route: ActivatedRoute, private dialog: MatDialog, private customerService:CustomerService, public searchService:SearchService){
     this.searchService.invokeEvent.subscribe(value => {
       if(value){
-       this.searchAccounts(value); 
+       this.SearchAccounts(value); 
      }
      else{
-      this.getCustomerDetails();
+      this.GetCustomerDetails();
      }
     });
     this.accountService.invokeEvent.subscribe(value=>{
       if(value)
       {
-        this.getCustomerDetails();
+        this.GetCustomerDetails();
       }
     });
   }
@@ -60,23 +60,21 @@ export class AccountHomeComponent implements OnInit{
       }
     })
     localStorage.setItem('id',this.customer_id);
-    this.getCustomerDetails();
+    this.GetCustomerDetails();
   }
 
-  getCustomerDetails(){
-    this.customerService.getPagedCustomerbyId(this.customer_id,(this.pageNumber-1)*this.pageSize,this.pageSize).subscribe((result:IAccountsPaginatedResults)=>{
+  GetCustomerDetails(){
+    this.customerService.GetPagedCustomerbyId(this.customer_id,(this.pageNumber-1)*this.pageSize,this.pageSize).subscribe((result:IAccountsPaginatedResults)=>{
       if(result)
       {
-        console.log(result);
         this.customerDetail=result.Item;
-        console.log(this.customerDetail);
         this.accountList=result.Item.Accounts;
         this.totalAccount=result.TotalCount;
       }
     });
   }
 
-  editAccount(id: string) {
+  UpdateAccount(id: string) {
     this.dialog.open(AddAccountComponent, {
       maxHeight: 'calc(100vh - 120px)',
       height: 'auto',
@@ -91,26 +89,24 @@ export class AccountHomeComponent implements OnInit{
     });
   }
 
-  getAccountName(id)
+  GetAccountName(id)
   {
-    console.log(id);
-    this.accountService.getAccountbyId(id).subscribe(async (result)=>{
+    this.accountService.GetAccountbyId(id).subscribe(async (result)=>{
       if(result){
         this.account=await result;
-        console.log(this.account);
       }
     })
   }
 
-  deleteAccount(id: string) {
+  DeleteAccount(id: string) {
     alertify.confirm("Delete Account", "Do you want to delete this account?", () => {
-      this.getAccountName(id);
-      this.accountService.deleteAccountbyId(id).subscribe(async result => {
+      this.GetAccountName(id);
+      this.accountService.DeleteAccountbyId(id).subscribe(async result => {
         alertify.set('notifier','position', 'top-right');
           alertify.error('Deleted Successfully');
-          this.getCustomerDetails();
+          this.GetCustomerDetails();
           await new Promise(f => setTimeout(f, 1000));
-          this.addLog('Delete');
+          this.AddLog('Delete');
       });
     }, function () {
 
@@ -118,7 +114,7 @@ export class AccountHomeComponent implements OnInit{
 
   }
 
-  addLog(action:string)
+  AddLog(action:string)
   {
     this.logs.CustomerName=this.customerDetail.CustomerName;
     this.logs.AdminName=localStorage.getItem('adminName');
@@ -127,15 +123,11 @@ export class AccountHomeComponent implements OnInit{
     this.logs.SectionModified='Account';
     this.logs.Date=new Date().toString();
     this.logs.Time=new Date().toString();
-    this.logService.addLog(this.logs).subscribe((result)=>{
-    if(result)
-    {
-      console.log(result);
-    }
-  });
+    this.logService.AddLog(this.logs).subscribe((result)=>{
+    });
   }
 
-  plotOnMap()
+  PlotOnMap()
   {
     if(this.customerDetail.Accounts.length!==0)
     {
@@ -150,29 +142,27 @@ export class AccountHomeComponent implements OnInit{
       alertify.error('No Accounts to Plot');
     }
   }
-  closeDialog(sendData:any)
+  CloseDialog(sendData:any)
   {
     this.dialog.closeAll();
   }
 
-  backButton()
+  BackButton()
   {
     this.location.back();
   }
 
-  onPageChange(event:number){
+  OnPageChange(event:number){
     this.pageNumber=event;
-    this.getCustomerDetails();
+    this.GetCustomerDetails();
   }
 
-  searchAccounts(value)
+  SearchAccounts(value)
   {
-    console.log(value);
-    this.accountService.searchAccounts(value).subscribe((result)=>{
+    this.accountService.SearchAccounts(value,this.customer_id).subscribe((result)=>{
         if(result)
         {
           this.accountList=result;
-          console.log(this.accountList);
         }
     });
   }

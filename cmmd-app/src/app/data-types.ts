@@ -12,7 +12,7 @@ export interface ICustomer {
   Accounts?: IDisplayAccount[];
 }
 export interface IDisplayCustomer {
-  Length: any;
+  length: any;
   CustomerName?: string;
   Logo?: string;
   Gstin?: string;
@@ -22,7 +22,7 @@ export interface IDisplayCustomer {
 }
 
 export interface IDisplayAccount {
-  Length: any;
+  length: any;
   AccountId?: string;
   AccountName?: string;
   Location?: string;
@@ -63,7 +63,7 @@ export interface IAdmin{
 }
 
 export interface ILogs {
-  Length?: any;
+  length?: any;
   LogId?: number;
   Email?:string;
   AdminName?: string;

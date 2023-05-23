@@ -38,7 +38,7 @@ export class GoogleMapComponent implements OnInit{
   ngOnInit() {
     //load Places Autocomplete
     this.mapsAPILoader.load().then(() => {
-      this.setCurrentLocation();
+      this.SetCurrentLocation();
       this.geoCoder = new google.maps.Geocoder();
 
       let autocomplete = new google.maps.places.Autocomplete(
@@ -58,38 +58,35 @@ export class GoogleMapComponent implements OnInit{
           this.latitude = place.geometry.location.lat();
           this.longitude = place.geometry.location.lng();
           this.zoom = 12;
-          this.getAddress(this.latitude, this.longitude);
+          this.GetAddress(this.latitude, this.longitude);
         });
       });
     });
   }
 
   // Get Current Location Coordinates
-  private setCurrentLocation() {
+  private SetCurrentLocation() {
     if ('geolocation' in navigator) {
       navigator.geolocation.getCurrentPosition((position) => {
         this.latitude = position.coords.latitude;
         this.longitude = position.coords.longitude;
         this.zoom = 8;
-        this.getAddress(this.latitude, this.longitude);
+        this.GetAddress(this.latitude, this.longitude);
       });
     }
   }
 
-  markerDragEnd($event: any) {
-    console.log($event);
+  MarkerDragEnd($event: any) {
     this.latitude = $event.latLng.lat();
     this.longitude = $event.latLng.lng();
-    this.getAddress(this.latitude, this.longitude);
+    this.GetAddress(this.latitude, this.longitude);
     
   }
 
-  getAddress(latitude: number, longitude: number) {
+  GetAddress(latitude: number, longitude: number) {
     this.geoCoder.geocode(
       { location: { lat: latitude, lng: longitude } },
       (results: any, status: any) => {
-        console.log(results);
-        console.log(status);
         if (status === 'OK') {
           if (results[0]) {
             this.zoom = 12;
@@ -104,12 +101,12 @@ export class GoogleMapComponent implements OnInit{
     );
   }
 
-  closeDialog(sendData:any)
+  CloseDialog(sendData:any)
   {
     this.matDialogRef.close(sendData);
   }
 
-  saveLocation(){
+  SaveLocation(){
     const data = {
       address: this.address,
       latitude: this.latitude,

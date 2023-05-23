@@ -15,45 +15,40 @@ export class CustomerService {
 
   invokeEvent: Subject<any> = new Subject(); 
   // to add customer 
-  addCustomer(data:ICustomer){
+  AddCustomer(data:ICustomer){
     return this.http.post(this.apiurl, data);
   }
   // to get the list of all the customers
-  getCustomer(startIndex,pageSize){
-    return this.http.get<IPaginatedResults<IDisplayCustomer>>(`${this.apiurl}?startIndex=${startIndex}&pageSize=${pageSize}`);
+  GetCustomer(startIndex,pageSize){
+    return this.http.get<IPaginatedResults<IDisplayCustomer[]>>(`${this.apiurl}?startIndex=${startIndex}&pageSize=${pageSize}`);
   }
   // to delete the customer 
-  deleteCustomerbyId(id:any){
+  DeleteCustomerbyId(id:any){
     return this.http.delete<ICustomer>(`${this.apiurl}/${id}`);
   }
   // to update the specific customer
-  updateCustomer(id:any, customerData:ICustomer){
+  UpdateCustomer(id:any, customerData:ICustomer){
     return this.http.put(`${this.apiurl}/${id}`,customerData);
   }
-  getCustomerbyId(id:any): Observable<ICustomer>{
+  GetCustomerbyId(id:any): Observable<ICustomer>{
     return this.http.get<ICustomer>(`${this.apiurl}/${id}`);
   }
 
-  getPagedCustomerbyId(id:any,startIndex,pageSize): Observable<IAccountsPaginatedResults>{
+  GetPagedCustomerbyId(id:any,startIndex,pageSize): Observable<IAccountsPaginatedResults>{
     return this.http.get<IAccountsPaginatedResults>(`${this.apiurl}/fetch/${id}?startIndex=${startIndex}&pageSize=${pageSize}`);
   }
-  // accounts
+
   // call when user click on specific customer row -> to fetch all the data of that specific customer
-  getCustomerDetail(id:any){
+  GetCustomerDetail(id:any){
     return this.http.get<ICustomer>(`${this.apiurl}/${id}`);
   }
 
-  searchCustomers(data:string){
+  SearchCustomers(data:string){
     return this.http.get<IDisplayCustomer[]>(`${this.apiurl}$like?search=${data}`);
   }
 
-  callSecondComponent() { 
+  CallSecondComponent() { 
     this.invokeEvent.next("getList");   
   }
-
-  // searchCustomers(searchValue:string)
-  // {
-  //   return this.http.get<IDisplayCustomer[]>(`http://localhost:3000/customer?cname_like=${searchValue}`);
-  // }
   
 }

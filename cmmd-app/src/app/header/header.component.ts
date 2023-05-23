@@ -34,25 +34,21 @@ export class HeaderComponent implements OnInit {
     if(this.url && this.url.includes('logs')){
       if(this.url && this.url.includes('logs')){
         this.menuType='logs';
-        console.warn(this.menuType);
       }
     }
     else if(this.url && this.url.includes('@')){
       if(this.url && this.url.includes('@')){
         this.menuType='account_detail';
-        console.warn(this.menuType);
       }
     }
     else if(this.url && !this.url.includes('/accounts')){  
       if(this.url && !this.url.includes('/accounts')){
         this.menuType='customers';
-        console.warn(this.menuType)
       }
     }
     else{
       if(this.url && this.url.includes('/accounts')){
         this.menuType='accounts';
-        console.warn(this.menuType)
       }
     } 
 
@@ -62,25 +58,21 @@ export class HeaderComponent implements OnInit {
     if(val.url && val.url.includes('logs')){
       if(val.url && val.url.includes('logs')){
         this.menuType='logs';
-        console.warn(this.menuType);
       }
     }
     else if(val.url && val.url.includes('@')){
       if(val.url && val.url.includes('@')){
         this.menuType='account_detail';
-        console.warn(this.menuType);
       }
     }
     else if(val.url && !val.url.includes('/accounts')){  
       if(val.url && !val.url.includes('/accounts')){
         this.menuType='customers';
-        console.warn(this.menuType)
       }
     }
     else{
       if(val.url && val.url.includes('/accounts')){
         this.menuType='accounts';
-        console.warn(this.menuType)
       }
     } 
    });
@@ -88,7 +80,7 @@ export class HeaderComponent implements OnInit {
 
 
 
-  addCustomer(){
+  AddCustomer(){
     this.dialog.open(AddCustomerComponent,{
       disableClose:true,
       maxHeight: 'calc(100vh - 120px)',
@@ -101,7 +93,7 @@ export class HeaderComponent implements OnInit {
     });
   }
 
-  addAccount(){
+  AddAccount(){
     this.dialog.open(AddAccountComponent,{
       disableClose:true,
       maxHeight: 'calc(100vh - 120px)',
@@ -115,26 +107,26 @@ export class HeaderComponent implements OnInit {
     });
   }
 
-  logout()
+  Logout()
   {
-    this.auth.signOut();
+    this.auth.SignOut();
     alertify.set('notifier','position', 'top-right');
     alertify.error("Logged out")
   }
 
-  onSearchTextChanged()
+  OnSearchTextChanged()
   {
     this.search.searchValue = this.enteredSearch;
-    this.search.callSecondComponent();
+    this.search.CallSecondComponent();
   }
 
-  clearSearch()
+  ClearSearch()
   {
     this.enteredSearch="";
     this.search.searchValue = this.enteredSearch;
   }
 
-  resetPassword()
+  ResetPassword()
   {
     this.dialog.open(ResetPasswordComponent,{
       disableClose:true,

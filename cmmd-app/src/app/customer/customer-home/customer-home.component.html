@@ -25,8 +25,8 @@
               <td routerLink="/customer/{{customer.Gstin}}/accounts" data-title="Email">{{customer?.Email}}</td>
               <td>
                 
-                <button class="update_btn" (click)="editCustomer(customer.Gstin)">Update</button>
-                <button  class="delete_btn" (click)="deleteCustomer(customer.Gstin)">Delete</button>
+                <button class="update_btn" (click)="UpdateCustomer(customer.Gstin)">Update</button>
+                <button  class="delete_btn" (click)="DeleteCustomer(customer.Gstin)">Delete</button>
                 
               </td>
             </tr>
@@ -35,7 +35,7 @@
         </tbody>  
       </table>
       <div class="paginationclass">
-        <pagination-controls (pageChange)="onPageChange($event)"></pagination-controls>
+        <pagination-controls (pageChange)="OnPageChange($event)"></pagination-controls>
       </div>
     </div>
   </div>

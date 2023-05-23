@@ -32,18 +32,18 @@ export class AccountDetailComponent implements OnInit {
         }
       });
 
-      this.getAccountbyid(this.Account_id);
+      this.GetAccountbyid(this.Account_id);
   }
 
-  getAccountbyid(account_id: string) {
-    this.accountService.getAccountbyId(account_id).subscribe(async (result) => {
+  GetAccountbyid(account_id: string) {
+    this.accountService.GetAccountbyId(account_id).subscribe(async (result) => {
       if (result) {
         this.accountDetails = await result;
       }
     });
   }
 
-  backButton()
+  BackButton()
   {
     this.location.back();
   }

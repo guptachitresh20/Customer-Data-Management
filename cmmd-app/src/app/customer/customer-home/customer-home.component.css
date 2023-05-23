@@ -44,7 +44,6 @@
     left: 6px;
     width: 40%;
     padding-right: 10px;
-    /* text-align: left; */
     font-weight: bold;
     top: 0px;
 
@@ -86,7 +85,6 @@
 }
 
 .table_section {
-  /* height: 100vh; */
   overflow: auto;
 }
 
@@ -124,7 +122,6 @@ td img {
   width: 60px;
   object-fit: cover;
   border-radius: 15px;
-  /* border: 5px solid #C8CCCE; */
 }
 
 tr:hover td {

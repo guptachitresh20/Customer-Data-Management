@@ -10,7 +10,7 @@ export class SearchService {
   searchValue:string;
   invokeEvent: Subject<any> = new Subject(); 
 
-  callSecondComponent() { 
+  CallSecondComponent() { 
     this.invokeEvent.next(this.searchValue);   
   }
 }

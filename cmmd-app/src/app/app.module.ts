@@ -33,6 +33,8 @@ import { LogsComponent } from './logs/logs.component';
 import { TokenInterceptor } from './interceptors/token.interceptor';
 import { AdminModule } from './admin/admin.module';
 import {Ng2TelInputModule} from 'ng2-tel-input';
+import { SpinnerComponent } from './spinner/spinner.component'
+import { LoadingInterceptor } from './interceptors/loading.interceptor';
 
 @NgModule({
   declarations: [
@@ -43,6 +45,7 @@ import {Ng2TelInputModule} from 'ng2-tel-input';
     LoginComponent,
     RegisterComponent,
     LogsComponent,
+    SpinnerComponent
   ],
   imports: [
     BrowserModule,
@@ -82,6 +85,9 @@ import {Ng2TelInputModule} from 'ng2-tel-input';
       provide:HTTP_INTERCEPTORS,
       useClass:TokenInterceptor,
       multi:true
+    },
+    {
+      provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true
     }
   ],
   bootstrap: [AppComponent]

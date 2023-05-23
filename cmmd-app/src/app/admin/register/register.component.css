@@ -115,21 +115,21 @@ button {
     box-shadow: 1px 6px 4px #cccdcf;
 }
 
-input[name='email'] {
+input[name='Email'] {
     background-image: url(../../../assets/username.png);
     background-position: 7px;
     background-repeat: no-repeat;
     background-size: 25px;
 }
 
-input[type='password'] {
+input[type='Password'] {
     background-image: url(../../../assets/password.png);
     background-position: 7px;
     background-repeat: no-repeat;
     background-size: 25px;
 }
 
-input[name='name'] {
+input[name='Name'] {
     background-image: url(../../../assets/name.png);
     background-position: 7px;
     background-repeat: no-repeat;
@@ -138,7 +138,7 @@ input[name='name'] {
 
 
 
-input[name='phone'] {
+input[name='Phone'] {
     background-image: url(../../../assets/phone.png);
     background-position: 7px;
     background-repeat: no-repeat;
@@ -227,7 +227,6 @@ input[name='phone'] {
 }
 .linkscontainer ul li{
 	list-style: none;
-	/* padding-right: 50%; */
 }
 .linkscontainer ul li a{
 	cursor: pointer;

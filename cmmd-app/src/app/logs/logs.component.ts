@@ -13,10 +13,10 @@ export class LogsComponent implements OnInit {
   constructor(private searchService:SearchService, private location:Location,  public logSearch:SearchService, private logService:LogsService){
     this.searchService.invokeEvent.subscribe(value => {
       if(value){
-       this.searchLogs(value); 
+       this.SearchLogs(value); 
      }
      else{
-      this.getLogs();
+      this.GetLogs();
      }
     });
   }
@@ -27,12 +27,12 @@ export class LogsComponent implements OnInit {
   totalLogs:number;
 
   ngOnInit(){
-    this.getLogs();
+    this.GetLogs();
   }
 
-  getLogs()
+  GetLogs()
   {
-    this.logService.getLogs((this.pageNumber-1)*this.pageSize,this.pageSize).subscribe((result:IPaginatedResults<ILogs>)=>{
+    this.logService.GetLogs((this.pageNumber-1)*this.pageSize,this.pageSize).subscribe((result:IPaginatedResults<ILogs>)=>{
       if(result){
         this.logList=result.Items;
         this.totalLogs=result.TotalCount;
@@ -40,20 +40,19 @@ export class LogsComponent implements OnInit {
     });
   }
 
-  backButton()
+  BackButton()
   {
     this.location.back();
   }
 
-  onPageChange(event:number){
+  OnPageChange(event:number){
     this.pageNumber=event;
-    this.getLogs();
+    this.GetLogs();
   }
 
-  searchLogs(value)
+  SearchLogs(value)
   {
-    console.log(value);
-    this.logService.searchLogs(value).subscribe((result)=>{
+    this.logService.SearchLogs(value).subscribe((result)=>{
         if(result)
         {
           this.logList=result;

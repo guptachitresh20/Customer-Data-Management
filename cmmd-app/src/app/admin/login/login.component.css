@@ -180,7 +180,6 @@ input[type='password'] {
 }
 .linkscontainer ul li{
 	list-style: none;
-	/* padding-right: 50%; */
 }
 .linkscontainer ul li a{
 	cursor: pointer;

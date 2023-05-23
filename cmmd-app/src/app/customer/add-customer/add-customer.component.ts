@@ -50,141 +50,136 @@ export class AddCustomerComponent implements OnInit{
     this.coordinates={} as Coordinates;
     if(this.coordinates.address)
     {
-      this.customerAddForm.controls.headquarter.patchValue(this.coordinates.address);
+      this.CustomerAddForm.controls.Headquarter.patchValue(this.coordinates.address);
     }
 
   }
 
   ngOnInit(): void {
     if (this.data.id != '' && this.data.id != null) {
-      this.customerService.getCustomerbyId(this.data.id).subscribe((response) => {
+      this.customerService.GetCustomerbyId(this.data.id).subscribe((response) => {
         if(response)
         {
           this.editdata = response;
-          console.log(this.editdata);
-          this.customerAddForm.setValue({
+          this.CustomerAddForm.setValue({
             CustomerName: this.editdata.CustomerName,
-            logo: this.editdata.Logo,
-            typeOfCompany: this.editdata.TypeOfCompany,
-            description: this.editdata.Description,
-            email: this.editdata.Email,
-            gstin: this.editdata.Gstin,
-            headquarter: this.editdata.Headquarter,
-            phoneNo: this.editdata.PhoneNo,
-            website: this.editdata.Website,
-            countryCode: this.editdata.CountryCode,
+            Logo: this.editdata.Logo,
+            TypeOfCompany: this.editdata.TypeOfCompany,
+            Description: this.editdata.Description,
+            Email: this.editdata.Email,
+            Gstin: this.editdata.Gstin,
+            Headquarter: this.editdata.Headquarter,
+            PhoneNo: this.editdata.PhoneNo,
+            Website: this.editdata.Website,
+            CountryCode: this.editdata.CountryCode,
           });
         }
       });
     }
   }
 
-  addCustomer() {
-    if (this.customerAddForm.valid && this.data.button === 'Update') {
-      const Editid = this.customerAddForm.getRawValue().gstin;
+  AddCustomer() {
+    if (this.CustomerAddForm.valid && this.data.button === 'Update') {
+      const Editid = this.CustomerAddForm.getRawValue().Gstin;
       if (Editid != '' && Editid != null) {
         this.customerService
-          .updateCustomer(Editid, this.customerAddForm.getRawValue())
+          .UpdateCustomer(Editid, this.CustomerAddForm.getRawValue())
           .subscribe(async (result) => {
             if (result == null) {
-              this.closePopup();
+              this.ClosePopup();
               alertify.set('notifier','position', 'top-right');
               alertify.success('Customer Updated Successfully');
               await new Promise((f) => setTimeout(f, 1000));
               // window.location.reload();
-              this.customerService.callSecondComponent();
-              this.addLog('Update');
+              this.customerService.CallSecondComponent();
+              this.AddLog('Update');
             } 
           });
       }
 
     } else {
-      this.customerService.addCustomer(this.customerAddForm.value).subscribe(
+      this.customerService.AddCustomer(this.CustomerAddForm.value).subscribe(
         async (result) => {
           if (result) {
-            this.closePopup();
+            this.ClosePopup();
             alertify.set('notifier','position', 'top-right');
             alertify.success('Customer Added Successfully');
             await new Promise((f) => setTimeout(f, 1000));
             // window.location.reload();
-            this.customerService.callSecondComponent();
-            this.addLog('Create');
+            this.customerService.CallSecondComponent();
+            this.AddLog('Create');
           }
         },
         (error) => {
-          this.closePopup();
+          this.ClosePopup();
           alertify.set('notifier','position', 'top-right');
           alertify.error('Customer with same GSTIN already Exists');
         });
     }
   }
 
-  addLog(action:string)
+  AddLog(action:string)
   {
-    this.logs.CustomerName=this.customerAddForm.value.CustomerName;
+    this.logs.CustomerName=this.CustomerAddForm.value.CustomerName;
     this.logs.AdminName=localStorage.getItem('adminName');
     this.logs.AccountName="-";
     this.logs.Action=action;
     this.logs.SectionModified='Customer';
     this.logs.Date=new Date().toString();
     this.logs.Time=new Date().toString();
-    this.logService.addLog(this.logs).subscribe((result)=>{
-      if(result)
-      {
-        console.log(result);
-      }
+    this.logService.AddLog(this.logs).subscribe((result)=>{
     });
   }
 
-  closePopup() {
+  ClosePopup() {
     this.dialog.closeAll();
   }
 
-  customerAddForm = new FormGroup({
+  CustomerAddForm = new FormGroup({
     CustomerName: new FormControl('', [Validators.required]),
-    logo: new FormControl('', [Validators.required]),
-    typeOfCompany: new FormControl('', [Validators.required]),
-    description: new FormControl('', [Validators.required]),
-    email: new FormControl('', [Validators.required, Validators.email]),
-    gstin: new FormControl('', [
+    Logo: new FormControl('', [Validators.required]),
+    TypeOfCompany: new FormControl('', [Validators.required]),
+    Description: new FormControl('', [Validators.required]),
+    Email: new FormControl('', [Validators.required, Validators.email]),
+    Gstin: new FormControl('', [
       Validators.required,
       Validators.minLength(15),
       Validators.maxLength(15),
     ]),
-    headquarter: new FormControl('', [Validators.required]),
-    phoneNo: new FormControl('', [
+    Headquarter: new FormControl('', [Validators.required]),
+    PhoneNo: new FormControl('', [
       Validators.required
     ]),
-    website: new FormControl('', []),
-    countryCode: new FormControl('')
+    Website: new FormControl('', []),
+    CountryCode: new FormControl('')
   });
 
-  get email() {
-    return this.customerAddForm.get('email');
+  get Email() {
+    return this.CustomerAddForm.get('Email');
   }
   get CustomerName() {
-    return this.customerAddForm.get('CustomerName');
+    return this.CustomerAddForm.get('CustomerName');
   }
 
-  get gstin() {
-    return this.customerAddForm.get('gstin');
+  get Gstin() {
+    return this.CustomerAddForm.get('Gstin');
   }
 
-  get headquarter() {
-    return this.customerAddForm.get('headquarter');
+  get Headquarter() {
+    return this.CustomerAddForm.get('Headquarter');
   }
-  get countryCode() {
-    return this.customerAddForm.get('countryCode');
+  get CountryCode() {
+    return this.CustomerAddForm.get('CountryCode');
   }
-  get description() {
-    return this.customerAddForm.get('description');
+  get Description() {
+    return this.CustomerAddForm.get('Description');
   }
-  get phoneNo() {
-    return this.customerAddForm.get('phoneNo');
+  get PhoneNo() {
+    return this.CustomerAddForm.get('PhoneNo');
   }
 
 
-  openGoogleMap()
+  OpenGoogleMap()
   {
     let dialogRef=this.dialog.open(GoogleMapComponent,{
       disableClose:true,
@@ -201,16 +196,14 @@ export class AddCustomerComponent implements OnInit{
       this.coordinates=result;
       if(this.coordinates.address)
       {
-        this.customerAddForm.controls.headquarter.patchValue(this.coordinates.address);
+        this.CustomerAddForm.controls.Headquarter.patchValue(this.coordinates.address);
       }
-      console.log(this.coordinates.address);
     }, (error)=>{
-      console.log("error found");
     })
   }
 
-  onCountryChange(event){
-    this.customerAddForm.controls.countryCode.patchValue(event.dialCode);
+  OnCountryChange(event){
+    this.CustomerAddForm.controls.CountryCode.patchValue(event.dialCode);
   }
 
 }
