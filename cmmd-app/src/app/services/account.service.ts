@@ -13,27 +13,27 @@ export class AccountService {
 
   invokeEvent: Subject<any> = new Subject(); 
   // to add account
-  AddAccount(data:IAccount){
+  addAccount(data:IAccount){
     return this.http.post(this.apiurl, data);
   }
   // to delete the account 
-  DeleteAccountbyId(id:any){
+  deleteAccountbyId(id:any){
     return this.http.delete<IAccount>(`${this.apiurl}/${id}`);
   }
   // to update the specific account
-  UpdateAccount(id:any, accountData:IAccount){
+  updateAccount(id:any, accountData:IAccount){
     return this.http.put(`${this.apiurl}/${id}`,accountData);
   }
 
-  GetAccountbyId(id:any): Observable<IAccount>{
+  getAccountbyId(id:any): Observable<IAccount>{
     return this.http.get<IAccount>(`${this.apiurl}/${id}`);
   }
 
-  SearchAccounts(data:string, id:string){
+  searchAccounts(data:string, id:string){
     return this.http.get<IDisplayAccount[]>(`${this.apiurl}$like?search=${data}&id=${id}`);
   }
 
-  CallSecondComponent() { 
+  callSecondComponent() { 
     this.invokeEvent.next("getList");   
   }
 }

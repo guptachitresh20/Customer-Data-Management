@@ -12,40 +12,40 @@ export class AuthService {
   apiurl = 'https://localhost:7252/api/Admin/'
   constructor(private http:HttpClient, private router:Router) { }
 
-  SignUp(userObj:any)
+  signUp(userObj:any)
   {
     return this.http.post<any>(`${this.apiurl}register`, userObj);
   }
 
-  Login(loginObj:any)
+  login(loginObj:any)
   {
     return this.http.post<any>(`${this.apiurl}authenticate`, loginObj);
   }
 
-  Reset(resetObj:any)
+  reset(resetObj:any)
   {
     return this.http.put<any>(`${this.apiurl}reset`, resetObj);
   }
 
-  GetAdmin(id:any)
+  getAdmin(id:any)
   {
     return this.http.get<IAdmin>(`${this.apiurl}${id}`);
   }
 
-  StoreToken(tokenValue:string){
+  storeToken(tokenValue:string){
     localStorage.setItem('token',tokenValue);
   }
 
-  GetToken()
+  getToken()
   {
     return localStorage.getItem('token');
   }
 
-  IsLoggedIn():boolean{
+  isLoggedIn():boolean{
     return !!localStorage.getItem('token');
   }
 
-  SignOut()
+  signOut()
   {
     localStorage.clear();
     this.router.navigate(['login']);

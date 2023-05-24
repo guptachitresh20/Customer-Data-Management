@@ -37,16 +37,16 @@ export class AccountHomeComponent implements OnInit{
   constructor(private location:Location, private accountService: AccountService,private logService:LogsService, private http:HttpClient, private route: ActivatedRoute, private dialog: MatDialog, private customerService:CustomerService, public searchService:SearchService){
     this.searchService.invokeEvent.subscribe(value => {
       if(value){
-       this.SearchAccounts(value); 
+       this.searchAccounts(value); 
      }
      else{
-      this.GetCustomerDetails();
+      this.getCustomerDetails();
      }
     });
     this.accountService.invokeEvent.subscribe(value=>{
       if(value)
       {
-        this.GetCustomerDetails();
+        this.getCustomerDetails();
       }
     });
   }
@@ -60,21 +60,21 @@ export class AccountHomeComponent implements OnInit{
       }
     })
     localStorage.setItem('id',this.customer_id);
-    this.GetCustomerDetails();
+    this.getCustomerDetails();
   }
 
-  GetCustomerDetails(){
-    this.customerService.GetPagedCustomerbyId(this.customer_id,(this.pageNumber-1)*this.pageSize,this.pageSize).subscribe((result:IAccountsPaginatedResults)=>{
+  getCustomerDetails(){
+    this.customerService.getPagedCustomerbyId(this.customer_id,(this.pageNumber-1)*this.pageSize,this.pageSize).subscribe((result:IAccountsPaginatedResults)=>{
       if(result)
       {
-        this.customerDetail=result.Item;
-        this.accountList=result.Item.Accounts;
-        this.totalAccount=result.TotalCount;
+        this.customerDetail=result.item;
+        this.accountList=result.item.accounts;
+        this.totalAccount=result.totalCount;
       }
     });
   }
 
-  UpdateAccount(id: string) {
+  updateAccount(id: string) {
     this.dialog.open(AddAccountComponent, {
       maxHeight: 'calc(100vh - 120px)',
       height: 'auto',
@@ -89,24 +89,24 @@ export class AccountHomeComponent implements OnInit{
     });
   }
 
-  GetAccountName(id)
+  getAccountName(id)
   {
-    this.accountService.GetAccountbyId(id).subscribe(async (result)=>{
+    this.accountService.getAccountbyId(id).subscribe(async (result)=>{
       if(result){
         this.account=await result;
       }
     })
   }
 
-  DeleteAccount(id: string) {
+  deleteAccount(id: string) {
     alertify.confirm("Delete Account", "Do you want to delete this account?", () => {
-      this.GetAccountName(id);
-      this.accountService.DeleteAccountbyId(id).subscribe(async result => {
+      this.getAccountName(id);
+      this.accountService.deleteAccountbyId(id).subscribe(async result => {
         alertify.set('notifier','position', 'top-right');
-          alertify.error('Deleted Successfully');
-          this.GetCustomerDetails();
+          alertify.success('Deleted Successfully');
+          this.getCustomerDetails();
           await new Promise(f => setTimeout(f, 1000));
-          this.AddLog('Delete');
+          this.addLog('Delete');
       });
     }, function () {
 
@@ -114,22 +114,22 @@ export class AccountHomeComponent implements OnInit{
 
   }
 
-  AddLog(action:string)
+  addLog(action:string)
   {
-    this.logs.CustomerName=this.customerDetail.CustomerName;
-    this.logs.AdminName=localStorage.getItem('adminName');
-    this.logs.AccountName=this.account.AccountName;
-    this.logs.Action=action;
-    this.logs.SectionModified='Account';
-    this.logs.Date=new Date().toString();
-    this.logs.Time=new Date().toString();
-    this.logService.AddLog(this.logs).subscribe((result)=>{
+    this.logs.customerName=this.customerDetail.customerName;
+    this.logs.adminName=localStorage.getItem('adminName');
+    this.logs.accountName=this.account.accountName;
+    this.logs.action=action;
+    this.logs.sectionModified='Account';
+    this.logs.date=new Date().toString();
+    this.logs.time=new Date().toString();
+    this.logService.addLog(this.logs).subscribe((result)=>{
     });
   }
 
-  PlotOnMap()
+  plotOnMap()
   {
-    if(this.customerDetail.Accounts.length!==0)
+    if(this.customerDetail.accounts.length!==0)
     {
       this.dialog.open(MapPlottingComponent, {
         height: '50vh',
@@ -142,24 +142,24 @@ export class AccountHomeComponent implements OnInit{
       alertify.error('No Accounts to Plot');
     }
   }
-  CloseDialog(sendData:any)
+  closeDialog(sendData:any)
   {
     this.dialog.closeAll();
   }
 
-  BackButton()
+  backButton()
   {
     this.location.back();
   }
 
-  OnPageChange(event:number){
+  onPageChange(event:number){
     this.pageNumber=event;
-    this.GetCustomerDetails();
+    this.getCustomerDetails();
   }
 
-  SearchAccounts(value)
+  searchAccounts(value)
   {
-    this.accountService.SearchAccounts(value,this.customer_id).subscribe((result)=>{
+    this.accountService.searchAccounts(value,this.customer_id).subscribe((result)=>{
         if(result)
         {
           this.accountList=result;
