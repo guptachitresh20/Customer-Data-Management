@@ -12,7 +12,7 @@
 
   <p align="center">
     <br />
-    <a href="https://customerdatamanagementfast.azurewebsites.net/"><strong>View Demo »</strong></a>
+    <a href="https://customerdatamanagementfast.azurewebsites.net/login"><strong>View Demo »</strong></a>
     <br />
     <br />
    
