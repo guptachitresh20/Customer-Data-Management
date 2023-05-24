@@ -20,11 +20,11 @@ export class MapPlottingComponent implements OnInit{
   logoutButton: any;
 
   ngOnInit(){
-    this.GetCustomerList();
+    this.getCustomerList();
   }
 
-  GetCustomerList(){
-    this.customerService.GetCustomerbyId(localStorage.getItem('id')).subscribe((result:ICustomer)=>{
+  getCustomerList(){
+    this.customerService.getCustomerbyId(localStorage.getItem('id')).subscribe((result:ICustomer)=>{
       if(result)
       {
         this.customerDetail = result;

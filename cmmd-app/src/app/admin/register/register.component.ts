@@ -13,16 +13,16 @@ export class RegisterComponent {
 
   constructor(private auth:AuthService, private router:Router){}
 
-  Register()
+  register()
   {
-    if(this.RegisterForm.valid)
+    if(this.registerForm.valid)
     {
-      this.auth.SignUp(this.RegisterForm.value).subscribe((result)=>{
+      this.auth.signUp(this.registerForm.value).subscribe((result)=>{
         if(result)
         {
           alertify.set('notifier','position', 'top-right');
           alertify.success("Registeration Successful");
-          this.RegisterForm.reset();
+          this.registerForm.reset();
           this.router.navigate(['login']);
         }
       },
@@ -41,27 +41,27 @@ export class RegisterComponent {
 
 
 
-  RegisterForm = new FormGroup({
-    Name: new FormControl('', [Validators.required]),
-    Phone: new FormControl('', [Validators.required, Validators.minLength(10), Validators.maxLength(10)]),
-    Email: new FormControl('', [Validators.required, Validators.email]),
-    Password: new FormControl('', [Validators.required, Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{10,}')]),
-    Checkbox: new FormControl('',[Validators.required])
+  registerForm = new FormGroup({
+    name: new FormControl('', [Validators.required]),
+    phone: new FormControl('', [Validators.required, Validators.minLength(10), Validators.maxLength(10)]),
+    email: new FormControl('', [Validators.required, Validators.email]),
+    password: new FormControl('', [Validators.required, Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{10,}')]),
+    checkbox: new FormControl('',[Validators.required])
   });
 
-  get Email() {
-    return this.RegisterForm.get('Email');
+  get email() {
+    return this.registerForm.get('email');
   }
-  get Name() {
-    return this.RegisterForm.get('Name');
+  get name() {
+    return this.registerForm.get('name');
   }
-  get Password() {
-    return this.RegisterForm.get('Password');
+  get password() {
+    return this.registerForm.get('password');
   }
-  get Phone() {
-    return this.RegisterForm.get('Phone');
+  get phone() {
+    return this.registerForm.get('phone');
   }
-  get Checkbox() {
-    return this.RegisterForm.get('Checkbox');
+  get checkbox() {
+    return this.registerForm.get('checkbox');
   }
 }

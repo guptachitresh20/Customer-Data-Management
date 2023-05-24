@@ -80,7 +80,7 @@ export class HeaderComponent implements OnInit {
 
 
 
-  AddCustomer(){
+  addCustomer(){
     this.dialog.open(AddCustomerComponent,{
       disableClose:true,
       maxHeight: 'calc(100vh - 120px)',
@@ -93,7 +93,7 @@ export class HeaderComponent implements OnInit {
     });
   }
 
-  AddAccount(){
+  addAccount(){
     this.dialog.open(AddAccountComponent,{
       disableClose:true,
       maxHeight: 'calc(100vh - 120px)',
@@ -107,26 +107,26 @@ export class HeaderComponent implements OnInit {
     });
   }
 
-  Logout()
+  logout()
   {
-    this.auth.SignOut();
+    this.auth.signOut();
     alertify.set('notifier','position', 'top-right');
     alertify.error("Logged out")
   }
 
-  OnSearchTextChanged()
+  onSearchTextChanged()
   {
     this.search.searchValue = this.enteredSearch;
-    this.search.CallSecondComponent();
+    this.search.callSecondComponent();
   }
 
-  ClearSearch()
+  clearSearch()
   {
     this.enteredSearch="";
     this.search.searchValue = this.enteredSearch;
   }
 
-  ResetPassword()
+  resetPassword()
   {
     this.dialog.open(ResetPasswordComponent,{
       disableClose:true,

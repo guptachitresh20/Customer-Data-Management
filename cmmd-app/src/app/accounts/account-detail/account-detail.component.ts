@@ -10,7 +10,7 @@ import {Location} from '@angular/common';
   styleUrls: ['./account-detail.component.css'],
 })
 export class AccountDetailComponent implements OnInit {
-  Account_id: string;
+  account_id: string;
 
   accountDetails: IAccount;
 
@@ -28,22 +28,22 @@ export class AccountDetailComponent implements OnInit {
         let id = res.get('accountid');
 
         if (id) {
-          this.Account_id = id;
+          this.account_id = id;
         }
       });
 
-      this.GetAccountbyid(this.Account_id);
+      this.getAccountbyid(this.account_id);
   }
 
-  GetAccountbyid(account_id: string) {
-    this.accountService.GetAccountbyId(account_id).subscribe(async (result) => {
+  getAccountbyid(account_id: string) {
+    this.accountService.getAccountbyId(account_id).subscribe(async (result) => {
       if (result) {
         this.accountDetails = await result;
       }
     });
   }
 
-  BackButton()
+  backButton()
   {
     this.location.back();
   }

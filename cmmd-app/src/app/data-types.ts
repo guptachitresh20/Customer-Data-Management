@@ -1,86 +1,86 @@
 export interface ICustomer {
-  CustomerName?: string;
-  Logo?: string;
-  TypeOfCompany?: string;
-  Description?: string;
-  Email?: string;
-  Gstin?: string;
-  Headquarter?: string;
-  PhoneNo?: string;
-  Website?: string;
-  CountryCode?: string;
-  Accounts?: IDisplayAccount[];
+  customerName?: string;
+  logo?: string;
+  typeOfCompany?: string;
+  description?: string;
+  email?: string;
+  gstin?: string;
+  headquarter?: string;
+  phoneNo?: string;
+  website?: string;
+  countryCode?: string;
+  accounts?: IDisplayAccount[];
 }
 export interface IDisplayCustomer {
   length: any;
-  CustomerName?: string;
-  Logo?: string;
-  Gstin?: string;
-  Email?: string;
-  TypeOfCompany?: string;
-  Headquarter?: string;
+  customerName?: string;
+  logo?: string;
+  gstin?: string;
+  email?: string;
+  typeOfCompany?: string;
+  headquarter?: string;
 }
 
 export interface IDisplayAccount {
   length: any;
-  AccountId?: string;
-  AccountName?: string;
-  Location?: string;
-  Email?: string;
-  YearOfEst?: string;
-  Latitude?: number;
-  Longitude?: number;
+  accountId?: string;
+  accountName?: string;
+  location?: string;
+  email?: string;
+  yearOfEst?: string;
+  latitude?: number;
+  longitude?: number;
 }
 
 export interface IAccount {
-  AccountId?: string;
-  AccountName?: string;
-  Email?: string;
-  PhoneNo?: string;
-  NoOfEmp?: string;
-  YearOfEst?: string;
-  OperatingHours?: string;
-  Manager?: string;
-  ServicesOffered?: string;
-  Expenses?: string;
-  Profit?: string;
-  Revenue?: string;
-  NoOfDept?: string;
-  Location?: string;
-  Latitude?: number;
-  Longitude?: number;
-  Gstin?: string;
+  accountId?: string;
+  accountName?: string;
+  email?: string;
+  phoneNo?: string;
+  noOfEmp?: string;
+  yearOfEst?: string;
+  operatingHours?: string;
+  manager?: string;
+  servicesOffered?: string;
+  expenses?: string;
+  profit?: string;
+  revenue?: string;
+  noOfDept?: string;
+  location?: string;
+  latitude?: number;
+  longitude?: number;
+  gstin?: string;
 }
 
 
 export interface IAdmin{
-  Name?:string,
-  Email?:string,
-  Phone?:string,
-  Password?:string,
-  Token?:string,
-  NewPassword?:string
+  name?:string,
+  email?:string,
+  phone?:string,
+  password?:string,
+  token?:string,
+  newPassword?:string
 }
 
 export interface ILogs {
   length?: any;
-  LogId?: number;
-  Email?:string;
-  AdminName?: string;
-  CustomerName?: string;
-  AccountName?: string;
-  Action?: string;
-  SectionModified?: string;
-  Date?: string;
-  Time?:string
+  logId?: number;
+  email?:string;
+  adminName?: string;
+  customerName?: string;
+  accountName?: string;
+  action?: string;
+  sectionModified?: string;
+  date?: string;
+  time?:string
 }
 
 export interface IPaginatedResults<T>{
-  TotalCount:number,
-  Items: T[]
+  totalCount:number,
+  items: T[]
 }
 
 export interface IAccountsPaginatedResults{
-  TotalCount:number,
-  Item:ICustomer
+  totalCount:number,
+  item:ICustomer
 }

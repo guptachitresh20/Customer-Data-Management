@@ -3,16 +3,16 @@
           <a routerLink="customer"><img routerLink="/customer/" src="../../assets/cdm logo.png" alt="" /></a>
       </div>
     <div class="nav-search" >
-      <input *ngIf="menuType==='customers'||menuType==='accounts'||menuType==='logs'" (blur)="ClearSearch()" (keyup)="OnSearchTextChanged()" type="text" placeholder="Search for {{menuType}}" [(ngModel)]="enteredSearch"/>
+      <input *ngIf="menuType==='customers'||menuType==='accounts'||menuType==='logs'" (blur)="clearSearch()" (keyup)="onSearchTextChanged()" type="text" placeholder="Search for {{menuType}}" [(ngModel)]="enteredSearch"/>
       <button *ngIf="menuType==='accounts'|| menuType==='customers'||menuType==='logs'"><img src="../../assets/🦆 icon _search_.png" /></button>
     </div>
     <div class="nav-div">
         <ul class="nav-options">
             <li *ngIf="menuType==='customers'">
-              <a (click)="AddCustomer()"><mat-icon>person_add_alt_1</mat-icon></a>
+              <a (click)="addCustomer()"><mat-icon>person_add_alt_1</mat-icon></a>
             </li>
             <li *ngIf="menuType==='accounts'">
-              <a (click)="AddAccount()"><mat-icon>person_add_alt_1</mat-icon></a>
+              <a (click)="addAccount()"><mat-icon>person_add_alt_1</mat-icon></a>
             </li>
             <ul class="account">
               <li>
@@ -34,11 +34,11 @@
                     <mat-icon>description</mat-icon>
                     <span>Logs</span>
                   </button>
-                  <button (click)="ResetPassword()" mat-menu-item class="customize-b">
+                  <button (click)="resetPassword()" mat-menu-item class="customize-b">
                     <mat-icon>password</mat-icon>
                     <span>Reset Password</span>
                   </button>
-                  <button (click)="Logout()" mat-menu-item class="customize-b">
+                  <button (click)="logout()" mat-menu-item class="customize-b">
                     <mat-icon>logout</mat-icon>
                     <span>Logout</span>
                   </button>

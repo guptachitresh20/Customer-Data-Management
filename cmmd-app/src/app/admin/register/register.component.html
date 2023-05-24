@@ -23,37 +23,37 @@
 
             <p>Enter your details to register</p>
 
-            <form [formGroup]="RegisterForm" autocomplete="off">
+            <form [formGroup]="registerForm" autocomplete="off">
 
-                <input type="text" name="Name" placeholder="Name" formControlName="Name"><br>
-                <mat-error *ngIf="Name && Name.invalid && Name.touched">
+                <input type="text" name="name" placeholder="Name" formControlName="name"><br>
+                <mat-error *ngIf="name && name.invalid && name.touched">
                     <strong> Name Required</strong>
                  </mat-error>
                  <br>
 
-                <input type="text" name="Phone" placeholder="Phone" formControlName="Phone"><br>
-                <mat-error *ngIf="Phone && Phone.invalid && Phone.touched">
+                <input type="text" name="phone" placeholder="Phone" formControlName="phone"><br>
+                <mat-error *ngIf="phone && phone.invalid && phone.touched">
                     <strong> Phone Required</strong>
                  </mat-error>
                  <br>
 
-                <input type="email" name="Email" placeholder="Email" formControlName="Email"><br>
-                <mat-error *ngIf="Email && Email.invalid && Email.touched">
+                <input type="email" name="email" placeholder="Email" formControlName="email"><br>
+                <mat-error *ngIf="email && email.invalid && email.touched">
                     <strong> Email Required</strong>
                  </mat-error>
                  <br>
 
-                <input type="password" name="Password" placeholder="Password" formControlName="Password"><br>
-                <mat-error *ngIf="Password && Password.invalid && Password.touched">
+                <input type="password" name="password" placeholder="Password" formControlName="password"><br>
+                <mat-error *ngIf="password && password.invalid && password.touched">
                     <mat-hint>Password should be of minimum 10 characters containing :<br>-> Alphanumeric characters<br>-> Atleast one Uppercase letter<br>-> Atleast one Lowercase letter<br>-> Atleast one Special character</mat-hint>
                  </mat-error>
                  <br>
 
                 <div class="tacbox">
-                    <input class="taa" id="Checkbox" type="checkbox" formControlName="Checkbox"/>
+                    <input class="taa" id="checkbox" type="checkbox" formControlName="checkbox"/>
                     <label for="checkbox"> I agree to these <a href="#">Terms and Conditions</a>.</label>
                 </div>
-                <button type="submit" (click)="Register()">Register</button>
+                <button type="submit" (click)="register()">Register</button>
                 
                 <div class="register">
                     <p class="registerpara">Already have an account ?</p>

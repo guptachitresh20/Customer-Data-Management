@@ -11,7 +11,7 @@
 
     <agm-map [latitude]="latitude" [longitude]="longitude" [zoom]="zoom">
         <agm-marker [latitude]="latitude" [longitude]="longitude" [markerDraggable]="true"
-            (dragEnd)="MarkerDragEnd($event)"></agm-marker>
+            (dragEnd)="markerDragEnd($event)"></agm-marker>
     </agm-map>
 
     <div class="loc-data">
@@ -21,6 +21,6 @@
     </div>
 </div>
 <div class="modal-footer">
-    <button type="button" class="btn-secondary" data-dismiss="modal" (click)="CloseDialog('close')">Close</button>
-    <button type="button" class="btn-primary" (click)="SaveLocation()">Save Location</button>
+    <button type="button" class="btn-secondary" data-dismiss="modal" (click)="closeDialog('close')">Close</button>
+    <button type="button" class="btn-primary" (click)="saveLocation()">Save Location</button>
 </div>

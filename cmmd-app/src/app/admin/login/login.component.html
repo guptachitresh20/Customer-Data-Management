@@ -23,21 +23,21 @@
     
             <p>Enter your login details below</p>
 
-            <form [formGroup]="LoginForm" autocomplete="off">
-                <input type="text" name="Email" placeholder="Email" formControlName="Email"><br>
+            <form [formGroup]="loginForm" autocomplete="off">
+                <input type="text" name="email" placeholder="Email" formControlName="email"><br>
              
-                <mat-error *ngIf="Email && Email.invalid && Email.touched">
+                <mat-error *ngIf="email && email.invalid && email.touched">
                     <strong>Email Required</strong>
                  </mat-error>
                  <br>
 
-                <input type="password" name="Password" placeholder="Password" formControlName="Password"><br>
-                <mat-error *ngIf="Password && Password.invalid && Password.touched">
+                <input type="password" name="password" placeholder="Password" formControlName="password"><br>
+                <mat-error *ngIf="password && password.invalid && password.touched">
                     <strong> Password Required</strong>
                 </mat-error>
                  <br><br>
 
-                <button class="loginbtn" type="submit" (click)="Login()">Login</button>
+                <button class="loginbtn" type="submit" (click)="login()">Login</button>
                 <div class="register">
                     <p class="registerpara">Don’t have an account ?</p>
                     <button routerLink="/register">Register</button>

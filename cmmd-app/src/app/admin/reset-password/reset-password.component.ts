@@ -22,30 +22,30 @@ export class ResetPasswordComponent{
 
   constructor(private dialog:MatDialog, private auth:AuthService, private router:Router){}
 
-  ResetPasswordForm = new FormGroup({
-    Email: new FormControl(localStorage.getItem('adminEmail')),
-    Password: new FormControl('', [Validators.required, Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{10,}')]),
-    NewPassword: new FormControl('', [Validators.required, Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{10,}')]),
+  resetPasswordForm = new FormGroup({
+    email: new FormControl(localStorage.getItem('adminEmail')),
+    password: new FormControl('', [Validators.required, Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{10,}')]),
+    newPassword: new FormControl('', [Validators.required, Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{10,}')]),
   });
-  get Password() {
-    return this.ResetPasswordForm.get('Password');
+  get password() {
+    return this.resetPasswordForm.get('password');
   }
-  get NewPassword() {
-    return this.ResetPasswordForm.get('NewPassword');
+  get newPassword() {
+    return this.resetPasswordForm.get('newPassword');
   }
 
-  ResetPassword()
+  resetPassword()
   {
-    if(this.ResetPasswordForm.valid)
+    if(this.resetPasswordForm.valid)
     {
-      this.ResetPasswordForm.value.Email=this.ResetPasswordForm.value.Email.toString();
-      this.ResetPasswordForm.value.Password=this.ResetPasswordForm.value.Password.toString();
-      this.ResetPasswordForm.value.NewPassword=this.ResetPasswordForm.value.NewPassword.toString();
-      this.auth.Reset(this.ResetPasswordForm.value).subscribe((result)=>{
+      this.resetPasswordForm.value.email=this.resetPasswordForm.value.email.toString();
+      this.resetPasswordForm.value.password=this.resetPasswordForm.value.password.toString();
+      this.resetPasswordForm.value.newPassword=this.resetPasswordForm.value.newPassword.toString();
+      this.auth.reset(this.resetPasswordForm.value).subscribe((result)=>{
         alertify.set('notifier','position', 'top-right');
         alertify.success("Password has been Reset");
         setTimeout(()=>{
-          this.auth.SignOut();
+          this.auth.signOut();
           alertify.set('notifier','position', 'top-right');
           alertify.success("Please Login with the New Password");
         },1000);
@@ -55,10 +55,10 @@ export class ResetPasswordComponent{
           alertify.error("Old Password does not match");
       });
     }
-    this.Close();
+    this.close();
   }
 
-  Close()
+  close()
   {
     this.dialog.closeAll();
   }

@@ -21,23 +21,23 @@ export class LoginComponent implements OnInit {
 
   ngOnInit()
   {
-    if(this.auth.GetToken())
+    if(this.auth.getToken())
     {
       this.router.navigate(['customer']);
     }
   }
 
-  Login(){
-    if(this.LoginForm.valid)
+  login(){
+    if(this.loginForm.valid)
     {
-      this.GetAdmin();
-      this.auth.Login(this.LoginForm.value).subscribe((result)=>{
+      this.getAdmin();
+      this.auth.login(this.loginForm.value).subscribe((result)=>{
         if(result)
         {
           alertify.set('notifier','position', 'top-right');
           alertify.success("Logged In");
-          this.LoginForm.reset();
-          this.auth.StoreToken(result.Token);
+          this.loginForm.reset();
+          this.auth.storeToken(result.token);
           this.router.navigate(['customer']);
         }
       },
@@ -53,29 +53,29 @@ export class LoginComponent implements OnInit {
   }
 
 
-  GetAdmin()
+  getAdmin()
   {
-    this.auth.GetAdmin(this.LoginForm.value.Email).subscribe((result)=>{
+    this.auth.getAdmin(this.loginForm.value.email).subscribe((result)=>{
       if(result)
       {
         this.adminDetails=result;
-        localStorage.setItem('adminName',this.adminDetails.Name);
-        localStorage.setItem('adminEmail',this.adminDetails.Email);
+        localStorage.setItem('adminName',this.adminDetails.name);
+        localStorage.setItem('adminEmail',this.adminDetails.email);
 
       }
     })
   }
 
 
-  LoginForm = new FormGroup({
-    Email: new FormControl('', [Validators.required]),
-    Password: new FormControl('', [Validators.required]),
+  loginForm = new FormGroup({
+    email: new FormControl('', [Validators.required]),
+    password: new FormControl('', [Validators.required]),
   });
-  get Email() {
-    return this.LoginForm.get('Email');
+  get email() {
+    return this.loginForm.get('email');
   }
-  get Password() {
-    return this.LoginForm.get('Password');
+  get password() {
+    return this.loginForm.get('password');
   }
 
 }

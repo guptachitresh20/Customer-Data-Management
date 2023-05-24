@@ -12,15 +12,15 @@ export class LogsService {
 
 
   // to get the list of all the logs
-  GetLogs(startIndex,pageSize){
+  getLogs(startIndex,pageSize){
     return this.http.get<IPaginatedResults<ILogs>>(`${this.apiurl}?startIndex=${startIndex}&pageSize=${pageSize}`);
   }
 
-  AddLog(data:ILogs){
+  addLog(data:ILogs){
     return this.http.post(this.apiurl, data);
   }
 
-  SearchLogs(data:string){
+  searchLogs(data:string){
     return this.http.get<ILogs[]>(`${this.apiurl}$like?search=${data}`);
   }
 }

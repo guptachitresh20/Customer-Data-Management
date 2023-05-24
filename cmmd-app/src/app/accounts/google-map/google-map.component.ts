@@ -38,7 +38,7 @@ export class GoogleMapComponent implements OnInit{
   ngOnInit() {
     //load Places Autocomplete
     this.mapsAPILoader.load().then(() => {
-      this.SetCurrentLocation();
+      this.setCurrentLocation();
       this.geoCoder = new google.maps.Geocoder();
 
       let autocomplete = new google.maps.places.Autocomplete(
@@ -58,32 +58,32 @@ export class GoogleMapComponent implements OnInit{
           this.latitude = place.geometry.location.lat();
           this.longitude = place.geometry.location.lng();
           this.zoom = 12;
-          this.GetAddress(this.latitude, this.longitude);
+          this.getAddress(this.latitude, this.longitude);
         });
       });
     });
   }
 
   // Get Current Location Coordinates
-  private SetCurrentLocation() {
+  private setCurrentLocation() {
     if ('geolocation' in navigator) {
       navigator.geolocation.getCurrentPosition((position) => {
         this.latitude = position.coords.latitude;
         this.longitude = position.coords.longitude;
         this.zoom = 8;
-        this.GetAddress(this.latitude, this.longitude);
+        this.getAddress(this.latitude, this.longitude);
       });
     }
   }
 
-  MarkerDragEnd($event: any) {
+  markerDragEnd($event: any) {
     this.latitude = $event.latLng.lat();
     this.longitude = $event.latLng.lng();
-    this.GetAddress(this.latitude, this.longitude);
+    this.getAddress(this.latitude, this.longitude);
     
   }
 
-  GetAddress(latitude: number, longitude: number) {
+  getAddress(latitude: number, longitude: number) {
     this.geoCoder.geocode(
       { location: { lat: latitude, lng: longitude } },
       (results: any, status: any) => {
@@ -101,12 +101,12 @@ export class GoogleMapComponent implements OnInit{
     );
   }
 
-  CloseDialog(sendData:any)
+  closeDialog(sendData:any)
   {
     this.matDialogRef.close(sendData);
   }
 
-  SaveLocation(){
+  saveLocation(){
     const data = {
       address: this.address,
       latitude: this.latitude,
